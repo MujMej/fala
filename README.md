@@ -25,4 +25,4 @@ Sajt **fala.ba** i kartice koje idu uz svaki paket. @myjmej with love.
 
 `python3 alati/kartice.py kartice/` (treba: `pip install reportlab qrcode pillow`)
 
-Fontovi u `alati/fonts/` su pod SIL Open Font License.
+Fontovi u `alati/fonts/` su slobodni za upotrebu: Poppins i Caveat pod SIL Open Font License, Satisfy pod Apache licencom (licence su u istom folderu).
