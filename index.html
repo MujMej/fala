@@ -252,7 +252,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <div>
         <p class="eyebrow">Imanje i šumska kuća</p>
         <h2>Ono što se sadi, završi u tegli</h2>
-        <p class="lede">Na imanju nastaje šumska kuća: dom, radionica i mjesto za razgovore. Ovdje sadim bilje za macerate i čajeve (svaki macerat je jedna biljka u maslinovom ulju, 40 dana u mraku), jorgovan za posebnu liniju, voće za sušenje i zamrzavanje, orašaste plodove i jednog dana pčele. Proces pratiš na Instagramu, od sjetve do serije.</p>
+        <p class="lede">Na imanju nastaje šumska kuća: dom, radionica i mjesto za razgovore. Ovdje sadim bilje za macerate i čajeve (svaki macerat je jedna osušena biljka u maslinovom ulju, 40 dana zaštićena od svjetla), jorgovan za posebnu liniju, voće za sušenje i zamrzavanje, orašaste plodove i jednog dana pčele. Proces pratiš na Instagramu, od sjetve do serije.</p>
         <div class="plants" aria-label="Šta se sadi">
           <span>lavanda</span><span>kamilica</span><span>kantarion</span><span>veren</span><span>čuber</span><span>neven</span><span>menta</span><span>žalfija</span><span>ružmarin</span><span>jorgovan</span><span>višnja</span><span>kupina</span><span>borovnica</span><span>orah</span><span>lješnjak</span><span>badem</span>
         </div>
@@ -340,25 +340,25 @@ const SASTAV = {
   "Za djecu":"Soda bikarbona i limunska kiselina (2 : 1), morska so, mlijeko u prahu, kokosovo ulje i macerat kamilice. Bez boja.",
   "Kuglice za stopala":"Krupna morska so, soda bikarbona i limunska kiselina (2 : 0,5), Epsom so, mlijeko u prahu, čaj od bilja (do 10 g na 100 g) i eterično ulje varijante.",
   "Soli za stopala":"Krupna morska so, soda bikarbona i limunska kiselina (2 : 0,5), Epsom so, mlijeko u prahu, čaj od bilja (do 10 g na 100 g) i eterično ulje varijante.",
-  "Macerati":"Hladno cijeđeno ekstra djevičansko maslinovo ulje i jedna biljka, 40 dana u mraku.",
+  "Macerati":"Osušena biljka i hladno cijeđeno ekstra djevičansko maslinovo ulje. Biljka 40 dana odležava u zatvorenoj staklenoj tegli, zaštićena od svjetla, uz povremeno protresanje, pa se procijedi i čuva u tamnoj boci.",
   "Čvrsti parfemi":"Pčelinji vosak, kokosovo ulje, shea butter, macerat ljekovitog bilja i eterična ulja varijante."
 };
 const USE = {
-  "Kuglice za stopala":"Jedna kuglica, jedna nožica. Preliti vrelom vodom, ostaviti da odstoji kao čaj, pa potopiti stopala kad voda postane ugodno topla.",
-  "Soli za stopala":"Kašičicom u lavor, preliti vrelom vodom i ostaviti da odstoji kao čaj, pa potopiti stopala kad voda postane ugodno topla.",
+  "Kuglice za stopala":"Jedna kuglica, jedna nožica. Preliti vrelom vodom i ostaviti 3 do 5 minuta da se bilje otvori, pa potopiti stopala kad voda dođe do temperature koja ti prija.",
+  "Soli za stopala":"Kašičicom u lavor, preliti vrelom vodom i ostaviti 3 do 5 minuta da se bilje otvori, pa potopiti stopala kad voda dođe do temperature koja ti prija.",
   "Bathbombs":"Ulja ostaju na koži i na kadi, pa je kada klizava.",
   "Pilinzi":"Najbolje se nanosi washclothom."
 };
 const NOTES = {
   "Mamino pletivo":"Šalove, priglavke, kape i rukavice plete moja mama, ručno i od vune. Svaki komad je jedan; boju i veličinu dogovaramo u poruci.",
   "Slike i čestitke":"Slikam naivne slike i čestitke, svaku posebno i rukom. Tekst u čestitki pišem po tvojoj želji.",
-  "Macerati":"Svaka biljka stoji sama u hladno cijeđenom ekstra djevičanskom maslinovom ulju, 40 dana u mraku. Od macerata nastaju balzami, losioni i ulja.",
+  "Macerati":"Svaka osušena biljka odležava sama u hladno cijeđenom ekstra djevičanskom maslinovom ulju, 40 dana zaštićena od svjetla. Od macerata nastaju balzami, losioni i ulja.",
   "Kuglice za stopala":"Jedna kuglica, jedna nožica."
 };
 const EXTRA = [
   {id:"x-macerat", line:"njega", group:"Macerati", kind:"ask", art:"bottle", name:"Macerat po izboru", variants:HERBS.map(h => h[0].toUpperCase() + h.slice(1)), desc:"Jedna biljka u maslinovom ulju. Izaberi biljku, pa se javi za količinu."},
   {id:"x-jorgovan", line:"njega", group:"Macerati", kind:"soon", art:"bottle", name:"Jorgovan, posebna linija", desc:"Macerati od jorgovana s imanja, čim stabla procvjetaju."},
-  {id:"x-parfem", line:"njega", group:"Čvrsti parfemi", kind:"ask", art:"jar", name:"Čvrsti parfem", variants:["Ružmarin","Citrus","Sandalovina","Pačuli","Jasmin","Vanila","Pepermint"], desc:"Vosak i ulja koji dugo mirišu. Za zapešća, vrat i bradu; pepermint za masažu sljepoočnica."},
+  {id:"x-parfem", line:"njega", group:"Čvrsti parfemi", kind:"ask", art:"jar", name:"Čvrsti parfem", variants:["Ružmarin","Citrus","Sandalovina","Pačuli","Jasmin","Vanila","Pepermint"], desc:"Vosak i ulja koji dugo mirišu. Nanesi prstom na zapešća, vrat ili bradu; pepermint je lijep za laganu masažu sljepoočnica, dalje od očiju."},
   {id:"x-melem", line:"njega", group:"Melemi i losioni", kind:"soon", art:"jar", name:"Melem", desc:"Gusti melem od macerata ljekovitog bilja i voska."},
   {id:"x-losion", line:"njega", group:"Melemi i losioni", kind:"soon", art:"bottle", name:"Losion za tijelo", desc:"Losion od macerata i kokosovog ulja."},
   {id:"x-ulje-kupka", line:"njega", group:"Ulja i šimeri", kind:"soon", art:"bottle", name:"Ulje za kupanje", desc:"Macerat i biljna ulja za kadu."},
