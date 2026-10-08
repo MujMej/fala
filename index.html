@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>fala</title>
+<meta name="description" content="fala – ručno rađena prirodna kozmetika, bilje i plodovi sa imanja. Male serije, svaka jedinstvena.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500&display=swap">
+<style>
+@font-face{font-family:"Caveat Brush";src:url("fonts/caveat-brush.woff2") format("woff2");font-display:swap}
+/* Layout: herbarium sheet — one narrow reading column, product grid like pressed specimens with handwritten-style labels */
+:root{
+  --paper:#ebeedf; --sheet:#f8f6ec; --ink:#26301f; --muted:#5b6551; --sage:#4f6443; --line:#d3d8c4;
+  --lav:#6f5fa3; --lav-soft:#e4e0f1; --chip:#e2e6d4; --moss:#2d3b27; --moss2:#3a4b32; --cream:#f5efe0; --lavlight:#c4b9e8; --honey:#d8a24a;
+  --hand:"Caveat Brush","Segoe Print","Bradley Hand",cursive;
+  --display:"Cormorant Garamond","Iowan Old Style",Georgia,serif;
+  --body:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#171b15; --sheet:#20251d; --ink:#e7eadf; --muted:#a5ad9b; --sage:#a6bb93; --line:#343b2f;
+  --lav:#b3a8dc; --lav-soft:#2b2838; --chip:#2a3125; --moss:#1f2a1b; --moss2:#2c3926; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#171b15; --sheet:#20251d; --ink:#e7eadf; --muted:#a5ad9b; --sage:#a6bb93; --line:#343b2f;
+  --lav:#b3a8dc; --lav-soft:#2b2838; --chip:#2a3125; --moss:#1f2a1b; --moss2:#2c3926; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:300 15px/1.65 var(--body)}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.1;text-wrap:balance;margin:0}
+h2{font-size:clamp(2rem,4.5vw,2.8rem)}
+h3{font-size:1.45rem}
+.eyebrow{font:500 .7rem/1 var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--sage)}
+.lede{max-width:60ch;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:.5em;border:1px solid var(--ink);background:var(--ink);color:var(--paper);
+  font:500 .85rem/1 var(--body);padding:.9em 1.4em;border-radius:999px;text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--lav);outline-offset:2px}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--moss);color:var(--cream)}
+.bar{display:flex;align-items:center;gap:20px;height:64px}
+.logo{font:400 2.4rem/1 var(--hand);text-decoration:none;color:var(--cream);transform:rotate(-4deg)}
+nav{display:flex;gap:22px;margin-left:auto;font-size:.85rem}
+nav a{text-decoration:none;color:color-mix(in srgb,var(--cream) 75%,transparent)}
+nav a:hover{color:var(--cream)}
+.cartbtn{border:1px solid color-mix(in srgb,var(--cream) 35%,transparent);background:transparent;color:var(--cream);border-radius:999px;padding:.55em 1em;font:500 .85rem var(--body);cursor:pointer;display:flex;gap:.5em;align-items:center}
+.count{background:var(--lav);color:#fff;border-radius:999px;min-width:1.5em;height:1.5em;display:inline-grid;place-items:center;font-size:.72rem;font-variant-numeric:tabular-nums}
+@media (max-width:760px){nav{display:none}.cartbtn{margin-left:auto}}
+
+/* hero */
+.herowrap{background:var(--moss);color:var(--cream);overflow:hidden}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-block:40px 72px}
+.hero .eyebrow{color:var(--lavlight)}
+.hero h1{font:400 clamp(7rem,22vw,13.5rem)/.8 var(--hand);transform:rotate(-5deg);transform-origin:left bottom;margin:18px 0 10px -6px;color:var(--cream)}
+.hero .tag{font-family:var(--display);font-style:italic;font-size:clamp(1.6rem,3.2vw,2.1rem);line-height:1.2;color:var(--cream);margin:.4em 0 .6em;max-width:20ch}
+.hero p{max-width:46ch;color:color-mix(in srgb,var(--cream) 78%,transparent)}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.hero .btn{background:var(--cream);color:var(--moss);border-color:var(--cream)}
+.hero .btn.ghost{background:transparent;color:var(--cream)}
+.hero figure{margin:0;position:relative}
+.hero figure{max-width:440px;justify-self:end}
+.hero figure img{aspect-ratio:1/1;object-fit:cover;width:100%;height:auto;border-radius:2px;transform:rotate(2deg);box-shadow:0 0 0 10px var(--cream)}
+.hero figcaption{position:absolute;left:-18px;bottom:26px;background:var(--cream);color:var(--ink);padding:.7em 1em;font:400 .78rem/1.4 var(--body);max-width:230px;transform:rotate(-2deg)}
+.hero figcaption b{font:italic 500 1.05rem var(--display);display:block}
+@media (max-width:820px){.hero{grid-template-columns:1fr;gap:40px;padding-block:28px 48px}.hero figcaption{left:12px}}
+
+section{padding-block:64px;border-top:1px solid var(--line)}
+.head{display:grid;gap:10px;margin-bottom:32px}
+
+/* lines */
+.lines{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.line{background:var(--sheet);padding:22px 22px 24px;display:grid;gap:8px;align-content:start;text-align:left;border:0;color:inherit;font:inherit;cursor:default}
+button.line{cursor:pointer}
+button.line:hover h3{color:var(--lav)}
+.line p{margin:0;color:var(--muted);font-size:.88rem}
+.state{justify-self:start;font:500 .66rem/1 var(--body);letter-spacing:.12em;text-transform:uppercase;padding:.55em .8em;border-radius:999px;background:var(--chip);color:var(--sage)}
+.state.soon{background:var(--lav-soft);color:var(--lav)}
+@media (max-width:820px){.lines{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media (max-width:520px){.lines{grid-template-columns:minmax(0,1fr)}}
+
+/* shop */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.tabs button{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:.55em 1.1em;font:400 .85rem var(--body);cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:28px 22px}
+.card{display:grid;grid-template-rows:auto 1fr;background:var(--sheet);border:1px solid var(--line)}
+.card .ph{aspect-ratio:1;background:var(--chip);overflow:hidden}
+.card .ph img{width:100%;height:100%;object-fit:cover}
+.card .in{padding:14px 16px 16px;display:grid;gap:10px;align-content:start;min-width:0}
+.card .ln{font:500 .64rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--sage)}
+.card h3{font-size:1.35rem}
+.card p{margin:0;font-size:.84rem;color:var(--muted)}
+.card select{width:100%;font:400 .85rem var(--body);padding:.55em .6em;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink)}
+.buy{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:2px}
+.price{font:600 1.35rem/1 var(--display);font-variant-numeric:tabular-nums}
+.add{border:0;background:var(--sage);color:var(--sheet);border-radius:999px;padding:.6em 1.05em;font:500 .8rem var(--body);cursor:pointer}
+.add.done{background:var(--lav)}
+.lh{grid-column:1/-1;display:grid;gap:4px;padding-top:12px;border-top:1px solid var(--ink);margin-top:12px}
+.lh:first-child{margin-top:0}
+.lh h3{font-size:2rem}
+.lh p{margin:0;color:var(--muted);font-size:.88rem}
+.gh{grid-column:1/-1;display:grid;gap:4px;margin-bottom:-10px}
+.gh h4{margin:0;font:500 .72rem/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--sage)}
+.gh p{margin:0;max-width:62ch;font-size:.86rem;color:var(--muted)}
+.draw{aspect-ratio:1;background:var(--chip);color:var(--sage);display:grid;place-items:center;position:relative}
+.draw svg{width:62%;height:62%}
+.draw span{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:.68rem;letter-spacing:.06em;color:var(--muted)}
+.price.soft{font:italic 500 1.05rem var(--display);color:var(--muted)}
+a.add{text-decoration:none;display:inline-block}
+
+/* serija */
+#serija{background:var(--moss);color:var(--cream);border-top:0}
+#serija .eyebrow{color:var(--lavlight)}
+.serija{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.serija blockquote{margin:0;font:italic 500 clamp(1.6rem,3.4vw,2.2rem)/1.25 var(--display)}
+.same{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--moss2);border:1px solid var(--moss2)}
+.same div{background:var(--moss);padding:18px}
+.same h3{color:var(--cream)}
+.same ul{margin:.6em 0 0;padding-left:1.1em;font-size:.88rem;color:color-mix(in srgb,var(--cream) 78%,transparent)}
+.lot{margin-top:18px;font:400 .82rem var(--body);color:color-mix(in srgb,var(--cream) 78%,transparent);border:1px dashed var(--moss2);padding:12px 14px;display:inline-block}
+.lot code{font-family:ui-monospace,Menlo,monospace;color:var(--cream)}
+@media (max-width:820px){.serija{grid-template-columns:1fr}}
+
+/* imanje */
+.imanje{display:grid;grid-template-columns:1.2fr 1fr;gap:48px}
+.plants{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.plants span{border:1px solid var(--line);border-radius:999px;padding:.4em .9em;font-size:.82rem;background:var(--sheet)}
+.podcast{background:var(--lav-soft);padding:24px;display:grid;gap:10px;align-content:start}
+.podcast h3{color:var(--ink)}
+.podcast p{margin:0;font-size:.9rem;color:var(--muted)}
+@media (max-width:820px){.imanje{grid-template-columns:1fr}}
+
+/* kontakt */
+.info{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.info h3{font-size:1.25rem;margin-bottom:6px}
+.info p{margin:0;font-size:.88rem;color:var(--muted)}
+.sel{user-select:all;color:var(--ink);font-weight:400}
+@media (max-width:820px){.info{grid-template-columns:1fr}}
+footer{background:var(--moss);color:color-mix(in srgb,var(--cream) 75%,transparent);padding-block:36px 44px;font-size:.8rem}
+footer a{color:var(--cream)}
+.sig{font:400 1.6rem/1 var(--hand);color:var(--lavlight);text-decoration:none}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(20,24,18,.45);z-index:40}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--sheet);z-index:41;display:grid;grid-template-rows:auto 1fr auto;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);border-left:1px solid var(--line)}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}
+.x{border:0;background:none;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--ink)}
+.dbody{overflow:auto;padding:16px 20px;display:grid;gap:18px;align-content:start}
+.item{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center}
+.item img{width:56px;height:56px;object-fit:cover;background:var(--chip)}
+.item .nm{font-size:.86rem;line-height:1.35;min-width:0}
+.item .nm small{display:block;color:var(--muted)}
+.qty{display:flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums}
+.qty button{width:26px;height:26px;border:1px solid var(--line);background:none;border-radius:50%;cursor:pointer;color:var(--ink)}
+.form{display:grid;gap:10px}
+.form label{display:grid;gap:4px;font-size:.78rem;color:var(--muted)}
+.form input,.form select,.form textarea{font:400 .9rem var(--body);padding:.6em .7em;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);width:100%}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.df{border-top:1px solid var(--line);padding:16px 20px;display:grid;gap:10px}
+.sum{display:flex;justify-content:space-between;font-size:.86rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.sum.total{font:600 1.3rem var(--display);color:var(--ink)}
+.empty{color:var(--muted);font-size:.9rem}
+.note{font-size:.76rem;color:var(--muted);margin:0}
+.err{color:#b4442d;font-size:.8rem;margin:0}
+</style>
+</head>
+<body>
+
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top">fala</a>
+    <nav aria-label="Glavni meni">
+      <a href="#prodavnica">Prodavnica</a>
+      <a href="#linije">Linije</a>
+      <a href="#serija">Jedinstvene serije</a>
+      <a href="#imanje">Imanje</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <button class="cartbtn" id="openCart" type="button" aria-label="Otvori korpu">Korpa <span class="count" id="count">0</span></button>
+  </div>
+</header>
+
+<main id="top">
+  <div class="herowrap"><div class="wrap hero">
+    <div>
+      <p class="eyebrow">Sa imanja, iz radionice</p>
+      <h1>fala</h1>
+      <p class="tag">Hvala ti što biraš nešto napravljeno rukom.</p>
+      <p>Pilinzi, balzami i kupke od bilja koje sadim i potapam u ulje sedmicama prije izrade. Bossonoga za umorna stopala, mamino pletivo i moje slike. Sve u malim serijama.</p>
+      <div class="actions">
+        <a class="btn" href="#prodavnica">Pogledaj prodavnicu</a>
+        <a class="btn ghost" href="#serija">Svaka serija je jedinstvena</a>
+      </div>
+    </div>
+    <figure>
+      <img src="images/radionica.webp" alt="Radionica: bilje, ulja i tegle na stolu" width="900" height="1125">
+      <figcaption><b>Biljka → macerat → ruka</b>Svaki proizvod počinje od bilja potopljenog u ulje.</figcaption>
+    </figure>
+  </div></div>
+
+  <section id="linije">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Tri linije danas, tri sa imanja</p>
+        <h2>Šta nastaje pod imenom fala</h2>
+      </div>
+      <div class="lines" id="lines"></div>
+    </div>
+  </section>
+
+  <section id="prodavnica">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Prodavnica</p>
+        <h2>Izaberi, dodaj u korpu, pošalji na WhatsApp</h2>
+        <p class="lede">Narudžba stiže meni kao poruka. Javljam se s potvrdom i rokom izrade, jer se svaka serija pravi za stvarnog kupca.</p>
+      </div>
+      <div class="tabs" id="tabs" role="group" aria-label="Filtriraj po liniji"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section id="serija">
+    <div class="wrap serija">
+      <div>
+        <p class="eyebrow">Svaka serija je jedinstvena</p>
+        <blockquote>Možeš naslikati isti motiv, ali nikad istu sliku. Recept je isti, a bilje i trenutak nisu.</blockquote>
+        <p class="lot">Na svakoj kartici piše serija i datum, npr. <code>Serija 07 · lavanda · jun 2027</code></p>
+      </div>
+      <div class="same">
+        <div><h3>Uvijek isto</h3><ul><li>sastojci sa spiska</li><li>količina ulja i macerata</li><li>gramaža</li><li>rok trajanja i sigurnost</li></ul></div>
+        <div><h3>Mijenja se</h3><ul><li>nijansa boje</li><li>jačina mirisa</li><li>oblik i ukras</li><li>bilje iz te sezone</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="imanje">
+    <div class="wrap imanje">
+      <div>
+        <p class="eyebrow">Imanje i šumska kuća</p>
+        <h2>Ono što se sadi, završi u tegli</h2>
+        <p class="lede">Na imanju nastaje šumska kuća: dom, radionica i mjesto za razgovore. Ovdje sadim bilje za macerate i čajeve, voće za sušenje i zamrzavanje, orašaste plodove i jednog dana pčele. Proces pratiš na Instagramu, od sjetve do serije.</p>
+        <div class="plants" aria-label="Šta se sadi">
+          <span>lavanda</span><span>kamilica</span><span>neven</span><span>menta</span><span>žalfija</span><span>ružmarin</span><span>jorgovan</span><span>višnja</span><span>kupina</span><span>borovnica</span><span>orah</span><span>lješnjak</span><span>badem</span>
+        </div>
+      </div>
+      <div class="podcast">
+        <p class="eyebrow">Uskoro na YouTube</p>
+        <h3>Šumski razgovori</h3>
+        <p>Jednom sedmično, za stolom na imanju: prijatelji, jedna tema i razgovor bez žurbe.</p>
+        <p><a href="https://www.instagram.com/myjmej" target="_blank" rel="noopener">Prati najave na @myjmej</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <div class="wrap">
+      <div class="head"><p class="eyebrow">Kontakt i dostava</p><h2>Javi se</h2></div>
+      <div class="info">
+        <div><h3>Narudžbe</h3><p>Složi korpu i pošalji: narudžba mi stiže kao poruka na WhatsApp. Za pitanja piši na <span class="sel">contact.bossonoga@gmail.com</span>.</p></div>
+        <div><h3>Dostava</h3><p>Banja Luka: preuzimanje ili dogovor, bez poštarine.<br>Pošta u BiH: 8 KM uz uplatu na račun, 10 KM pouzećem.</p></div>
+        <div><h3>Ako nešto nije u redu</h3><p>Javi se u roku od 3 dana sa fotografijom. Male razlike u boji i mirisu među serijama nisu greška, to je ručni rad.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="sig" href="https://www.instagram.com/myjmej" target="_blank" rel="noopener">@myjmej with love</a>
+    <span>fala.ba · <a href="https://mujmej.art" target="_blank" rel="noopener">mujmej.art</a> · Podaci iz narudžbe koriste se samo za izradu i dostavu.</span>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-label="Korpa">
+  <div class="dh"><h3>Korpa</h3><button class="x" id="closeCart" type="button" aria-label="Zatvori korpu">×</button></div>
+  <div class="dbody">
+    <div id="items"></div>
+    <form class="form" id="order" novalidate>
+      <label>Ime i prezime<input id="f-name" required autocomplete="name"></label>
+      <div class="two">
+        <label>Telefon<input id="f-phone" required autocomplete="tel" inputmode="tel"></label>
+        <label>Grad<input id="f-city" autocomplete="address-level2"></label>
+      </div>
+      <label>Adresa (za poštu)<input id="f-addr" autocomplete="street-address"></label>
+      <div class="two">
+        <label>Dostava<select id="f-ship"><option value="local">Banja Luka, preuzimanje</option><option value="post">Pošta BiH</option></select></label>
+        <label>Plaćanje<select id="f-pay"><option value="cod">Pouzećem</option><option value="bank">Uplata na račun</option></select></label>
+      </div>
+      <label>Pakovanje<select id="f-gift"><option value="0">Bez posebne ambalaže</option><option value="2">Poklon pakovanje (+2 KM)</option><option value="5">Poklon pakovanje i ručno rađena kartica (+5 KM)</option></select></label>
+      <label>Napomena (kome je poklon, tekst za karticu…)<textarea id="f-note" rows="2"></textarea></label>
+    </form>
+  </div>
+  <div class="df">
+    <div class="sum"><span>Proizvodi</span><span id="s-items">0 KM</span></div>
+    <div class="sum"><span>Pakovanje i dostava</span><span id="s-extra">0 KM</span></div>
+    <div class="sum total"><span>Ukupno</span><span id="s-total">0 KM</span></div>
+    <p class="err" id="err" hidden></p>
+    <a class="btn" id="send" href="#" target="_blank" rel="noopener">Pošalji narudžbu na WhatsApp</a>
+    <p class="note">Otvara WhatsApp s ispisanom porukom; narudžba je poslana kad pritisneš Pošalji u WhatsAppu.</p>
+  </div>
+</aside>
+
+<script>
+const DATA = {"bathBombs": [{"id": "bb-bathbomb-50g", "name": "Kupka Bathbomb", "price": 5, "size": "do 50g", "variants": ["Lavanda", "Pepermint", "Citrus", "Kantarion", "Lipa + Jasmin", "Ruža + Hibiskus + Šipak", "Limun + Zeleni čaj"], "desc": "Šumeće kupke sa ljekovitim biljem za opuštanje i njegu tijela.", "image": "images/bathbomb-main.png", "variantImages": {"Lavanda": "images/bathbomb-lavanda.png", "Pepermint": "images/bathbomb-pepermint.png", "Citrus": "images/bathbomb-citrus.png", "Kantarion": "images/bathbomb-kantarion.png", "Lipa + Jasmin": "images/bathbomb-lipa-jasmin.png", "Ruža + Hibiskus + Šipak": "images/bathbomb-ruza-hibiskus-sipak.png", "Limun + Zeleni čaj": "images/bathbomb-limun-zeleni-caj.png"}}, {"id": "bb-krofna-100g", "name": "Kupka Krofna", "price": 10, "size": "do 100g", "variants": ["Lavanda", "Pepermint", "Citrus", "Kantarion", "Lipa + Jasmin", "Ruža + Hibiskus + Šipak", "Limun + Zeleni čaj"], "desc": "Veća šumeća kupka za bogatiji ritual njege i opuštanja.", "image": "images/krofna-main.png", "variantImages": {"Lavanda": "images/krofna-lavanda.png", "Pepermint": "images/krofna-pepermint.png", "Citrus": "images/krofna-citrus.png", "Kantarion": "images/krofna-kantarion.png", "Lipa + Jasmin": "images/krofna-lipa-jasmin.png", "Ruža + Hibiskus + Šipak": "images/krofna-hibiskus-ruza-sibak.png", "Limun + Zeleni čaj": "images/krofna-limun-zeleni-caj.png"}}], "balms": [{"id": "balm-mini-5g", "name": "Balzam Mini", "price": 5, "size": "5g", "desc": "Prirodni balzam za suhu i osjetljivu kožu.", "image": "images/balsam5g.png"}, {"id": "balm-regular-55g", "name": "Balzam", "price": 15, "size": "55g", "desc": "Bogata njega za suhu i oštećenu kožu cijelog tijela.", "image": "images/balsam55g.png"}], "refillBaths": [{"id": "refill-100g", "name": "Refill Kupka 100g", "price": 10, "size": "100g", "variants": ["Lavanda", "Pepermint", "Citrus", "Hibiskus + Ruža + Jasmin", "Kamilica + Neven + Kantarion", "Vanila + Kokos"], "desc": "Prhka kupka sa više soli i bilja, uz drvenu kašičicu gratis.", "image": "images/refill-main.png", "variantImages": {"Lavanda": "images/refill-lavanda.png", "Pepermint": "images/refill-pepermint.png", "Citrus": "images/refill-citrus.png", "Hibiskus + Ruža + Jasmin": "images/refill-hibiskus-ruza-jasmin.png", "Kamilica + Neven + Kantarion": "images/refill-kamilica-neven-kantarion.png", "Vanila + Kokos": "images/refill-vanila-kokos.png"}}, {"id": "refill-200g", "name": "Refill Kupka 200g", "price": 19, "size": "200g", "variants": ["Lavanda", "Pepermint", "Citrus", "Hibiskus + Ruža + Jasmin", "Kamilica + Neven + Kantarion", "Vanila + Kokos"], "desc": "Prhka kupka sa više soli i bilja, uz drvenu kašičicu gratis.", "image": "images/refill-main.png", "variantImages": {"Lavanda": "images/refill-lavanda.png", "Pepermint": "images/refill-pepermint.png", "Citrus": "images/refill-citrus.png", "Hibiskus + Ruža + Jasmin": "images/refill-hibiskus-ruza-jasmin.png", "Kamilica + Neven + Kantarion": "images/refill-kamilica-neven-kantarion.png", "Vanila + Kokos": "images/refill-vanila-kokos.png"}}, {"id": "refill-300g", "name": "Refill Kupka 300g", "price": 28, "size": "300g", "variants": ["Lavanda", "Pepermint", "Citrus", "Hibiskus + Ruža + Jasmin", "Kamilica + Neven + Kantarion", "Vanila + Kokos"], "desc": "Najveće refill pakovanje za više rituala kupanja.", "image": "images/refill-main.png", "variantImages": {"Lavanda": "images/refill-lavanda.png", "Pepermint": "images/refill-pepermint.png", "Citrus": "images/refill-citrus.png", "Hibiskus + Ruža + Jasmin": "images/refill-hibiskus-ruza-jasmin.png", "Kamilica + Neven + Kantarion": "images/refill-kamilica-neven-kantarion.png", "Vanila + Kokos": "images/refill-vanila-kokos.png"}}], "scrubs": [{"id": "scrub-narandza-ruzmarin", "name": "Piling - Narandža + Ružmarin", "price": 7, "size": "100g", "sizeOptions": [{"label": "100g", "price": 7}, {"label": "300g", "price": 21}], "desc": "Topla citrusno-biljna kombinacija za energičan ritual njege. Najbolje se nanosi washclothom.", "image": "images/piling-narandza-ruzmarinM.png", "sizeImages": {"100g": "images/piling-narandza-ruzmarinM.png", "300g": "images/piling-narandza-ruzmarinL.png"}}, {"id": "scrub-paculi-zalfija", "name": "Piling - Pačuli + Žalfija", "price": 7, "size": "100g", "sizeOptions": [{"label": "100g", "price": 7}, {"label": "300g", "price": 21}], "desc": "Biljni i aromatični piling sa dubljim, zemljanim tonovima. Najbolje se nanosi washclothom.", "image": "images/piling-paculi-zalfijaM.png", "sizeImages": {"100g": "images/piling-paculi-zalfijaM.png", "300g": "images/piling-paculi-zalfijaM.png"}}, {"id": "scrub-hibiskus-ruza-jasmin", "name": "Piling - Hibiskus + Ruža + Jasmin", "price": 7, "size": "100g", "sizeOptions": [{"label": "100g", "price": 7}, {"label": "300g", "price": 21}], "desc": "Cvjetni piling za nježan i luksuzan osjećaj na koži. Najbolje se nanosi washclothom.", "image": "images/piling-hibiskus-ruza-jasminM.png", "sizeImages": {"100g": "images/piling-hibiskus-ruza-jasminM.png", "300g": "images/piling-hibiskus-ruža-jasminL.png"}}, {"id": "scrub-citrus", "name": "Piling - Citrus", "price": 7, "size": "100g", "sizeOptions": [{"label": "100g", "price": 7}, {"label": "300g", "price": 21}], "desc": "Svjež i vedar citrus piling za osjećaj čistoće i energije. Najbolje se nanosi washclothom.", "image": "images/piling-citrusM.png", "sizeImages": {"100g": "images/piling-citrusM.png", "300g": "images/piling-citrus.png"}}, {"id": "scrub-limun-djumbir-zelenicaj", "name": "Piling - Limun + Đumbir + Zeleni čaj", "price": 7, "size": "100g", "sizeOptions": [{"label": "100g", "price": 7}, {"label": "300g", "price": 21}], "desc": "Osvježavajući piling sa citrusnom svježinom i toplom notom đumbira. Najbolje se nanosi washclothom.", "image": "images/piling-limun-djumbir-zelenicajM.png", "sizeImages": {"100g": "images/piling-limun-djumbir-zelenicajM.png", "300g": "images/piling-limun-djumbir-zelenicajL.png"}}, {"id": "scrub-pepermint", "name": "Piling - Pepermint", "price": 7, "size": "100g", "sizeOptions": [{"label": "100g", "price": 7}, {"label": "300g", "price": 21}], "desc": "Osvježavajući piling za osjećaj čistoće i hlađenja. Najbolje se nanosi washclothom.", "image": "images/piling-pepermintM.png", "sizeImages": {"100g": "images/piling-pepermintM.png", "300g": "images/piling-pepermintL.png"}}, {"id": "scrub-vanila-kokos", "name": "Piling - Vanila + Kokos", "price": 7, "size": "100g", "sizeOptions": [{"label": "100g", "price": 7}, {"label": "300g", "price": 21}], "desc": "Topla i slatkasta kombinacija za nježan spa osjećaj. Najbolje se nanosi washclothom.", "image": "images/piling-vanila-kokosM.png", "sizeImages": {"100g": "images/piling-vanila-kokosM.png", "300g": "images/piling-vanila-kokosL.png"}}, {"id": "scrub-lavanda", "name": "Piling - Lavanda", "price": 7, "size": "100g", "sizeOptions": [{"label": "100g", "price": 7}, {"label": "300g", "price": 21}], "desc": "Umirujući piling za miran i nježan ritual njege. Najbolje se nanosi washclothom.", "image": "images/piling-lavandaM.png", "sizeImages": {"100g": "images/piling-lavandaM.png", "300g": "images/piling-lavandaL.png"}}, {"id": "scrub-commercial", "name": "Komercijalni Piling", "price": 70, "size": "1kg", "sizeOptions": [{"label": "1kg", "price": 70}, {"label": "5kg", "price": 330}, {"label": "10kg", "price": 620}], "desc": "Veća pakovanja za profesionalnu i komercijalnu upotrebu. Najbolje se nanosi washclothom.", "image": "images/piling-main.png"}], "footBaths": [{"id": "foot-single", "name": "Kupka za Stopala", "price": 2, "size": "1 kom", "desc": "Pojedinačna kupka za stopala za kućni ritual njege.", "image": "images/Feetbathbombs.png"}, {"id": "foot-package-9", "name": "Kupke za Stopala - Paket 9 (8+1 GRATIS)", "price": 16, "size": "9 kom", "desc": "Paket 9 komada za poklon ili ličnu rutinu njege.", "image": "images/footbath-pack9.png"}, {"id": "foot-package-16", "name": "Kupke za Stopala - Paket 16 (15+1 GRATIS)", "price": 30, "size": "16 kom", "desc": "Veći paket za redovnu njegu ili poklon set.", "image": "images/footbath-pack16.png"}], "packages": [{"id": "pkg-custom", "name": "Poklon Paket po Želji", "price": 0, "desc": "Odaberite proizvode, pakovanje i karticu po želji.", "image": "images/bathbomb-main.png"}], "kidsLine": [{"id": "kids-duckbomb-single", "name": "🦆 Duckbomb", "price": 5, "desc": "Nježna kupka za djecu.", "image": "images/kids-patkice-real.png"}, {"id": "kids-duck-surprise", "name": "🦆 Patka iznenađenja", "price": 0, "desc": "U nekim patkicama krije se iznenađenje.", "image": "images/patkica.jpg"}, {"id": "kids-duckbomb-pack", "name": "🦆 Paket 4 patkice", "price": 20, "desc": "Paket 4 patkice za 20 KM.", "image": "images/kids-patkice-paket.png"}], "accessories": [{"id": "acc-tote-bossonoga", "name": "Ceker BOSSONOGA - Retro", "price": 20, "desc": "Ceger za svakodnevnu upotrebu i Bossonoga vibe.", "image": "images/ceker-bossonoga.png"}, {"id": "acc-tote-sacu", "name": "Ceker - \"E' o Saću\"", "price": 20, "desc": "Veseli ceker sa prirodnim motivima.", "image": "images/ceker-sacu.jpg"}, {"id": "acc-tote-odmori", "name": "Ceker - \"Odmori\"", "price": 20, "desc": "Minimalistički ceker sa Bossonoga porukom.", "image": "images/ceker-odmori.jpg"}, {"id": "acc-tote-patkica", "name": "Ceker - Bossonoga Patkica", "price": 20, "desc": "Razigrani ceker za kids kolekciju.", "image": "images/ceker-patkica.jpg"}, {"id": "acc-tote-baba", "name": "Ceker - Bakin Recept", "price": 20, "desc": "Ceker sa domaćim i nostalgičnim karakterom.", "image": "images/ceker-baba.jpg"}, {"id": "acc-washcloth", "name": "Washcloth", "price": 5, "desc": "Praktičan dodatak za ritual njege i pilinga.", "image": "images/washcloth-rucni-rad.jpg"}]};
+const WA = "38762456915";
+const img = p => p ? "images/" + p.split("/").pop().replace(/\.[^.]+$/, "").replace(/ž/g, "z") + ".webp" : "";
+
+const LINES = [
+  {key:"njega", name:"Njega", text:"Pilinzi, balzami, melemi, losioni i kupke za tijelo, na bazi macerata ljekovitog bilja.", on:true},
+  {key:"bossonoga", name:"Bossonoga", text:"Samo za stopala: kuglice i soli za kupku stopala.", on:true},
+  {key:"kreativno", name:"Kreativno", text:"Cekeri, washcloth, mamino pletivo, moje slike i ručno slikane čestitke.", on:true},
+  {key:"bilje", name:"Bilje i čajevi", text:"Mješavine od bilja s imanja.", on:false, when:"prva berba 2027"},
+  {key:"voce", name:"Voće i orašasti", text:"Sušeno i zaleđeno voće, orasi, barovi.", on:false, when:"kad imanje rodi"},
+  {key:"pcele", name:"Pčele", text:"Med i vosak za kozmetiku.", on:false, when:"od druge sezone"}
+];
+const MAP = {scrubs:["njega","Pilinzi"], balms:["njega","Balzami"], bathBombs:["njega","Kupke za tijelo"], kidsLine:["njega","Za djecu"], footBaths:["bossonoga","Kuglice za stopala"], refillBaths:["bossonoga","Soli za stopala"], accessories:["kreativno","Cekeri i washcloth"]};
+const GROUPS = {
+  njega:["Pilinzi","Balzami","Melemi","Losioni","Kupke za tijelo","Za djecu"],
+  bossonoga:["Kuglice za stopala","Soli za stopala"],
+  kreativno:["Cekeri i washcloth","Mamino pletivo","Slike i čestitke"]
+};
+const NOTES = {
+  "Mamino pletivo":"Šalove, priglavke, kape i rukavice plete moja mama, ručno i od vune. Svaki komad je jedan; boju i veličinu dogovaramo u poruci.",
+  "Slike i čestitke":"Slikam naivne slike i čestitke, svaku posebno i rukom. Tekst u čestitki pišem po tvojoj želji."
+};
+const EXTRA = [
+  {id:"x-melem", line:"njega", group:"Melemi", kind:"soon", art:"jar", name:"Melem", desc:"Gusti melem od macerata ljekovitog bilja i voska."},
+  {id:"x-losion", line:"njega", group:"Losioni", kind:"soon", art:"bottle", name:"Losion za tijelo", desc:"Lagani losion od biljnih ulja i macerata."},
+  {id:"x-sal", line:"kreativno", group:"Mamino pletivo", kind:"ask", art:"scarf", name:"Pleteni šal", desc:"Topao vuneni šal. Boja i dužina po dogovoru."},
+  {id:"x-priglavke", line:"kreativno", group:"Mamino pletivo", kind:"ask", art:"slipper", name:"Priglavke", desc:"Vunene priglavke za hladne podove. Javi broj noge."},
+  {id:"x-kapa", line:"kreativno", group:"Mamino pletivo", kind:"ask", art:"hat", name:"Vunena kapa", desc:"Pletena kapa s pomponom ili bez."},
+  {id:"x-rukavice", line:"kreativno", group:"Mamino pletivo", kind:"ask", art:"mitten", name:"Rukavice", desc:"Pletene rukavice s palcem, veličina po dogovoru."},
+  {id:"x-cestitka", line:"kreativno", group:"Slike i čestitke", kind:"ask", art:"card", name:"Ručno slikana čestitka", desc:"Za rođendan, praznik ili bez povoda. Napiši povod i tekst."},
+  {id:"x-slika", line:"kreativno", group:"Slike i čestitke", kind:"ask", art:"easel", name:"Slika po narudžbi", desc:"Opiši motiv i veličinu, a ja ti pošaljem skicu prije slikanja."},
+  {id:"x-mujmej", line:"kreativno", group:"Slike i čestitke", kind:"link", art:"frame", name:"Slike sa mujmej.art", desc:"Gotove naivne slike u mojoj galeriji.", href:"https://mujmej.art"}
+];
+
+const products = [];
+for (const [cat, arr] of Object.entries(DATA)) {
+  if (!MAP[cat]) continue;
+  for (const p of arr) {
+    if (!p.price) continue;
+    products.push({...p, line: MAP[cat][0], group: MAP[cat][1], kind:"buy", img: img(p.image)});
+  }
+}
+products.push(...EXTRA);
+const lineName = k => LINES.find(l => l.key === k).name;
+
+/* drawings for items without a photo yet */
+const S = 'fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"';
+const ARTS = {
+  scarf:`<path ${S} d="M70 40c20 8 40 8 60 0v18c-20 8-40 8-60 0z"/><path ${S} d="M112 58l-6 80h22l6-82"/><path ${S} d="M106 138v12M112 138v14M118 138v12M124 138v14"/><path ${S} opacity=".5" d="M80 46l5 6 5-6M95 48l5 6 5-6M110 48l5 6 5-6M117 80l4 5 4-5M115 100l4 5 4-5M113 120l4 5 4-5"/>`,
+  slipper:`<path ${S} d="M48 120c0-22 22-40 52-40h20c22 0 34 16 34 30 0 14-12 18-26 18H64c-10 0-16-2-16-8z"/><path ${S} d="M100 80c4 14 18 22 36 20"/><path ${S} opacity=".5" d="M62 112l5 6 5-6M78 112l5 6 5-6M94 112l5 6 5-6M110 114l5 6 5-6"/>`,
+  hat:`<circle ${S} cx="100" cy="42" r="10"/><path ${S} d="M62 118c0-34 16-62 38-62s38 28 38 62"/><rect ${S} x="56" y="118" width="88" height="20" rx="6"/><path ${S} opacity=".5" d="M66 124v8M76 124v8M86 124v8M96 124v8M106 124v8M116 124v8M126 124v8M136 124v8"/>`,
+  mitten:`<path ${S} d="M78 136V78c0-18 10-30 26-30s24 12 24 30v58z"/><path ${S} d="M78 98c-12-2-20-10-18-20 2-8 10-8 18 0"/><rect ${S} x="74" y="136" width="58" height="16" rx="5"/><path ${S} opacity=".5" d="M92 80l5 6 5-6M104 96l5 6 5-6M92 112l5 6 5-6"/>`,
+  card:`<path ${S} d="M60 50h56l24 12v86H84l-24-12z"/><path ${S} d="M116 50v86"/><circle ${S} cx="88" cy="88" r="10"/><path ${S} d="M88 98v22M88 108c-8-2-12-8-12-14M88 112c8-2 12-8 12-14"/>`,
+  easel:`<rect ${S} x="62" y="46" width="76" height="62" rx="2"/><path ${S} d="M70 98l18-22 14 14 10-10 18 18"/><circle ${S} cx="118" cy="64" r="6"/><path ${S} d="M100 108v44M84 108l-14 44M116 108l14 44"/>`,
+  frame:`<rect ${S} x="56" y="46" width="88" height="108" rx="2"/><rect ${S} x="68" y="58" width="64" height="84"/><path ${S} d="M76 128c10-30 20-44 24-44s14 14 24 44"/><circle ${S} cx="120" cy="74" r="6"/>`,
+  jar:`<rect ${S} x="64" y="62" width="72" height="18" rx="4"/><path ${S} d="M70 80v52c0 8 6 14 14 14h32c8 0 14-6 14-14V80"/><path ${S} opacity=".5" d="M84 104c6-10 14-10 20 0s14 10 20 0"/>`,
+  bottle:`<rect ${S} x="90" y="40" width="20" height="14" rx="3"/><path ${S} d="M94 54v10c-14 4-24 16-24 30v42c0 8 6 14 14 14h32c8 0 14-6 14-14V94c0-14-10-26-24-30V54"/><path ${S} opacity=".5" d="M78 110h44"/>`
+};
+const drawing = k => `<div class="draw" aria-hidden="true"><svg viewBox="0 0 200 200">${ARTS[k]}</svg><span>ilustracija · fotografija uskoro</span></div>`;
+
+/* lines */
+const linesEl = document.getElementById("lines");
+linesEl.innerHTML = LINES.map(l => l.on
+  ? `<button class="line" type="button" data-line="${l.key}"><span class="state">u prodaji</span><h3>${l.name}</h3><p>${l.text}</p></button>`
+  : `<div class="line"><span class="state soon">${l.when}</span><h3>${l.name}</h3><p>${l.text}</p></div>`).join("");
+linesEl.addEventListener("click", e => {
+  const b = e.target.closest("[data-line]"); if (!b) return;
+  setTab(b.dataset.line); document.getElementById("prodavnica").scrollIntoView();
+});
+
+/* shop */
+const tabsEl = document.getElementById("tabs"), grid = document.getElementById("grid");
+const TABS = [{key:"all", name:"Sve"}, ...LINES.filter(l => l.on).map(l => ({key:l.key, name:l.name}))];
+let tab = "all";
+function setTab(k){ tab = k; renderTabs(); renderGrid(); }
+function renderTabs(){
+  tabsEl.innerHTML = TABS.map(t => `<button type="button" data-tab="${t.key}" aria-pressed="${t.key===tab}">${t.name}</button>`).join("");
+}
+tabsEl.addEventListener("click", e => { const b = e.target.closest("[data-tab]"); if (b) setTab(b.dataset.tab); });
+
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ask = name => "https://wa.me/" + WA + "?text=" + encodeURIComponent("Zdravo! Zanima me: " + name + ". ");
+function card(p){
+  const sizes = p.sizeOptions || null;
+  const v = p.variants || null;
+  const top = p.img ? `<div class="ph"><img loading="lazy" src="${p.img}" alt="${esc(p.name)}" data-img></div>` : drawing(p.art);
+  let buy;
+  if (p.kind === "buy") buy = `<span class="price" data-price>${sizes ? sizes[0].price : p.price} KM</span><button class="add" type="button" data-add>Dodaj</button>`;
+  else if (p.kind === "ask") buy = `<span class="price soft">po dogovoru</span><a class="add" href="${ask(p.name)}" target="_blank" rel="noopener">Pitaj</a>`;
+  else if (p.kind === "link") buy = `<span></span><a class="add" href="${p.href}" target="_blank" rel="noopener">Otvori galeriju</a>`;
+  else buy = `<span class="state soon">uskoro</span><span></span>`;
+  return `<article class="card" data-id="${p.id}">${top}
+    <div class="in">
+      <span class="ln">${esc(p.group)}${p.size && !sizes ? " · " + esc(p.size) : ""}</span>
+      <h3>${esc(p.name.replace(/^Piling - /, "Piling: "))}</h3>
+      <p>${esc(p.desc)}</p>
+      ${v ? `<select aria-label="Varijanta" data-variant>${v.map(x => `<option>${esc(x)}</option>`).join("")}</select>` : ""}
+      ${sizes ? `<select aria-label="Gramaža" data-size>${sizes.map((s,i) => `<option value="${i}">${esc(s.label)}</option>`).join("")}</select>` : ""}
+      <div class="buy">${buy}</div>
+    </div></article>`;
+}
+function renderGrid(){
+  const lines = LINES.filter(l => l.on && (tab === "all" || l.key === tab));
+  let html = "";
+  for (const l of lines) {
+    if (tab === "all") html += `<div class="lh"><h3>${l.name}</h3><p>${esc(l.text)}</p></div>`;
+    for (const g of GROUPS[l.key]) {
+      const list = products.filter(p => p.line === l.key && p.group === g);
+      if (!list.length) continue;
+      html += `<div class="gh"><h4>${g}</h4>${NOTES[g] ? `<p>${NOTES[g]}</p>` : ""}</div>` + list.map(card).join("");
+    }
+  }
+  grid.innerHTML = html;
+}
+grid.addEventListener("change", e => {
+  const c = e.target.closest(".card"); if (!c) return;
+  const p = products.find(x => x.id === c.dataset.id); if (!p) return;
+  const sz = c.querySelector("[data-size]"), vr = c.querySelector("[data-variant]");
+  if (sz) {
+    const o = p.sizeOptions[+sz.value]; c.querySelector("[data-price]").textContent = o.price + " KM";
+    if (p.sizeImages && p.sizeImages[o.label]) { const im = img(p.sizeImages[o.label]); c.querySelector("[data-img]").onerror = function(){ this.onerror=null; this.src = p.img; }; c.querySelector("[data-img]").src = im; }
+  }
+  if (vr && e.target === vr && p.variantImages && p.variantImages[vr.value]) c.querySelector("[data-img]").src = img(p.variantImages[vr.value]);
+});
+grid.addEventListener("click", e => {
+  const b = e.target.closest("[data-add]"); if (!b) return;
+  const c = b.closest(".card"), p = products.find(x => x.id === c.dataset.id);
+  const sz = c.querySelector("[data-size]"), vr = c.querySelector("[data-variant]");
+  const o = sz ? p.sizeOptions[+sz.value] : null;
+  addItem({id:p.id, name:p.name.replace(/^Piling - /, "Piling "), variant:vr ? vr.value : "", size:o ? o.label : (p.size || ""), price:o ? o.price : p.price, img:c.querySelector("[data-img]").src});
+  b.textContent = "Dodano"; b.classList.add("done");
+  setTimeout(() => { b.textContent = "Dodaj"; b.classList.remove("done"); }, 1400);
+});
+
+/* cart */
+let cart = [];
+try { cart = JSON.parse(localStorage.getItem("fala-korpa") || "[]"); } catch(e) { cart = []; }
+const save = () => { try { localStorage.setItem("fala-korpa", JSON.stringify(cart)); } catch(e) {} };
+const key = i => [i.id, i.variant, i.size].join("|");
+function addItem(it){
+  const f = cart.find(x => key(x) === key(it));
+  f ? f.qty++ : cart.push({...it, qty:1});
+  save(); renderCart();
+}
+const $ = id => document.getElementById(id);
+function totals(){
+  const items = cart.reduce((s,i) => s + i.price * i.qty, 0);
+  const gift = +$("f-gift").value;
+  const ship = $("f-ship").value === "post" ? ($("f-pay").value === "bank" ? 8 : 10) : 0;
+  return {items, gift, ship, total: items + gift + ship};
+}
+function renderCart(){
+  $("count").textContent = cart.reduce((s,i) => s + i.qty, 0);
+  $("items").innerHTML = cart.length ? cart.map((i,n) => `<div class="item"><img src="${i.img}" alt=""><div class="nm">${esc(i.name)}<small>${esc([i.variant, i.size].filter(Boolean).join(" · "))} · ${i.price} KM</small></div><div class="qty"><button type="button" data-q="${n}" data-d="-1" aria-label="Manje">−</button>${i.qty}<button type="button" data-q="${n}" data-d="1" aria-label="Više">+</button></div></div>`).join("") + "" : `<p class="empty">Korpa je prazna. Dodaj proizvod iz prodavnice.</p>`;
+  const t = totals();
+  $("s-items").textContent = t.items + " KM";
+  $("s-extra").textContent = (t.gift + t.ship) + " KM";
+  $("s-total").textContent = t.total + " KM";
+  $("send").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(message());
+}
+function message(){
+  const t = totals();
+  const lines = cart.map(i => `• ${i.qty} × ${i.name}${i.variant ? " (" + i.variant + ")" : ""}${i.size ? ", " + i.size : ""} = ${i.price * i.qty} KM`);
+  const ship = $("f-ship").value === "post" ? "Pošta BiH, " + ($("f-pay").value === "bank" ? "uplata na račun" : "pouzećem") : "Banja Luka, preuzimanje";
+  const gift = $("f-gift").selectedOptions[0].textContent;
+  return ["Zdravo! Narudžba sa fala:", ...lines, "", "Pakovanje: " + gift, "Dostava: " + ship, "Ukupno: " + t.total + " KM", "",
+    "Ime: " + $("f-name").value, "Telefon: " + $("f-phone").value, "Grad: " + $("f-city").value, "Adresa: " + $("f-addr").value,
+    $("f-note").value ? "Napomena: " + $("f-note").value : ""].filter((l,i,a) => l !== "" || a[i-1] !== "").join("\n");
+}
+$("items").addEventListener("click", e => {
+  const b = e.target.closest("[data-q]"); if (!b) return;
+  const i = cart[+b.dataset.q]; i.qty += +b.dataset.d;
+  if (i.qty < 1) cart.splice(+b.dataset.q, 1);
+  save(); renderCart();
+});
+$("order").addEventListener("input", renderCart);
+$("send").addEventListener("click", e => {
+  const miss = !cart.length ? "Korpa je prazna." : !$("f-name").value.trim() ? "Upiši ime i prezime." : !$("f-phone").value.trim() ? "Upiši broj telefona da te mogu kontaktirati." : ($("f-ship").value === "post" && !$("f-addr").value.trim()) ? "Za slanje poštom upiši adresu." : "";
+  $("err").hidden = !miss; $("err").textContent = miss;
+  if (miss) e.preventDefault();
+});
+function openCart(o){ $("drawer").hidden = !o; $("scrim").hidden = !o; }
+$("openCart").onclick = () => openCart(true);
+$("closeCart").onclick = () => openCart(false);
+$("scrim").onclick = () => openCart(false);
+document.addEventListener("keydown", e => { if (e.key === "Escape") openCart(false); });
+
+renderTabs(); renderGrid(); renderCart();
+</script>
+
+</body>
+</html>
