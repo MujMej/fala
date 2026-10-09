@@ -354,29 +354,6 @@
     "100g": "images/piling-lavandaM.png",
     "300g": "images/piling-lavandaL.png"
    }
-  },
-  {
-   "id": "scrub-commercial",
-   "name": "Komercijalni Piling",
-   "price": 70,
-   "size": "1kg",
-   "sizeOptions": [
-    {
-     "label": "1kg",
-     "price": 70
-    },
-    {
-     "label": "5kg",
-     "price": 330
-    },
-    {
-     "label": "10kg",
-     "price": 620
-    }
-   ],
-   "desc": "Veća pakovanja za profesionalnu i komercijalnu upotrebu.",
-   "details": "Namijenjeno spa centrima, hotelima, beauty tretmanima i profesionalnoj njezi. Za veće količine i prilagođene dogovore može se poslati upit.",
-   "image": "images/piling-main.png"
   }
  ],
  "footBaths": [
@@ -423,26 +400,17 @@
  "kidsLine": [
   {
    "id": "kids-duckbomb-single",
-   "name": "🦆 Duckbomb",
+   "name": "Duckbomb patkica",
    "price": 5,
    "desc": "Nježna kupka za djecu.",
    "details": "Nježna kupka za djecu na bazi macerata kamilice, bez boja. Pažljivo osmišljena za mali ritual kupanja i igru.",
    "image": "images/kids-patkice-real.png"
   },
   {
-   "id": "kids-duck-surprise",
-   "name": "🦆 Patka iznenađenja",
-   "price": 0,
-   "displayPrice": "Iznenađenje",
-   "desc": "U nekim patkicama krije se iznenađenje.",
-   "details": "U nekim patkicama krije se iznenađenje — figurica patkice koja svijetli u mraku, do koje dolaziš kada se postojeća duckbomb otopi. Nagradna igra: ako skupiš 5 patkica i pošalješ sliku, uz sljedeću narudžbu dobijaš gumenu patkicu gratis.",
-   "image": "images/patkica.jpg"
-  },
-  {
    "id": "kids-duckbomb-pack",
-   "name": "🦆 Paket 4 patkice",
+   "name": "Duckbomb, paket 4 patkice",
    "price": 20,
-   "desc": "Paket 4 patkice za 20 KM.",
+   "desc": "Četiri dječije kupke, za poklon ili za braću i sestre.",
    "details": "Paket sadrži 4 duckbomb kupke za djecu. Idealan kao poklon, za braću i sestre ili za više veselih kupanja.",
    "image": "images/kids-patkice-paket.png"
   }

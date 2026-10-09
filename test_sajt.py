@@ -32,22 +32,50 @@ with sync_playwright() as p:
     check("Korpa je zatvorena pri učitavanju", not pg.is_visible("#drawer"))
 
     # 2. sve slike postoje
-    for t in ["all", "njega", "bossonoga", "kreativno"]:
+    pg.goto(URL + "#prodavnica"); pg.wait_for_timeout(200)
+    for t in ["all", "njega", "bossonoga", "iznutra"]:
         pg.click(f'[data-tab="{t}"]'); pg.wait_for_timeout(150)
     pg.click('[data-tab="all"]')
+    for pgname in ["kreativno", "imanje", "saradnja", "kontakt"]:
+        pg.goto(URL + "#" + pgname); pg.wait_for_timeout(150)
+    pg.goto(URL + "#prodavnica"); pg.wait_for_timeout(150)
     pg.evaluate("document.querySelectorAll('img[loading=lazy]').forEach(i => i.loading='eager')")
     pg.wait_for_load_state("networkidle"); pg.wait_for_timeout(500)
     broken = pg.evaluate("[...document.images].filter(i => i.complete && i.naturalWidth === 0).map(i => i.getAttribute('src'))")
     check("Sve slike proizvoda se učitavaju", not broken and not bad, ", ".join((broken + bad)[:5]))
 
-    # 3. linije i kartice
+    # 3. stranice, linije i kartice
+    pg.goto(URL); pg.wait_for_timeout(200)
+    check("Početna sakriva prodavnicu", not pg.is_visible("#prodavnica") and pg.is_visible("#linije"))
+    pg.click('nav a[href="#kreativno"]'); pg.wait_for_timeout(200)
+    check("Meni otvara stranicu Kreativno", pg.is_visible("#kreativno") and not pg.is_visible("#linije")
+          and pg.locator("#grid-kreativno .card").count() >= 6)
+    check("Kreativno ima mujmej.art i radionice", pg.locator('#kreativno a[href="https://mujmej.art"]').count() == 1
+          and "radionica" in urllib.parse.unquote(pg.get_attribute("#workshopAsk", "href")))
+    pg.click('nav a[href="#saradnja"]'); pg.wait_for_timeout(200)
+    pg.locator("#b-send").click(no_wait_after=True); pg.wait_for_timeout(150)
+    check("Saradnja traži naziv firme", pg.is_visible("#b-err") and "firme" in pg.inner_text("#b-err"))
+    pg.fill("#b-firma", "Apoteka Test"); pg.fill("#b-kontakt", "051 000 000"); pg.select_option("#b-proizvod", "Macerat")
+    pg.fill("#b-kolicina", "10 l kamilice")
+    bm = urllib.parse.unquote(pg.get_attribute("#b-send", "href"))
+    check("Upit za saradnju ide na WhatsApp sa svim podacima", "Apoteka Test" in bm and "10 l kamilice" in bm and "Macerat" in bm)
+    pg.goto(URL); pg.wait_for_timeout(200)
     pg.click('[data-line="bossonoga"]'); pg.wait_for_timeout(200)
-    groups = pg.eval_on_selector_all(".gh h4", "e => e.map(x => x.textContent)")
+    groups = pg.eval_on_selector_all("#grid .gh h4", "e => e.map(x => x.textContent)")
     check("Klik na Bossonoga liniju pokazuje samo stopala", groups == ["Kuglice za stopala", "Soli za stopala"], str(groups))
     pg.click('[data-tab="njega"]'); pg.wait_for_timeout(200)
-    groups = pg.eval_on_selector_all(".gh h4", "e => e.map(x => x.textContent)")
+    groups = pg.eval_on_selector_all("#grid .gh h4", "e => e.map(x => x.textContent)")
     check("fala izvana ima pilinge, balzame, bathbombs, macerate i parfeme",
           all(g in groups for g in ["Pilinzi", "Balzami", "Bathbombs", "Macerati", "Čvrsti parfemi"]), str(groups))
+    check("Nema komercijalnog pilinga ni 'po mom receptu'", pg.locator('.card[data-id="scrub-commercial"]').count() == 0
+          and "po mom receptu" not in pg.content())
+    check("Patkica: figurica svijetli u mraku + upozorenje 3 godine",
+          "svijetli u mraku" in pg.inner_text('.card[data-id="kids-duckbomb-single"]') and "3 godine" in pg.inner_text('.card[data-id="kids-duckbomb-single"]'))
+    pg.click('[data-tab="iznutra"]'); pg.wait_for_timeout(200)
+    gi = pg.eval_on_selector_all("#grid .gh h4", "e => e.map(x => x.textContent)")
+    check("fala iznutra: čajevi i saune, voće, med, bašta", gi == ["Čajevi i saune", "Voće", "Med i pčelinji proizvodi", "Iz bašte i voćnjaka"], str(gi))
+    check("Proizvodi 'uskoro' imaju dugme Javi mi", pg.locator('.card[data-id="i-sauna"] a.add').inner_text() == "Javi mi")
+    pg.click('[data-tab="njega"]'); pg.wait_for_timeout(200)
     sast = pg.locator(".sastav").count()
     check("Proizvodi imaju sastav na klik", sast >= 10, f"{sast} proizvoda sa sastavom")
 
@@ -100,7 +128,7 @@ with sync_playwright() as p:
     pg.evaluate("localStorage.clear()")
 
     # 9. dugmad "Pitaj" nose izabranu varijantu
-    pg.reload(); pg.click('[data-tab="njega"]')
+    pg.goto(URL + "#prodavnica"); pg.reload(); pg.click('[data-tab="njega"]')
     mc = pg.locator('.card[data-id="x-macerat"]')
     mc.locator("[data-variant]").select_option("Jorgovan")
     href = urllib.parse.unquote(mc.locator("a.add").get_attribute("href"))
@@ -113,8 +141,10 @@ with sync_playwright() as p:
     # 11. telefon
     m = b.new_page(viewport={"width": 360, "height": 780})
     m.goto(URL); m.wait_for_load_state("networkidle")
-    for t in ["all", "njega", "bossonoga", "kreativno"]:
-        m.click(f'[data-tab="{t}"]')
+    check("Meni je vidljiv i na telefonu", m.is_visible('nav a[href="#kreativno"]'))
+    w = 0
+    for pgname in ["pocetna", "prodavnica", "kreativno", "imanje", "saradnja", "kontakt"]:
+        m.goto(URL + "#" + pgname); m.wait_for_timeout(150)
         w = m.evaluate("document.documentElement.scrollWidth")
         if w > 360: break
     check("Na uskom telefonu (360 px) nema širenja u stranu", w <= 360, f"širina {w}px")
