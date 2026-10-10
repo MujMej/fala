@@ -50,6 +50,10 @@ with sync_playwright() as p:
     pg.click('nav a[href="#kreativno"]'); pg.wait_for_timeout(200)
     check("Meni otvara stranicu Kreativno", pg.is_visible("#kreativno") and not pg.is_visible("#linije")
           and pg.locator("#grid-kreativno .card").count() >= 6)
+    check("Kreativno: mujmej.art, @mujmej za slike, @myjmej za imanje, YouTube Fala ti",
+          pg.locator('#kreativno a[href="https://www.instagram.com/mujmej"]').count() == 1
+          and pg.locator('#kreativno a[href="https://www.instagram.com/myjmej"]').count() == 1
+          and "Fala ti" in pg.inner_text("#kreativno") and "Šumski" not in pg.content())
     check("Kreativno ima mujmej.art i radionice", pg.locator('#kreativno a[href="https://mujmej.art"]').count() == 1
           and "radionica" in urllib.parse.unquote(pg.get_attribute("#workshopAsk", "href")))
     pg.click('nav a[href="#saradnja"]'); pg.wait_for_timeout(200)
@@ -73,15 +77,18 @@ with sync_playwright() as p:
           "svijetli u mraku" in pg.inner_text('.card[data-id="kids-duckbomb-single"]') and "3 godine" in pg.inner_text('.card[data-id="kids-duckbomb-single"]'))
     pg.click('[data-tab="iznutra"]'); pg.wait_for_timeout(200)
     gi = pg.eval_on_selector_all("#grid .gh h4", "e => e.map(x => x.textContent)")
-    check("fala iznutra: čajevi i saune, voće, med, bašta", gi == ["Čajevi i saune", "Voće", "Med i pčelinji proizvodi", "Iz bašte i voćnjaka"], str(gi))
-    check("Proizvodi 'uskoro' imaju dugme Javi mi", pg.locator('.card[data-id="i-sauna"] a.add').inner_text() == "Javi mi")
+    soon = pg.inner_text("#grid .soonbox") if pg.locator("#grid .soonbox").count() else ""
+    check("fala iznutra: čajevi, saune, voće, med, tikva u pripremi",
+          all(w in soon for w in ["Čajne mješavine", "herbalnu saunu", "Sušeno voće", "Med s orašastim", "Čips od tikve"]), soon[:120])
+    check("Proizvodi u pripremi su u kompaktnoj listi s dugmetom", pg.locator('#grid .soonbox').count() == 1
+          and "herbalnu saunu" in pg.inner_text('#grid .soonbox') and pg.locator('.card[data-id="i-sauna"]').count() == 0)
     pg.click('[data-tab="njega"]'); pg.wait_for_timeout(200)
     sast = pg.locator(".sastav").count()
     check("Proizvodi imaju sastav na klik", sast >= 10, f"{sast} proizvoda sa sastavom")
 
     # 4. dodavanje u korpu
     card = pg.locator('.card[data-id="scrub-paculi-zalfija"]')
-    card.locator("[data-size]").select_option("1")          # 300g
+    card.locator("[data-size]").select_option("1")          # 300 g
     card.locator("[data-add]").click(); card.locator("[data-add]").click()
     pg.click("#openCart")
     check("Korpa broji 2 komada", pg.inner_text("#count") == "2")
@@ -106,7 +113,7 @@ with sync_playwright() as p:
     pg.fill("#f-addr", "Ulica 1"); pg.fill("#f-city", "Banja Luka"); pg.fill("#f-note", "Za mamu")
     m = msg_of(pg)
     check("WhatsApp poruka ima proizvod, količinu i ukupno",
-          "2 × Piling Pačuli + Žalfija, 300g = 42 KM" in m and "Ukupno: 55 KM" in m and "Za mamu" in m, m.replace("\n", " | ")[:160])
+          "2 × Piling: pačuli i žalfija, 300 g = 42 KM" in m and "Ukupno: 55 KM" in m and "Za mamu" in m, m.replace("\n", " | ")[:160])
     check("Poruka ide na WhatsApp broj iz podešavanja", pg.get_attribute("#send", "href").startswith("https://wa.me/387"))
 
     # 7. količina na nulu briše stavku
@@ -116,7 +123,7 @@ with sync_playwright() as p:
 
     # 8. pokušaj podmetanja lažne cijene i koda kroz preglednik
     pg.evaluate("""localStorage.setItem('fala-korpa', JSON.stringify([
-      {id:'scrub-citrus', variant:'Citrus', size:'300g', qty:3, price:0, name:'<img src=x onerror=alert(1)>'},
+      {id:'scrub-citrus', variant:'Citrus', size:'300 g', qty:3, price:0, name:'<img src=x onerror=alert(1)>'},
       {id:'nepostoji', qty:1, price:-100},
       {id:'acc-washcloth', qty:1000}
     ]))""")

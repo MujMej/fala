@@ -115,6 +115,19 @@ button.line:hover h3{color:var(--lav)}
 .draw span{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:.68rem;letter-spacing:.06em;color:var(--muted)}
 .price.soft{font:italic 500 1.05rem var(--display);color:var(--muted)}
 a.add{text-decoration:none;display:inline-block}
+.facts-inline{list-style:none;padding:0;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.84rem;color:color-mix(in srgb,var(--cream) 80%,transparent)}
+.facts-inline li::before{content:"✓ ";color:var(--lavlight)}
+.howto{padding-block:28px;background:var(--sheet)}
+.steps3{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;counter-reset:s}
+.steps3 li{counter-increment:s;display:grid;gap:4px;padding-left:44px;position:relative}
+.steps3 li::before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--moss);color:var(--cream);display:grid;place-items:center;font:600 1rem var(--display)}
+.steps3 b{font-weight:500} .steps3 span{font-size:.86rem;color:var(--muted)}
+@media (max-width:760px){.steps3{grid-template-columns:1fr;gap:16px}}
+.soonbox{grid-column:1/-1;border:1px dashed var(--line);background:var(--sheet);padding:18px 20px;display:grid;gap:10px}
+.soonbox h4{margin:0;font:500 .72rem/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--lav)}
+.soonbox ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px 24px}
+.soonbox li{font-size:.86rem;color:var(--muted)} .soonbox li b{color:var(--ink);font-weight:500;display:block}
+.soonbox .add{justify-self:start}
 a.add.ghosty{background:transparent;color:var(--sage);border:1px solid var(--sage)}
 .pagehead{padding-block:48px 8px;border-top:0}
 .pagehead h2{font-size:clamp(2.2rem,5vw,3.2rem)}
@@ -217,11 +230,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <div>
       <p class="eyebrow">Fala tvom tijelu, iznutra i izvana</p>
       <h1>fala</h1>
-      <p class="tag">Hvala ti što biraš nešto napravljeno rukom.</p>
-      <p>Online kuća svega što nastaje na mom imanju u Laktašima i u mojoj radionici: kozmetika od macerata ljekovitog bilja, Bossonoga za umorna stopala, a sa imanja uskoro čajevi, voće i med. Uz to slike, radionice i priče iz voćnjaka.</p>
+      <p class="tag">Prirodna njega i plodovi sa imanja, ručno i u malim serijama.</p>
+      <p>Kozmetika od macerata ljekovitog bilja, Bossonoga kupke za stopala, a od iduće sezone čajevi, voće i med sa imanja u Laktašima.</p>
+      <ul class="facts-inline"><li>Narudžba preko WhatsAppa</li><li>Pošta u BiH 8–10 KM</li><li>Preuzimanje u Banjoj Luci</li></ul>
       <div class="actions">
         <a class="btn" href="#prodavnica">Pogledaj prodavnicu</a>
-        <a class="btn ghost" href="#kreativno">Kreativni kutak</a>
+        <a class="btn ghost" href="#saradnja">Saradnja za firme</a>
       </div>
     </div>
     <figure>
@@ -230,11 +244,21 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </figure>
   </div></div>
 
+  <section data-page="pocetna" class="howto">
+    <div class="wrap">
+      <ol class="steps3">
+        <li><b>Izaberi proizvod</b><span>Varijantu i gramažu biraš na kartici proizvoda.</span></li>
+        <li><b>Pošalji narudžbu</b><span>Korpa otvara WhatsApp s gotovom porukom.</span></li>
+        <li><b>Potvrda i dostava</b><span>Javljam se s potvrdom i rokom. Šaljem poštom ili predajem u Banjoj Luci.</span></li>
+      </ol>
+    </div>
+  </section>
+
   <section id="linije" data-page="pocetna">
     <div class="wrap">
       <div class="head">
-        <p class="eyebrow">Iznutra i izvana</p>
-        <h2>Šta nastaje pod imenom fala</h2>
+        <p class="eyebrow">Linije</p>
+        <h2>Šta možeš naći na fala.ba</h2>
       </div>
       <div class="lines" id="lines"></div>
     </div>
@@ -243,9 +267,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <section id="prodavnica" data-page="prodavnica" class="pagehead-wrap">
     <div class="wrap">
       <div class="head">
-        <p class="eyebrow">Prodavnica</p>
-        <h2>Izaberi, dodaj u korpu, pošalji na WhatsApp</h2>
-        <p class="lede">Narudžba stiže meni kao poruka. Javljam se s potvrdom i rokom izrade, jer se svaka serija pravi za stvarnog kupca. Želiš posebnu kombinaciju mirisa ili bilja? Napiši je u napomeni uz narudžbu.</p>
+        <h2>Prodavnica</h2>
+        <p class="lede">Svaka serija se pravi ručno, pa uz potvrdu narudžbe javljam i rok izrade. Posebnu kombinaciju mirisa ili bilja napiši u napomeni.</p>
       </div>
       <div class="tabs" id="tabs" role="group" aria-label="Filtriraj po liniji"></div>
       <div class="grid" id="grid"></div>
@@ -280,7 +303,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <p class="eyebrow">Prati obnovu imanja</p>
         <h3>Svaki korak, jedan video</h3>
         <p>Dolazak struje, kopanje bunara, krčenje, sadnja, prve košnice i gradnja studija u voćnjaku. Sve snimam i objavljujem.</p>
-        <p><a href="https://www.instagram.com/myjmej" target="_blank" rel="noopener">@myjmej na Instagramu</a></p>
+        <p><a href="https://www.instagram.com/myjmej" target="_blank" rel="noopener">Prati na Instagramu: @myjmej</a><br>Video: YouTube kanal „Fala ti”, uskoro</p>
       </div>
     </div>
   </section>
@@ -301,14 +324,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <div class="wrap">
       <div class="head">
         <p class="eyebrow">Kreativno</p>
-        <h2>Slike, radionice i priče s imanja</h2>
-        <p class="lede">Slikam, pišem i snimam. Ovdje su moje slike, ručno slikane čestitke, mamino pletivo i radionice u prirodi, a uskoro i video kanal sa imanja.</p>
+        <h2>Slike, radionice i ručni rad</h2>
+        <p class="lede">Slike, ručno slikane čestitke, radionice slikanja u prirodi i ručni rad. Slike su na mujmej.art, a rad na imanju pratiš na @myjmej.</p>
       </div>
       <div class="channels">
-        <div class="channel"><span class="state">galerija</span><h3>mujmej.art</h3><p>Naive slike i slike po narudžbi.</p><a class="btn ghost" href="https://mujmej.art" target="_blank" rel="noopener">Otvori galeriju</a></div>
-        <div class="channel"><span class="state">instagram</span><h3>@myjmej</h3><p>Biljke, životinje i svakodnevica na imanju.</p><a class="btn ghost" href="https://www.instagram.com/myjmej" target="_blank" rel="noopener">Prati</a></div>
-        <div class="channel"><span class="state soon">uskoro</span><h3>YouTube: Šumski razgovori</h3><p>Jednom sedmično, za stolom na imanju: prijatelji, jedna tema i razgovor bez žurbe. Uz to vlogovi obnove imanja.</p></div>
-        <div class="channel"><span class="state soon">uskoro</span><h3>Galerija imanja</h3><p>Fotografije biljaka, životinja i godišnjih doba u voćnjaku.</p></div>
+        <div class="channel"><span class="state">slike</span><h3>mujmej.art</h3><p>Galerija mojih slika i narudžbe slika po mjeri.</p><a class="btn ghost" href="https://mujmej.art" target="_blank" rel="noopener">Otvori galeriju</a></div>
+        <div class="channel"><span class="state">slike</span><h3>Instagram @mujmej</h3><p>Nove slike i rad u ateljeu.</p><a class="btn ghost" href="https://www.instagram.com/mujmej" target="_blank" rel="noopener">Prati @mujmej</a></div>
+        <div class="channel"><span class="state">imanje</span><h3>Instagram @myjmej</h3><p>Kreativni rad na imanju: radionice, biljke, sezona u voćnjaku.</p><a class="btn ghost" href="https://www.instagram.com/myjmej" target="_blank" rel="noopener">Prati @myjmej</a></div>
+        <div class="channel"><span class="state soon">uskoro</span><h3>YouTube: Fala ti</h3><p>Obnova imanja korak po korak i razgovori s gostima na imanju.</p></div>
       </div>
     </div>
   </section>
@@ -489,7 +512,7 @@ const EXTRA = [
   {id:"x-rukavice", line:"kreativno", group:"Mamino pletivo", kind:"ask", art:"mitten", name:"Rukavice", desc:"Pletene rukavice s palcem, veličina po dogovoru."},
   {id:"x-cestitka", line:"kreativno", group:"Slike i čestitke", kind:"ask", art:"card", name:"Ručno slikana čestitka", desc:"Za rođendan, praznik ili bez povoda. Napiši povod i tekst."},
   {id:"x-slika", line:"kreativno", group:"Slike i čestitke", kind:"ask", art:"easel", name:"Slika po narudžbi", desc:"Opiši motiv i veličinu, a ja ti pošaljem skicu prije slikanja."},
-  {id:"x-mujmej", line:"kreativno", group:"Slike i čestitke", kind:"link", art:"frame", name:"Slike sa mujmej.art", desc:"Gotove naivne slike u mojoj galeriji.", href:"https://mujmej.art"}
+  {id:"x-mujmej", line:"kreativno", group:"Slike i čestitke", kind:"link", art:"frame", name:"Slike sa mujmej.art", desc:"Gotove slike u galeriji mujmej.art.", href:"https://mujmej.art"}
 ];
 
 const products = [];
@@ -569,14 +592,21 @@ function card(p){
       <div class="buy">${buy}</div>
     </div></article>`;
 }
+function soonHtml(items){
+  if (!items.length) return "";
+  return `<div class="soonbox"><h4>U pripremi</h4><ul>${items.map(p => `<li><b>${esc(p.name)}</b> <span>${esc(p.desc)}</span></li>`).join("")}</ul>
+    <a class="add ghosty" href="${"https://wa.me/" + WA + "?text=" + encodeURIComponent("Zdravo! Javi mi kad bude dostupno: " + items.map(p => p.name).join(", ") + ".")}" target="_blank" rel="noopener">Javi mi kad bude dostupno</a></div>`;
+}
 function groupsHtml(key){
-  let html = "";
+  let html = "", soon = [];
   for (const g of GROUPS[key]) {
     const list = products.filter(p => p.line === key && p.group === g);
-    if (!list.length) continue;
-    html += `<div class="gh"><h4>${g}</h4>${NOTES[g] ? `<p>${NOTES[g]}</p>` : ""}</div>` + list.map(card).join("");
+    const live = list.filter(p => p.kind !== "soon");
+    soon.push(...list.filter(p => p.kind === "soon"));
+    if (!live.length) continue;
+    html += `<div class="gh"><h4>${g}</h4>${NOTES[g] ? `<p>${NOTES[g]}</p>` : ""}</div>` + live.map(card).join("");
   }
-  return html;
+  return html + soonHtml(soon);
 }
 function renderGrid(){
   gridK.innerHTML = groupsHtml("kreativno");
@@ -584,11 +614,7 @@ function renderGrid(){
   let html = "";
   for (const l of lines) {
     if (tab === "all") html += `<div class="lh"><h3>${l.name}</h3><p>${esc(l.text)}</p></div>`;
-    for (const g of GROUPS[l.key]) {
-      const list = products.filter(p => p.line === l.key && p.group === g);
-      if (!list.length) continue;
-      html += `<div class="gh"><h4>${g}</h4>${NOTES[g] ? `<p>${NOTES[g]}</p>` : ""}</div>` + list.map(card).join("");
-    }
+    html += groupsHtml(l.key);
   }
   grid.innerHTML = html;
 }

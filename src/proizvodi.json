@@ -4,7 +4,7 @@
    "id": "bb-bathbomb-50g",
    "name": "Bathbomb kuglica",
    "price": 5,
-   "size": "do 50g",
+   "size": "do 50 g",
    "variants": [
     "Lavanda",
     "Pepermint",
@@ -40,7 +40,7 @@
    "id": "bb-krofna-100g",
    "name": "Bathbomb krofna",
    "price": 10,
-   "size": "do 100g",
+   "size": "do 100 g",
    "variants": [
     "Lavanda",
     "Pepermint",
@@ -76,9 +76,9 @@
  "balms": [
   {
    "id": "balm-mini-5g",
-   "name": "Balzam Mini",
+   "name": "Balzam, mini",
    "price": 5,
-   "size": "5g",
+   "size": "5 g",
    "desc": "Prirodni balzam za suhu i osjetljivu kožu.",
    "details": "Mali praktični balzam za njegu usana, ruku, suhih dijelova laktova, peta i drugih osjetljivih zona kože.",
    "image": "images/balsam5g.png"
@@ -87,7 +87,7 @@
    "id": "balm-regular-55g",
    "name": "Balzam",
    "price": 15,
-   "size": "55g",
+   "size": "55 g",
    "desc": "Bogata njega za suhu i oštećenu kožu cijelog tijela.",
    "details": "Veće pakovanje balzama za svakodnevnu njegu kože kojoj je potrebna dodatna zaštita, mekoća i obnova.",
    "image": "images/balsam55g.png"
@@ -96,9 +96,9 @@
  "refillBaths": [
   {
    "id": "refill-100g",
-   "name": "Soli za stopala 100g",
+   "name": "Soli za stopala, 100 g",
    "price": 10,
-   "size": "100g",
+   "size": "100 g",
    "variants": [
     "Lavanda",
     "Pepermint",
@@ -121,9 +121,9 @@
   },
   {
    "id": "refill-200g",
-   "name": "Soli za stopala 200g",
+   "name": "Soli za stopala, 200 g",
    "price": 19,
-   "size": "200g",
+   "size": "200 g",
    "variants": [
     "Lavanda",
     "Pepermint",
@@ -146,9 +146,9 @@
   },
   {
    "id": "refill-300g",
-   "name": "Soli za stopala 300g",
+   "name": "Soli za stopala, 300 g",
    "price": 28,
-   "size": "300g",
+   "size": "300 g",
    "variants": [
     "Lavanda",
     "Pepermint",
@@ -173,16 +173,16 @@
  "scrubs": [
   {
    "id": "scrub-narandza-ruzmarin",
-   "name": "Piling - Narandža + Ružmarin",
+   "name": "Piling: narandža i ružmarin",
    "price": 7,
-   "size": "100g",
+   "size": "100 g",
    "sizeOptions": [
     {
-     "label": "100g",
+     "label": "100 g",
      "price": 7
     },
     {
-     "label": "300g",
+     "label": "300 g",
      "price": 21
     }
    ],
@@ -190,22 +190,22 @@
    "details": "Piling inspirisan kombinacijom narandže i ružmarina, idealan za ritual njege i masaže kože.",
    "image": "images/piling-narandza-ruzmarinM.png",
    "sizeImages": {
-    "100g": "images/piling-narandza-ruzmarinM.png",
-    "300g": "images/piling-narandza-ruzmarinL.png"
+    "100 g": "images/piling-narandza-ruzmarinM.png",
+    "300 g": "images/piling-narandza-ruzmarinL.png"
    }
   },
   {
    "id": "scrub-paculi-zalfija",
-   "name": "Piling - Pačuli + Žalfija",
+   "name": "Piling: pačuli i žalfija",
    "price": 7,
-   "size": "100g",
+   "size": "100 g",
    "sizeOptions": [
     {
-     "label": "100g",
+     "label": "100 g",
      "price": 7
     },
     {
-     "label": "300g",
+     "label": "300 g",
      "price": 21
     }
    ],
@@ -213,22 +213,22 @@
    "details": "Piling sa snažnijim aromatičnim karakterom za one koji vole kompleksnije i biljnije note.",
    "image": "images/piling-paculi-zalfijaM.png",
    "sizeImages": {
-    "100g": "images/piling-paculi-zalfijaM.png",
-    "300g": "images/piling-paculi-zalfijaM.png"
+    "100 g": "images/piling-paculi-zalfijaM.png",
+    "300 g": "images/piling-paculi-zalfijaM.png"
    }
   },
   {
    "id": "scrub-hibiskus-ruza-jasmin",
-   "name": "Piling - Hibiskus + Ruža + Jasmin",
+   "name": "Piling: hibiskus, ruža i jasmin",
    "price": 7,
-   "size": "100g",
+   "size": "100 g",
    "sizeOptions": [
     {
-     "label": "100g",
+     "label": "100 g",
      "price": 7
     },
     {
-     "label": "300g",
+     "label": "300 g",
      "price": 21
     }
    ],
@@ -236,22 +236,22 @@
    "details": "Bogata cvjetna kombinacija za korisnike koji vole mekši, ženstveniji i elegantniji profil proizvoda.",
    "image": "images/piling-hibiskus-ruza-jasminM.png",
    "sizeImages": {
-    "100g": "images/piling-hibiskus-ruza-jasminM.png",
-    "300g": "images/piling-hibiskus-ruža-jasminL.png"
+    "100 g": "images/piling-hibiskus-ruza-jasminM.png",
+    "300 g": "images/piling-hibiskus-ruža-jasminL.png"
    }
   },
   {
    "id": "scrub-citrus",
-   "name": "Piling - Citrus",
+   "name": "Piling: citrus",
    "price": 7,
-   "size": "100g",
+   "size": "100 g",
    "sizeOptions": [
     {
-     "label": "100g",
+     "label": "100 g",
      "price": 7
     },
     {
-     "label": "300g",
+     "label": "300 g",
      "price": 21
     }
    ],
@@ -259,22 +259,22 @@
    "details": "Piling sa citrusnim karakterom, pogodan za osvježenje i rutinu njege tokom dana.",
    "image": "images/piling-citrusM.png",
    "sizeImages": {
-    "100g": "images/piling-citrusM.png",
-    "300g": "images/piling-citrus.png"
+    "100 g": "images/piling-citrusM.png",
+    "300 g": "images/piling-citrus.png"
    }
   },
   {
    "id": "scrub-limun-djumbir-zelenicaj",
-   "name": "Piling - Limun + Đumbir + Zeleni čaj",
+   "name": "Piling: limun, đumbir i zeleni čaj",
    "price": 7,
-   "size": "100g",
+   "size": "100 g",
    "sizeOptions": [
     {
-     "label": "100g",
+     "label": "100 g",
      "price": 7
     },
     {
-     "label": "300g",
+     "label": "300 g",
      "price": 21
     }
    ],
@@ -282,22 +282,22 @@
    "details": "Kombinacija limuna, đumbira i zelenog čaja za dinamičan i svjež ritual njege.",
    "image": "images/piling-limun-djumbir-zelenicajM.png",
    "sizeImages": {
-    "100g": "images/piling-limun-djumbir-zelenicajM.png",
-    "300g": "images/piling-limun-djumbir-zelenicajL.png"
+    "100 g": "images/piling-limun-djumbir-zelenicajM.png",
+    "300 g": "images/piling-limun-djumbir-zelenicajL.png"
    }
   },
   {
    "id": "scrub-pepermint",
-   "name": "Piling - Pepermint",
+   "name": "Piling: pepermint",
    "price": 7,
-   "size": "100g",
+   "size": "100 g",
    "sizeOptions": [
     {
-     "label": "100g",
+     "label": "100 g",
      "price": 7
     },
     {
-     "label": "300g",
+     "label": "300 g",
      "price": 21
     }
    ],
@@ -305,22 +305,22 @@
    "details": "Lagani i osvježavajući piling za korisnike koji vole mentolaste i čiste note.",
    "image": "images/piling-pepermintM.png",
    "sizeImages": {
-    "100g": "images/piling-pepermintM.png",
-    "300g": "images/piling-pepermintL.png"
+    "100 g": "images/piling-pepermintM.png",
+    "300 g": "images/piling-pepermintL.png"
    }
   },
   {
    "id": "scrub-vanila-kokos",
-   "name": "Piling - Vanila + Kokos",
+   "name": "Piling: vanila i kokos",
    "price": 7,
-   "size": "100g",
+   "size": "100 g",
    "sizeOptions": [
     {
-     "label": "100g",
+     "label": "100 g",
      "price": 7
     },
     {
-     "label": "300g",
+     "label": "300 g",
      "price": 21
     }
    ],
@@ -328,22 +328,22 @@
    "details": "Piling za one koji vole kremast, blag i udoban mirisni profil.",
    "image": "images/piling-vanila-kokosM.png",
    "sizeImages": {
-    "100g": "images/piling-vanila-kokosM.png",
-    "300g": "images/piling-vanila-kokosL.png"
+    "100 g": "images/piling-vanila-kokosM.png",
+    "300 g": "images/piling-vanila-kokosL.png"
    }
   },
   {
    "id": "scrub-lavanda",
-   "name": "Piling - Lavanda",
+   "name": "Piling: lavanda",
    "price": 7,
-   "size": "100g",
+   "size": "100 g",
    "sizeOptions": [
     {
-     "label": "100g",
+     "label": "100 g",
      "price": 7
     },
     {
-     "label": "300g",
+     "label": "300 g",
      "price": 21
     }
    ],
@@ -351,8 +351,8 @@
    "details": "Lavanda ovom pilingu daje mekan i opuštajući karakter, idealan za sporiji večernji self-care ritual.",
    "image": "images/piling-lavandaM.png",
    "sizeImages": {
-    "100g": "images/piling-lavandaM.png",
-    "300g": "images/piling-lavandaL.png"
+    "100 g": "images/piling-lavandaM.png",
+    "300 g": "images/piling-lavandaL.png"
    }
   }
  ],
@@ -368,7 +368,7 @@
   },
   {
    "id": "foot-package-9",
-   "name": "Kuglice za stopala - Paket 9 (8+1 GRATIS)",
+   "name": "Kuglice za stopala, 9 kom (8 + 1 gratis)",
    "price": 16,
    "size": "9 kom",
    "desc": "Paket 9 komada za poklon ili ličnu rutinu njege.",
@@ -377,7 +377,7 @@
   },
   {
    "id": "foot-package-16",
-   "name": "Kuglice za stopala - Paket 16 (15+1 GRATIS)",
+   "name": "Kuglice za stopala, 16 kom (15 + 1 gratis)",
    "price": 30,
    "size": "16 kom",
    "desc": "Veći paket za redovnu njegu ili poklon set.",
@@ -418,7 +418,7 @@
  "accessories": [
   {
    "id": "acc-tote-bossonoga",
-   "name": "Ceker BOSSONOGA - Retro",
+   "name": "Ceker „Bossonoga retro”",
    "price": 20,
    "desc": "Ceger za svakodnevnu upotrebu i Bossonoga vibe.",
    "details": "Bossonoga ceker sa prepoznatljivim retro dizajnom.",
@@ -426,7 +426,7 @@
   },
   {
    "id": "acc-tote-sacu",
-   "name": "Ceker - \"E' o Saću\"",
+   "name": "Ceker „E’ o saću”",
    "price": 20,
    "desc": "Veseli ceker sa prirodnim motivima.",
    "details": "Ceker inspirisan prirodom, pčelama i domaćim motivima.",
@@ -434,7 +434,7 @@
   },
   {
    "id": "acc-tote-odmori",
-   "name": "Ceker - \"Odmori\"",
+   "name": "Ceker „Odmori”",
    "price": 20,
    "desc": "Minimalistički ceker sa Bossonoga porukom.",
    "details": "Ceker sa Bossonoga porukom mira, nježnosti i odmora.",
@@ -442,7 +442,7 @@
   },
   {
    "id": "acc-tote-patkica",
-   "name": "Ceker - Bossonoga Patkica",
+   "name": "Ceker „Patkica”",
    "price": 20,
    "desc": "Razigrani ceker za kids kolekciju.",
    "details": "Šareni ceker inspirisan Bossonoga kids linijom.",
@@ -450,7 +450,7 @@
   },
   {
    "id": "acc-tote-baba",
-   "name": "Ceker - Bakin Recept",
+   "name": "Ceker „Bakin recept”",
    "price": 20,
    "desc": "Ceker sa domaćim i nostalgičnim karakterom.",
    "details": "Ceker inspirisan domaćim pričama, receptima i toplinom ručnog rada.",
