@@ -297,6 +297,57 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .b2bform .seg input{width:auto;margin:0;padding:0;accent-color:var(--lav)}
 .b2bform .seg label:has(input:checked){border-color:var(--lav);background:var(--lav-soft)}
 @media (max-width:820px){.who2{grid-template-columns:1fr}}
+
+/* bilje: kartice s ilustracijom i detalj biljke */
+.herb .plant{position:relative;overflow:hidden;text-align:left;font:inherit;color:inherit;cursor:pointer;background:var(--sheet);border:1px solid var(--line);padding:20px 22px 18px;display:grid;gap:6px;align-content:start;min-height:230px;transition:border-color .2s,transform .2s}
+.herb .plant:hover,.herb .plant:focus-visible{border-color:var(--sage);transform:translateY(-2px)}
+.herb .plant .bg{position:absolute;right:-18%;top:-6%;width:78%;height:auto;opacity:.24;pointer-events:none}
+.herb .plant > :not(.bg){position:relative}
+.herb .plant .more{margin-top:6px;font-size:.78rem;letter-spacing:.06em;color:var(--lav)}
+:root[data-theme="dark"] .herb .plant .bg{opacity:.13}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .herb .plant .bg{opacity:.13}}
+.pdetail{scroll-margin-top:96px;margin:0 0 30px;background:var(--sheet);border:1px solid var(--line);display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:0}
+.pdetail figure{margin:0;background:#fbf7ec;border-right:1px solid var(--line);padding:22px;display:grid;align-content:start;gap:8px}
+.pdetail figure img{width:100%;height:auto}
+.pdetail .txt{padding:26px 30px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-content:start}
+.pdetail .plat{margin:-8px 0 0;font:italic 1.05rem var(--display);color:var(--muted)}
+.pdetail .back{justify-self:start;font-size:.82rem;color:var(--lav)}
+.pdetail dl{margin:0;display:grid;gap:12px}
+.pdetail dt{font:500 .7rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--sage)}
+.pdetail dd{margin:4px 0 0;font-size:.93rem;max-width:68ch}
+.pdetail .warn dd{color:var(--ink)} .pdetail .warn dt{color:var(--visnja)}
+.adopt,.pgal{min-width:0;grid-template-columns:minmax(0,1fr);border:1px dashed var(--line);background:var(--paper);padding:18px 20px;display:grid;gap:10px}
+.adopt h3,.pgal h3{font-size:1.3rem}
+.adopt p,.pgal p{margin:0;font-size:.9rem}
+.adopt .seg{display:flex;flex-wrap:wrap;gap:8px;border:0;padding:0;margin:0}
+.adopt .seg label{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.86rem;cursor:pointer;background:var(--sheet)}
+.adopt .seg label:has(input:checked){border-color:var(--lav);background:var(--lav-soft)}
+.adopt .seg input{accent-color:var(--lav);margin:0}
+.adopt .two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.adopt label.f{display:grid;gap:4px;font-size:.82rem;color:var(--muted)}
+.adopt input[type=text],.adopt select{width:100%;box-sizing:border-box;font:inherit;font-size:.92rem;padding:.55em .7em;border:1px solid var(--line);background:var(--sheet);color:var(--ink);border-radius:4px}
+.adopt .btn{justify-self:start}
+@media (max-width:820px){.pdetail{grid-template-columns:minmax(0,1fr)}.pdetail .txt{padding:22px 18px}.pdetail figure{border-right:0;border-bottom:1px solid var(--line)}.pdetail figure img{max-width:320px;justify-self:center}.adopt .two{grid-template-columns:minmax(0,1fr)}}
+/* višak s imanja */
+.visak{border:1px solid var(--line);background:var(--sheet);padding:20px 22px;margin:0 0 26px;display:grid;gap:12px}
+.visak .vh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.visak h3{font-size:1.45rem}
+.visak p{margin:0;font-size:.9rem;color:var(--muted);max-width:70ch}
+.visak ul{list-style:none;margin:0;padding:0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.visak li{background:var(--paper);padding:12px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px 16px;align-items:center}
+.visak li b{font-weight:500} .visak li small{display:block;color:var(--muted);font-size:.8rem}
+.visak .cij{font:500 1.05rem var(--display);white-space:nowrap}
+.visak .qty{display:flex;gap:8px;align-items:center}
+.visak .qty input{width:4.5em;font:inherit;padding:.4em .5em;border:1px solid var(--line);background:var(--sheet);color:var(--ink);border-radius:4px}
+.visak .btn,.visak .add{justify-self:start}
+@media (max-width:640px){.visak li{grid-template-columns:1fr}}
+/* art radionice */
+.topics{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.topics li{background:var(--chip);color:var(--ink);border-radius:999px;padding:.4em .85em;font-size:.82rem}
+.workshop h3{font-size:1.35rem;margin-top:8px}
+/* nura */
+.mama{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.mama .author .btn{justify-self:start;margin-top:6px}
 </style>
 <script>try{var m=localStorage.getItem("fala-mood");if(m=="light"||m=="dark")document.documentElement.dataset.theme=m}catch(e){}</script>
 
@@ -307,6 +358,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a href="#granap">Granap</a>
       <a href="#bilje">Bilje</a>
       <a href="#kreativno">Kreativno</a>
+      <a href="#nura">Nura</a>
       <a href="#imanje">Imanje</a>
       <a href="#saradnja">Saradnja</a>
       <a href="#kontakt">Kontakt</a>
@@ -366,6 +418,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <h2>Granap</h2>
         <p class="lede">Kao nekad u seoskom granapu: malo svega, a sve poznato. Svaku seriju pravim ručno, pa uz potvrdu narudžbe javljam i rok izrade. Posebnu kombinaciju mirisa ili bilja napiši u napomeni.</p>
       </div>
+      <div class="visak" id="visak" aria-live="polite"></div>
       <div class="tabs" id="tabs" role="group" aria-label="Filtriraj po liniji"></div>
       <div class="grid" id="grid"></div>
     </div>
@@ -377,7 +430,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <div class="note-card">
         <p class="eyebrow">Ko pravi fala</p>
         <p>Zovem se Mejra. Slikam, sadim i pravim stvari rukama. Na imanju u Aleksićima obnavljam stari voćnjak, a uskoro gradim i malu kuću u kojoj ću živjeti i raditi.</p>
-        <p>Sve što je ovdje nastaje u mojim rukama ili na mojoj zemlji: bilje sušim sama, ulje odležava u mojim teglama, a pletivo pravi moja mama. Fala je moja zahvalnost tijelu, zemlji i ljudima koji ovo kupuju.</p>
+        <p>Sve što je ovdje nastaje u mojim rukama ili na mojoj zemlji: bilje sušim sama, ulje odležava u mojim teglama, a Nura je pletivo moje mame. Fala je moja zahvalnost tijelu, zemlji i ljudima koji ovo kupuju.</p>
         <div class="sign">mujmej</div>
       </div>
       <div>
@@ -437,8 +490,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <div class="head">
         <p class="eyebrow">Bilježnica sa imanja</p>
         <h2>Bilje, vrt i šuma</h2>
-        <p class="lede">Ovdje pišu ljudi koji zemlju poznaju iz struke i iz iskustva: o bilju koje raste na imanju, o vrtu i voćnjaku i o šumi oko nas. Tekstovi su originalni, s navedenim izvorima.</p>
+        <p class="lede">Ovdje pišu ljudi koji zemlju poznaju iz struke i iz iskustva: o bilju koje raste na imanju, o vrtu i voćnjaku i o šumi oko nas. Tekstovi su originalni, s navedenim izvorima. Klikni na biljku i pročitaj sve o njoj: kako izgleda, kako se sadi, njeguje, bere i prerađuje.</p>
       </div>
+      <article class="pdetail" id="pdetail" hidden aria-live="polite"></article>
       <div class="herb" id="herbs"></div>
     </div>
   </section>
@@ -449,7 +503,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <div class="authors">
         <div class="author"><span class="state soon">uskoro</span><h3>Hortikultura i vrt</h3><p>Rubrika koju vodi agronomka: sadnja, njega bilja i voćaka, zemlja, plodored i zaštita bez hemije.</p></div>
         <div class="author"><span class="state soon">uskoro</span><h3>Šume i šumarstvo</h3><p>Tekstovi šumarskog stručnjaka: drveće, život šume, bagrem i pčele, kako šumu koristiti, a da ostane šuma.</p></div>
-        <div class="author"><span class="state">sa imanja</span><h3>Dnevnik imanja</h3><p>Moje bilješke iz voćnjaka i radionice: šta se sadi, šta cvjeta, šta se bere i šta od toga nastaje.</p></div>
+        <div class="author"><span class="state soon">uskoro</span><h3>Pčelarstvo</h3><p>Pčele u bagremovoj šumi: košnice, paša i cvjetanje kroz godinu, med i vosak, i kako pčele i voćnjak žive jedno od drugog.</p></div>
       </div>
     </div>
   </section>
@@ -492,7 +546,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <div class="head">
         <p class="eyebrow">Kreativno</p>
         <h2>Slike, radionice i ručni rad</h2>
-        <p class="lede">Ručno slikane čestitke, oslikano posuđe, radionice slikanja u prirodi i mamino pletivo. Originalne slike su na mujmej.art, a život na imanju pratiš na @myjmej.</p>
+        <p class="lede">Ručno slikane čestitke, oslikane šolje i tanjiri, drvene daske, šiveni cekeri i kese, i art radionice u prirodi. Originalne slike su na mujmej.art, mamino pletivo ima svoju stranicu <a href="#nura">Nura</a>, a život na imanju pratiš na @myjmej.</p>
       </div>
       <div class="channels">
         <div class="channel"><span class="state">slike</span><h3>mujmej.art</h3><p>Galerija mojih slika i narudžbe slika po mjeri.</p><a class="btn ghost" href="https://mujmej.art" target="_blank" rel="noopener">Otvori galeriju</a></div>
@@ -503,35 +557,54 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </div>
   </section>
 
-  <section data-page="kreativno">
+  <section data-page="kreativno" id="radionice">
     <div class="wrap workshop">
       <div>
-        <p class="eyebrow">Radionice u prirodi · ljeto 2027.</p>
-        <h2>Škola slikanja u voćnjaku</h2>
-        <p class="lede">Slikanje u šumi i voćnjaku, za djecu i za odrasle. Nekoliko sati ili dva dana, uz mogućnost da se prespava u šatoru i kampuje na imanju. Materijal za rad, voda, kafa i užina su uključeni.</p>
+        <p class="eyebrow">Art radionice u prirodi · od ljeta 2027.</p>
+        <h2>Art radionice na imanju</h2>
+        <p class="lede">Ovo nije škola slikanja. Na radionicama se igramo i pravimo: igračke i druge kreativne stvari od recikliranog materijala, boje od bilja i zemlje, slike u voćnjaku. Usput učimo o ekologiji, hortikulturi, bojama i materijalima. Roditelji, braća i sestre su dobrodošli da rade s nama.</p>
+        <ul class="topics"><li>reciklaža i igračke</li><li>boje i materijali</li><li>ekologija</li><li>hortikultura</li><li>berba i zimnica</li></ul>
+        <h3>Berba i zimnica</h3>
+        <p>U sezoni beremo jagode, maline, kupine i višnje, pa od ploda zajedno kuhamo džem i marmeladu, a ujesen ajvar i turšiju. Teglu koju napraviš nosiš kući.</p>
         <p><a class="btn" id="workshopAsk" href="#" target="_blank" rel="noopener">Javi interes za radionicu</a></p>
       </div>
       <dl class="facts">
-        <div><dt>Za koga</dt><dd>djeca i odrasli, posebne grupe</dd></div>
+        <div><dt>Za koga</dt><dd>djeca s roditeljima, porodice, grupe</dd></div>
         <div><dt>Trajanje</dt><dd>nekoliko sati ili 2 dana</dd></div>
         <div><dt>Okvirna cijena</dt><dd>oko 30 KM po osobi</dd></div>
         <div><dt>Uključeno</dt><dd>materijal, voda, kafa i užina</dd></div>
         <div><dt>Uz dvodnevnu</dt><dd>kampovanje u šatoru</dd></div>
+        <div><dt>Berba</dt><dd>jagode, maline, kupine, višnje</dd></div>
       </dl>
     </div>
   </section>
 
   <section data-page="kreativno">
     <div class="wrap">
-      <div class="head"><p class="eyebrow">Plete mama</p><h2>Priglavke i čarape iz maminih ruku</h2>
-        <p class="lede">Moja mama plete priglavke, čarape, kape i šalove, svaki par drugačiji: prugasti, s narodnim šarama, mekani kao oblak. Javi broj noge i boju koju voliš.</p></div>
+      <div class="head"><p class="eyebrow">Ručni rad</p><h2>Čestitke, posuđe, daske, cekeri i kese</h2></div>
+      <div class="grid" id="grid-kreativno"></div>
     </div>
   </section>
 
-  <section data-page="kreativno">
+  <section id="nura" data-page="nura" class="pagehead">
     <div class="wrap">
-      <div class="head"><p class="eyebrow">Ručni rad</p><h2>Čestitke, posuđe, pletivo i cekeri</h2></div>
-      <div class="grid" id="grid-kreativno"></div>
+      <div class="head">
+        <p class="eyebrow">Nura · pletivo iz maminih ruku</p>
+        <h2>Nura</h2>
+        <p class="lede">Nura je pletivo moje mame. Ona plete priglavke, čarape, kape, šalove i rukavice, svaki komad drugačiji: prugast, s narodnim šarama ili mekan kao oblak. Plete po narudžbi, pa javi broj noge, veličinu i boju koju voliš.</p>
+      </div>
+      <div class="grid" id="grid-nura"></div>
+    </div>
+  </section>
+
+  <section data-page="nura" id="mama">
+    <div class="wrap">
+      <div class="head"><p class="eyebrow">O mami</p><h2>Žena iza Nure</h2>
+        <p class="lede">Mama piše svoju priču sama, svojim riječima. Tekstove samo lektorišemo, bez mijenjanja priče, i objavljujemo ih ovdje.</p></div>
+      <div class="mama">
+        <div class="author"><span class="state soon">u pripremi</span><h3>Biografija</h3><p>O djetinjstvu, porodici i o tome kako je naučila plesti. Kad tekst prođe lekturu, objavljujemo ga u cijelosti.</p></div>
+        <div class="author"><span class="state soon">u pripremi</span><h3>Memoari</h3><p>Uz biografiju mama piše i memoare, poglavlje po poglavlje. Objavljivat ćemo ih redom, kako nastaju.</p><a class="btn ghost" id="memoariAsk" href="#" target="_blank" rel="noopener">Javi mi kad izađe prvo poglavlje</a></div>
+      </div>
     </div>
   </section>
 
@@ -547,10 +620,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <p class="eyebrow">Fizička lica</p>
           <h3>Za tvoju proslavu i tvoje ljude</h3>
           <ul>
-            <li><b>Vjenčanja, krštenja i rođendani:</b> mali pokloni za goste, s karticom i imenom</li>
+            <li><b>Vjenčanja, slavlja i rođendani:</b> mali pokloni za goste, s karticom i imenom</li>
             <li><b>Poklon paketi</b> za porodicu, prijatelje i praznike</li>
-            <li><b>Radionica slikanja</b> za rođendan, djevojačko veče ili društvo</li>
-            <li><b>Po mjeri:</b> slika, oslikani tanjiri i šolje, mamino pletivo</li>
+            <li><b>Art radionica u prirodi</b> za rođendan, porodicu ili društvo</li>
+            <li><b>Po mjeri:</b> slika, oslikano posuđe i daske, šiveni cekeri, Nura pletivo</li>
           </ul>
         </div>
         <div class="side">
@@ -560,7 +633,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
             <li><b>Poklon paketi</b> za zaposlene, klijente i partnere</li>
             <li><b>Hoteli, apartmani i spa:</b> dobrodošlica za goste, pilinzi i ulja u većim pakovanjima</li>
             <li><b>Suvenirnice i koncept prodavnice:</b> proizvodi za vašu policu</li>
-            <li><b>Škole, vrtići i udruženja:</b> radionice slikanja u prirodi</li>
+            <li><b>Škole, vrtići i udruženja:</b> art radionice u prirodi, berba i zimnica</li>
             <li><b>Pod vašim imenom:</b> proizvodi s vašom etiketom, po dogovoru</li>
           </ul>
         </div>
@@ -577,7 +650,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <label id="b-ime-wrap" hidden>Kontakt osoba<input id="b-ime" maxlength="80" autocomplete="name"></label>
         <div class="two">
           <label>Povod<select id="b-vrsta"></select></label>
-          <label>Šta te zanima<select id="b-proizvod"><option>Poklon paketi</option><option>Pilinzi i kupke</option><option>Macerati i ulja</option><option>Slike i oslikano posuđe</option><option>Mamino pletivo</option><option>Radionica slikanja</option><option>Nešto drugo</option></select></label>
+          <label>Šta te zanima<select id="b-proizvod"><option>Poklon paketi</option><option>Pilinzi i kupke</option><option>Macerati i ulja</option><option>Slike, posuđe i cekeri</option><option>Nura pletivo</option><option>Art radionice</option><option>Nešto drugo</option></select></label>
         </div>
         <label>Količina i rok (okvirno)<input id="b-kolicina" maxlength="120" placeholder="npr. 40 poklona za goste do juna"></label>
         <label>Poruka<textarea id="b-poruka" rows="3" maxlength="800"></textarea></label>
@@ -655,14 +728,16 @@ const LINES = [
   {key:"njega", name:"fala izvana", text:"Za kožu, najveći organ: pilinzi, balzami, bathbombe, macerati i čvrsti parfemi, a uskoro losioni, ulja i šimeri.", on:true},
   {key:"bossonoga", name:"Bossonoga", text:"Samo za stopala: kuglice i soli za kupku stopala. Jedna kuglica, jedna nožica.", on:true},
   {key:"iznutra", name:"fala iznutra", text:"S imanja i iz šume: čajevi i mješavine za herbalnu saunu, sušene i zaleđene višnje i trešnje, med i medni proizvodi, prerađevine od bilja, tikve i orašastih plodova.", on:true, badge:"uskoro"},
-  {key:"kreativno", name:"Kreativno", text:"Moje slike, ručno slikane čestitke, oslikano posuđe, mamino pletivo i radionice slikanja u prirodi.", on:true, page:"kreativno", badge:"posebna stranica"}
+  {key:"kreativno", name:"Kreativno", text:"Moje slike i čestitke, oslikano posuđe, drvene daske, šiveni cekeri i kese, i art radionice u prirodi.", on:true, page:"kreativno", badge:"posebna stranica"},
+  {key:"nura", name:"Nura", text:"Mamino pletivo: priglavke, čarape, kape, šalovi i rukavice, ručno i od vune.", on:true, page:"nura", badge:"posebna stranica"}
 ];
-const MAP = {scrubs:["njega","Pilinzi"], balms:["njega","Balzami"], bathBombs:["njega","Bathbombs"], kidsLine:["njega","Za djecu"], footBaths:["bossonoga","Kuglice za stopala"], refillBaths:["bossonoga","Soli za stopala"], accessories:["kreativno","Cekeri i washcloth"]};
+const MAP = {scrubs:["njega","Pilinzi"], balms:["njega","Balzami"], bathBombs:["njega","Bathbombs"], kidsLine:["njega","Za djecu"], footBaths:["bossonoga","Kuglice za stopala"], refillBaths:["bossonoga","Soli za stopala"], accessories:["kreativno","Cekeri i šivene kese"]};
 const GROUPS = {
   njega:["Pilinzi","Balzami","Bathbombs","Macerati","Čvrsti parfemi","Melemi i losioni","Ulja i šimeri","Za djecu"],
   bossonoga:["Kuglice za stopala","Soli za stopala"],
   iznutra:["Čajevi i saune","Voće","Med i pčelinji proizvodi","Iz bašte i voćnjaka"],
-  kreativno:["Slike i čestitke","Oslikano posuđe","Mamino pletivo","Cekeri i washcloth"]
+  kreativno:["Slike i čestitke","Oslikano posuđe","Drvene daske","Cekeri i šivene kese"],
+  nura:["Pletivo","Nura × Bossonoga"]
 };
 const HERBS = ["neven","kamilica","menta","veren","kantarion","jorgovan","ružmarin","žalfija","lavanda","čuber","narandža","limun"];
 const SASTAV = {
@@ -683,7 +758,10 @@ const USE = {
   "Za djecu":"U svakoj patkici krije se figurica patkice koja svijetli u mraku. Figurica nije za djecu mlađu od 3 godine; kupanje uz nadzor odrasle osobe."
 };
 const NOTES = {
-  "Mamino pletivo":"Šalove, priglavke, kape i rukavice plete moja mama, ručno i od vune. Svaki komad je jedan; boju i veličinu dogovaramo u poruci.",
+  "Pletivo":"Šalove, priglavke, čarape, kape i rukavice plete moja mama, ručno i od vune. Svaki komad je jedan; boju i veličinu dogovaramo u poruci.",
+  "Nura × Bossonoga":"Zajednički proizvodi Nure i Bossonoge, za ritual njege od glave do pete.",
+  "Cekeri i šivene kese":"Cekeri s mojim motivima i platnene kese koje šijem po mjeri.",
+  "Drvene daske":"Drvene daske za serviranje, s motivom po dogovoru.",
   "Slike i čestitke":"Slikam naivne slike i čestitke, svaku posebno i rukom. Tekst u čestitki pišem po tvojoj želji.",
   "Macerati":"Svaka osušena biljka odležava sama u hladno cijeđenom ekstra djevičanskom maslinovom ulju, 40 dana zaštićena od svjetla. Od macerata nastaju balzami, losioni i ulja.",
   "Kuglice za stopala":"Jedna kuglica, jedna nožica.",
@@ -708,15 +786,18 @@ const EXTRA = [
   {id:"i-med-orasi", line:"iznutra", group:"Med i pčelinji proizvodi", kind:"soon", art:"honey", name:"Med s orašastim plodovima", desc:"Med s orasima i lješnjacima."},
   {id:"i-tikva", line:"iznutra", group:"Iz bašte i voćnjaka", kind:"soon", art:"pumpkin", name:"Čips od tikve", desc:"Tanko sušeni listići tikve."},
   {id:"i-bundeva", line:"iznutra", group:"Iz bašte i voćnjaka", kind:"soon", art:"pumpkin", name:"Sjemenke i ulje bundeve", desc:"Pržene sjemenke i hladno cijeđeno ulje bundeve."},
-  {id:"x-sal", line:"kreativno", group:"Mamino pletivo", kind:"ask", art:"scarf", name:"Pleteni šal", desc:"Topao vuneni šal. Boja i dužina po dogovoru."},
-  {id:"x-priglavke", line:"kreativno", group:"Mamino pletivo", kind:"ask", art:"slipper", name:"Priglavke", desc:"Pletene priglavke za hladne podove: prugaste, s narodnim šarama ili jednobojne. Javi broj noge i boju."},
-  {id:"x-carape", line:"kreativno", group:"Mamino pletivo", kind:"ask", art:"slipper", name:"Duge pletene čarape", desc:"Prugaste čarape do koljena, pletene na pet igala. Javi broj noge i dvije boje za pruge."},
-  {id:"x-kapa", line:"kreativno", group:"Mamino pletivo", kind:"ask", art:"hat", name:"Vunena kapa", desc:"Pletena kapa s pomponom ili bez."},
-  {id:"x-rukavice", line:"kreativno", group:"Mamino pletivo", kind:"ask", art:"mitten", name:"Rukavice", desc:"Pletene rukavice s palcem, veličina po dogovoru."},
+  {id:"x-sal", line:"nura", group:"Pletivo", kind:"ask", art:"scarf", name:"Pleteni šal", desc:"Topao vuneni šal. Boja i dužina po dogovoru."},
+  {id:"x-priglavke", line:"nura", group:"Pletivo", kind:"ask", art:"slipper", name:"Priglavke", desc:"Pletene priglavke za hladne podove: prugaste, s narodnim šarama ili jednobojne. Javi broj noge i boju."},
+  {id:"x-carape", line:"nura", group:"Pletivo", kind:"ask", art:"slipper", name:"Duge pletene čarape", desc:"Prugaste čarape do koljena, pletene na pet igala. Javi broj noge i dvije boje za pruge."},
+  {id:"x-kapa", line:"nura", group:"Pletivo", kind:"ask", art:"hat", name:"Vunena kapa", desc:"Pletena kapa s pomponom ili bez."},
+  {id:"x-rukavice", line:"nura", group:"Pletivo", kind:"ask", art:"mitten", name:"Rukavice", desc:"Pletene rukavice s palcem, veličina po dogovoru."},
   {id:"x-cestitka", line:"kreativno", group:"Slike i čestitke", kind:"ask", art:"card", name:"Ručno slikana čestitka", desc:"Za rođendan, praznik ili bez povoda. Napiši povod i tekst."},
   {id:"x-slika", line:"kreativno", group:"Slike i čestitke", kind:"ask", art:"easel", name:"Slika po narudžbi", desc:"Opiši motiv i veličinu, a ja ti pošaljem skicu prije slikanja."},
   {id:"x-tanjir", line:"kreativno", group:"Oslikano posuđe", kind:"ask", art:"card", name:"Oslikani tanjir", desc:"Ručno oslikan tanjir s motivom po tvojoj želji: cvijeće, voće, ime ili datum. Peri ručno."},
   {id:"x-case", line:"kreativno", group:"Oslikano posuđe", kind:"ask", art:"card", name:"Oslikane čaše i šolje", desc:"Čaše i šolje oslikane bojama za staklo i keramiku, pojedinačno ili u setu za poklon. Peri ručno."},
+  {id:"x-daska", line:"kreativno", group:"Drvene daske", kind:"ask", art:"board", name:"Drvena daska za serviranje", desc:"Daska za sir, hljeb ili meze, s motivom ili natpisom po tvojoj želji. Peri ručno."},
+  {id:"x-kesa", line:"kreativno", group:"Cekeri i šivene kese", kind:"ask", art:"pouch", name:"Šivena platnena kesa", desc:"Kesa od platna za hljeb, bilje ili poklon, ušivena po mjeri, s vezicom."},
+  {id:"x-siveni-ceker", line:"kreativno", group:"Cekeri i šivene kese", kind:"ask", art:"pouch", name:"Šiveni ceker po mjeri", desc:"Ceker od platna koji šijem sama, s motivom ili natpisom koji izabereš."},
   {id:"x-mujmej", line:"kreativno", group:"Slike i čestitke", kind:"link", art:"frame", name:"Slike sa mujmej.art", desc:"Gotove slike u galeriji mujmej.art.", href:"https://mujmej.art"}
 ];
 
@@ -728,12 +809,16 @@ for (const [cat, arr] of Object.entries(DATA)) {
     products.push({...p, line: MAP[cat][0], group: MAP[cat][1], kind:"buy", img: img(p.image)});
   }
 }
+{ const w = products.find(x => x.id === "acc-washcloth");
+  if (w) Object.assign(w, {line:"nura", group:"Nura × Bossonoga", name:"Washcloth Nura × Bossonoga", desc:"Krpica za pranje i nanošenje pilinga. Zajednički proizvod Nure i Bossonoge."}); }
 products.push(...EXTRA);
 const lineName = k => LINES.find(l => l.key === k).name;
 
 /* drawings for items without a photo yet */
 const S = 'fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"';
 const ARTS = {
+  board:`<path ${S} d="M52 76h86c8 0 14 6 14 14v40c0 8-6 14-14 14H52c-8 0-14-6-14-14V90c0-8 6-14 14-14z"/><path ${S} d="M152 104h14c6 0 10 4 10 8s-4 8-10 8h-14"/><circle ${S} cx="170" cy="112" r="2"/><path ${S} opacity=".5" d="M62 120c10-18 20-18 30 0s20 18 30 0"/>`,
+  pouch:`<path ${S} d="M64 70h72l8 80H56z"/><path ${S} d="M64 84c24 8 48 8 72 0"/><path ${S} d="M90 80c-8 10-14 14-24 14M110 80c8 10 14 14 24 14"/><path ${S} opacity=".5" d="M84 116c6-8 12-8 16 0s10 8 16 0"/>`,
   scarf:`<path ${S} d="M70 40c20 8 40 8 60 0v18c-20 8-40 8-60 0z"/><path ${S} d="M112 58l-6 80h22l6-82"/><path ${S} d="M106 138v12M112 138v14M118 138v12M124 138v14"/><path ${S} opacity=".5" d="M80 46l5 6 5-6M95 48l5 6 5-6M110 48l5 6 5-6M117 80l4 5 4-5M115 100l4 5 4-5M113 120l4 5 4-5"/>`,
   slipper:`<path ${S} d="M48 120c0-22 22-40 52-40h20c22 0 34 16 34 30 0 14-12 18-26 18H64c-10 0-16-2-16-8z"/><path ${S} d="M100 80c4 14 18 22 36 20"/><path ${S} opacity=".5" d="M62 112l5 6 5-6M78 112l5 6 5-6M94 112l5 6 5-6M110 114l5 6 5-6"/>`,
   hat:`<circle ${S} cx="100" cy="42" r="10"/><path ${S} d="M62 118c0-34 16-62 38-62s38 28 38 62"/><rect ${S} x="56" y="118" width="88" height="20" rx="6"/><path ${S} opacity=".5" d="M66 124v8M76 124v8M86 124v8M96 124v8M106 124v8M116 124v8M126 124v8M136 124v8"/>`,
@@ -775,8 +860,9 @@ tabsEl.addEventListener("click", e => { const b = e.target.closest("[data-tab]")
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const ask = name => "https://wa.me/" + WA + "?text=" + encodeURIComponent("Zdravo! Zanima me: " + name + ". ");
 const gridK = document.getElementById("grid-kreativno");
+const gridN = document.getElementById("grid-nura");
 const helperOut = document.getElementById("helperOut");
-const GRIDS = [grid, gridK, helperOut];
+const GRIDS = [grid, gridK, gridN, helperOut];
 GRIDS.forEach(g => g.addEventListener("change", e => { const c = e.target.closest(".card"); if (!c) return; const a = c.querySelector("a.add[data-ask]"); const v = c.querySelector("[data-variant]"); if (a && v) a.href = ask(a.dataset.ask + " (" + v.value + ")"); }));
 function card(p){
   const sizes = p.sizeOptions || null;
@@ -816,6 +902,7 @@ function groupsHtml(key){
 }
 function renderGrid(){
   gridK.innerHTML = groupsHtml("kreativno");
+  gridN.innerHTML = groupsHtml("nura");
   const lines = SHOP.filter(l => tab === "all" || l.key === tab);
   let html = "";
   for (const l of lines) {
@@ -915,12 +1002,15 @@ $("scrim").onclick = () => { openCart(false); openHelper(false); };
 document.addEventListener("keydown", e => { if (e.key === "Escape") { openCart(false); openHelper(false); } });
 
 /* stranice */
-const PAGES = ["pocetna","granap","bilje","kreativno","imanje","saradnja","kontakt"];
+const PAGES = ["pocetna","granap","bilje","kreativno","nura","imanje","saradnja","kontakt"];
 function route(){
   let h = decodeURIComponent(location.hash.slice(1)) || "pocetna";
   if (h === "prodavnica") h = "granap";
   let target = null, page = h;
-  if (!PAGES.includes(h)) {
+  const pm = h.match(/^biljka-([a-z]+)$/);
+  if (pm && showPlant(pm[1])) { page = "bilje"; target = $("pdetail"); }
+  else { hidePlant(); }
+  if (!pm && !PAGES.includes(h)) {
     target = /^[\w-]+$/.test(h) ? document.getElementById(h) : null;
     const holder = target && target.closest("[data-page]");
     page = holder ? holder.dataset.page : "pocetna";
@@ -933,17 +1023,252 @@ window.addEventListener("hashchange", route);
 
 
 /* bilježnica: bilje sa imanja (botanika i upotreba u fala, bez zdravstvenih tvrdnji) */
-const HERBS_INFO = [
-  ["Višnja","Prunus cerasus","Srce novog voćnjaka. Domaća oblačinska sorta je kisela i aromatična, idealna za sušenje i zamrzavanje.","u fala: sušene i zaleđene višnje"],
-  ["Trešnja","Prunus avium","Cvjeta rano u proljeće i hrani pčele. Sadimo sorte koje se međusobno oprašuju.","u fala: zaleđene trešnje"],
-  ["Lavanda","Lavandula angustifolia","Voli sunce i suhu, kamenitu zemlju. Bere se kad se otvori trećina cvjetova na klasu.","u fala: kuglice, soli, bathbombe"],
-  ["Kamilica","Matricaria chamomilla","Jednogodišnja; bere se tek otvorena glavica, svakih nekoliko dana dok cvjeta.","u fala: macerat, kupke za stopala"],
-  ["Neven","Calendula officinalis","Što ga više bereš, više cvjeta, od juna do mrazeva. Sadi se između voćaka.","u fala: macerat i balzam"],
-  ["Kantarion","Hypericum perforatum","Raste divlje uz rub šume. Cvjetni vrhovi beru se oko Ivanjdana.","u fala: macerat"],
-  ["Žalfija","Salvia officinalis","Mediteranska biljka koja traži sunce i ocjedito tlo; list se bere prije cvjetanja.","u fala: piling pačuli i žalfija"],
-  ["Jorgovan","Syringa vulgaris","Aleja na ulazu u imanje. Cvjet je kratkog vijeka, pa se macerat pravi odmah po berbi.","u fala: macerat jorgovana, uskoro"]
+const PLANTS = [
+{
+"k": "visnja",
+"n": "Višnja",
+"lat": "Prunus cerasus",
+"t": "Srce novog voćnjaka. Domaća oblačinska sorta je kisela i aromatična, idealna za sušenje i zamrzavanje.",
+"u": "u fala: sušene i zaleđene višnje",
+"izgled": "Manje stablo ili grm visine 3 do 5 metara, okrugle krošnje. List je eliptičan, sitno nazubljen i sjajan, manji od lista trešnje. Bijeli cvjetovi na dugim drškama izlaze u aprilu, po dva do četiri zajedno. Plod je tamnocrvena, sočna i kisela koštunica.",
+"sadnja": "Sadi se od kraja oktobra do marta, dok sadnica miruje, na sunčano i ocjedito mjesto, s razmakom 4 do 5 metara. Za suho i krečnjačko tlo dobra je podloga magriva. Oblačinska je samooplodna i rađa i bez druge sorte u blizini.",
+"uzgoj": "Prve dvije godine treba zalijevanje u suhim sedmicama i malč oko debla. Višnja rađa na prošlogodišnjim granama, pa se reže odmah poslije berbe, prorjeđivanjem starih i gustih grana. Najveći problem je monilija: grančice s osušenim cvijećem odmah se odsijecaju i iznose iz voćnjaka.",
+"berba": "Od kraja juna do sredine jula, kad plod potpuno potamni. Za sušenje i zamrzavanje bere se bez peteljke, a za jelo s peteljkom, jer tako duže traje.",
+"prerada": "Suši se, zamrzava, kuha u džem i sok. U fala: sušene i zaleđene višnje.",
+"tradicija": "U narodu se od osušenih peteljki višnje kuha čaj.",
+"oprez": "Koštice sadrže amigdalin, iz kojeg se u organizmu oslobađa cijanid. Koštice se ne drobe i ne melju u hranu.",
+"sorte": [
+"Oblačinska",
+"Šatenmarela",
+"Keleris"
+],
+"rod": "Prvi rod višnje očekuje se oko treće godine nakon sadnje."
+},
+{
+"k": "tresnja",
+"n": "Trešnja",
+"lat": "Prunus avium",
+"t": "Cvjeta rano u proljeće i hrani pčele. Sadimo sorte koje se međusobno oprašuju.",
+"u": "u fala: zaleđene trešnje",
+"izgled": "Visoko stablo, na bujnoj podlozi i preko 10 metara. Kora je sjajna, crvenkastosmeđa, s poprečnim prugama. List je veći od lista višnje, viseći, s dvije male crvene žlijezde na peteljci. Cvjeta bijelo u aprilu, prije višnje, a plod je sladak, od crvenog do gotovo crnog.",
+"sadnja": "Sadi se u jesen ili rano proljeće, na najsunčanije i najprozračnije mjesto, s razmakom 5 do 6 metara. Većina sorti treba drugu sortu za oprašivanje: Kordia i Regina se oprašuju međusobno, a Sunburst je samooplodna.",
+"uzgoj": "Mlada stabla se oblikuju rezidbom krajem ljeta, kad rane brže zarastaju. Plodovi pucaju od kiše pred berbu, a trešnjina muha napada kasnije sorte; žute ljepljive ploče u krošnji pokazuju kad muha izleti. Od ptica pomaže mreža.",
+"berba": "Od kraja maja (Burlat) do jula (Regina). Bere se s peteljkom i samo zrela, jer trešnja ne dozrijeva poslije berbe.",
+"prerada": "Najbolja je svježa; zamrzava se bez koštica, kuha u kompot i džem. U fala: zaleđene trešnje.",
+"tradicija": "Kao i kod višnje, u narodu se suše peteljke trešnje za čaj.",
+"oprez": "Koštice se ne drobe i ne jedu, jer sadrže amigdalin.",
+"sorte": [
+"Kordia",
+"Regina",
+"Sunburst",
+"Burlat"
+],
+"rod": "Trešnja obično prvi put rodi u trećoj ili četvrtoj godini."
+},
+{
+"k": "jabuka",
+"n": "Jabuka",
+"lat": "Malus domestica",
+"t": "Slatke i hrskave sorte, Gala, Pinova, Topaz i Fuji, koje se međusobno oprašuju.",
+"u": "u fala: sušene jabuke",
+"izgled": "Stablo okrugle krošnje. List je ovalan, nazubljen, odozdo blago dlakav. Cvjetovi su u pupoljku ružičasti, a otvoreni bijeli s ružičastim rubom, u maju.",
+"sadnja": "Sadi se od novembra do marta. Razmak zavisi od podloge: na bujnoj 6 do 7 metara, na srednje bujnoj (MM106) oko 4 metra, a na slaboj (M9) stablo treba stub. Jabuka traži drugu sortu za oprašivanje, pa sadimo četiri.",
+"uzgoj": "Reže se zimi, kad nema mraza, da krošnja ostane prozračna. Glavna bolest je čađava krastavost, s crnim mrljama na listu i plodu; Topaz je otporan na nju. Crvljive plodove pravi jabukov smotavac, a protiv njega pomažu feromonske klopke i voćnjak očišćen od opalih plodova.",
+"berba": "Gala krajem augusta, Pinova i Topaz u septembru, Fuji tek u oktobru. Plod je zreo kad se lako odvoji okretanjem na peteljci.",
+"prerada": "Čuva se u hladnom podrumu, suši u kriške, cijedi u sok i kuha u pekmez. U fala: sušene jabuke.",
+"tradicija": "Od opalih jabuka se po selima pravi domaće jabukovo sirće.",
+"oprez": "Sjemenke sadrže malo amigdalina, pa se ne melju u većim količinama.",
+"sorte": [
+"Gala",
+"Pinova",
+"Topaz",
+"Fuji"
+],
+"rod": "Jabuka prve plodove daje od druge do četvrte godine, zavisno od podloge."
+},
+{
+"k": "kruska",
+"n": "Kruška",
+"lat": "Pyrus communis · Pyrus pyrifolia",
+"t": "Slatke kruške koje nisu brašnjave: Konferans i hrskave azijske nashi kruške.",
+"u": "u voćnjaku: svježe i sušene",
+"izgled": "Uspravno stablo piramidalne krošnje. List je okrugao do jajast, kožast i sjajan, na dugoj peteljci. Cvjeta bijelo u aprilu, s tamnoljubičastim prašnicima. Nashi kruška je okrugla kao jabuka i hrska kao jabuka.",
+"sadnja": "Sadi se u jesen ili rano proljeće, na sunčano mjesto s dubokim tlom, s razmakom 4 do 5 metara. Konferans je djelimično samooplodna, a nashi sorte bolje rađaju uz drugu sortu.",
+"uzgoj": "Reže se zimi. Najopasnija bolest je bakterijska plamenjača: vrhovi izboja posmeđe i savijaju se kao pastirski štap. Takva grana se reže 30 do 40 cm u zdravo drvo, a makaze se poslije svakog reza dezinfikuju.",
+"berba": "Konferans se bere u septembru još tvrd i dozrijeva u hladu; tako ostaje sočan, a ne brašnjav. Nashi se bere potpuno zreo, sa stabla, u augustu i septembru.",
+"prerada": "Jede se svježa, suši u kriškama, kuha u kompot i pekmez.",
+"tradicija": "Sušene kruške i šljive zimi se kuhaju u ošafu, starom bosanskom napitku od suhog voća.",
+"oprez": "Kad se sumnja na plamenjaču, grane i alat se ne nose u druge voćnjake.",
+"sorte": [
+"Konferans",
+"Nashi",
+"Kosui"
+],
+"rod": "Kruška prve plodove obično daje oko četvrte godine."
+},
+{
+"k": "sljiva",
+"n": "Šljiva",
+"lat": "Prunus domestica",
+"t": "Požegača, stara sorta za pekmez i sušenje.",
+"u": "u fala: sušene šljive",
+"izgled": "Stablo do 6 metara. List je eliptičan, tamnozelen i naboran, odozdo dlakav. Cvjeta bijelo u aprilu. Plod Požegače je izdužen, tamnoplav, s voštanim pepeljkom i žutim mesom koje se lako odvaja od koštice.",
+"sadnja": "Sadi se od novembra do marta, s razmakom oko 5 metara. Podnosi i teža, vlažnija tla od drugih koštičavih voćaka. Požegača je samooplodna.",
+"uzgoj": "Požegača je vrlo osjetljiva na šarku, virusnu bolest koju prenose lisne vaši: plodovi dobiju udubljene pjege i opadaju. Lijeka nema, pa se zaražena stabla vade, a vaši drže pod kontrolom. Reže se krajem ljeta ili rano u proljeće.",
+"berba": "Krajem augusta i u septembru, kad plod omekša uz peteljku. Za sušenje se ostavlja da još malo omekša na stablu.",
+"prerada": "Pekmez bez šećera, sušene šljive, džem i ošaf. U fala: sušene šljive.",
+"tradicija": "Pekmez od šljiva se nekad kuhao satima u kazanu, bez šećera, uz jesenja okupljanja komšija.",
+"oprez": "Koštice se ne drobe i ne jedu, jer sadrže amigdalin.",
+"sorte": [
+"Požegača"
+],
+"rod": "Šljiva prvi put rodi u trećoj ili četvrtoj godini."
+},
+{
+"k": "orah",
+"n": "Orah",
+"lat": "Juglans regia",
+"t": "Dva oraha na rubu imanja, daleko od bilja.",
+"u": "u fala: med s orasima",
+"izgled": "Veliko stablo do 25 metara, široke krošnje i sive kore. List je složen od 5 do 9 glatkih liski i jako miriše kad se protrlja. Plod je u zelenoj ljusci koja u jesen puca i pušta orah.",
+"sadnja": "Sadi se u jesen, na duboko tlo, najmanje 10 metara od drugih stabala i kuće. Korijen i lišće luče juglon, koji koči rast mnogih biljaka ispod oraha, pa ga sadimo na rub imanja, dalje od bilja. Chandler kasno lista i lakše izbjegne proljetni mraz.",
+"uzgoj": "Malo se reže, samo suhe i ukrštene grane, i to krajem ljeta, jer u proljeće jako curi sok. Mlado stablo se štiti od kasnog mraza i zalijeva u suši.",
+"berba": "U septembru i oktobru, kad zelena ljuska pukne. Orasi se odmah suše u tankom sloju na prozračnom mjestu, dok jezgra ne postane krta.",
+"prerada": "Jezgre za kolače i med s orasima, a zeleni orasi za slatko. U fala: med s orasima.",
+"tradicija": "Oko Ivanjdana se beru zeleni orasi za slatko i liker, običaj mnogih bosanskih kuća.",
+"oprez": "Orah je čest alergen. Zelena ljuska trajno boji kožu, pa se bere u rukavicama.",
+"sorte": [
+"Domaći",
+"Chandler"
+],
+"rod": "Kalemljeni orah rađa od pete godine, a sijanac tek poslije osme do desete."
+},
+{
+"k": "lavanda",
+"n": "Lavanda",
+"lat": "Lavandula angustifolia",
+"t": "Voli sunce i suhu, kamenitu zemlju. Bere se kad se otvori trećina cvjetova na klasu.",
+"u": "u fala: kuglice, soli, bathbombe",
+"izgled": "Polugrm visine 40 do 60 cm, uskih sivozelenih listova. U junu i julu daje ljubičaste klasove na dugim golim stabljikama. Cijela biljka jako miriše.",
+"sadnja": "Sadi se u proljeće ili rano u jesen, na puno sunce i suho, ocjedito tlo, kamenito ili krečnjačko, s razmakom 40 do 50 cm. Ne podnosi stajaću vodu ni kiselu, zbijenu zemlju.",
+"uzgoj": "Poslije cvjetanja grm se skrati za trećinu, ali nikad do golog drveta, jer odatle više ne potjera. Zalijeva se samo prvo ljeto; kasnije joj suša prija više od previše vode.",
+"berba": "Kad se otvori trećina cvjetova na klasu, ujutro poslije rose. Klasovi se vežu u male snopove.",
+"prerada": "Suši se naopako u hladu i na promaji. Od cvijeta nastaju macerat, hidrolat i, destilacijom, eterično ulje. U fala: kuglice i soli za stopala, bathbombe, pilinzi.",
+"tradicija": "Vrećice suhe lavande stavljaju se u ormare protiv moljaca, a njen miris se vezuje za san i smirenje.",
+"oprez": "Eterično ulje se ne nanosi nerazrijeđeno na kožu i ne uzima na usta."
+},
+{
+"k": "kamilica",
+"n": "Kamilica",
+"lat": "Matricaria chamomilla",
+"t": "Jednogodišnja; bere se tek otvorena glavica, svakih nekoliko dana dok cvjeta.",
+"u": "u fala: macerat, kupke za stopala",
+"izgled": "Jednogodišnja biljka visine 20 do 50 cm, perasto razdijeljenih, gotovo končastih listova. Cvjetne glavice imaju bijele latice i žutu, ispupčenu sredinu. Prava kamilica se prepoznaje po tome što je sredina cvijeta iznutra šuplja kad se presiječe; slične lažne kamilice imaju punu sredinu i slabiji miris.",
+"sadnja": "Sije se direktno u jesen ili rano u proljeće. Sjeme je sitno i klija na svjetlu, pa se samo pospe po zemlji i pritisne, bez zatrpavanja. Kad jednom procvjeta, sama se zasijava.",
+"uzgoj": "Ne traži đubrenje ni mnogo vode. Dok je mlada, treba je čistiti od korova.",
+"berba": "Od maja do jula, svakih nekoliko dana, glavice koje su se tek otvorile, po suhom vremenu.",
+"prerada": "Suši se u tankom sloju u hladu, nikad na suncu. U fala: macerat kamilice, kupke za stopala i dječje bathbombe.",
+"tradicija": "Čaj od kamilice je stara kućna upotreba širom Evrope, a Evropska agencija za lijekove ga vodi kao tradicionalnu biljnu upotrebu.",
+"oprez": "Ko je alergičan na ambroziju, arniku ili druge glavočike, može biti alergičan i na kamilicu."
+},
+{
+"k": "neven",
+"n": "Neven",
+"lat": "Calendula officinalis",
+"t": "Što ga više bereš, više cvjeta, od juna do mrazeva. Sadi se između voćaka.",
+"u": "u fala: macerat i balzam",
+"izgled": "Jednogodišnja biljka do 60 cm, svijetlozelenih, malo ljepljivih listova koji mirišu na smolu. Cvjetovi su narandžasti ili žuti, otvaraju se po suncu i zatvaraju uveče. Sjeme je zakrivljeno kao mali polumjesec.",
+"sadnja": "Sije se direktno u aprilu, ili ujesen da nikne sam u proljeće, s razmakom 25 do 30 cm. Uspijeva na skoro svakoj zemlji, najbolje na suncu.",
+"uzgoj": "Precvjetale glavice se redovno uklanjaju, pa biljka cvjeta sve do mrazeva. Između voćaka privlači oprašivače i korisne insekte.",
+"berba": "Cijele glavice, kad su potpuno otvorene, ujutro čim se rosa osuši.",
+"prerada": "Suši se raširen u hladu. Od latica se pravi macerat u ulju, a od macerata mast i balzam. U fala: macerat i balzam.",
+"tradicija": "Nevenova mast je stari kućni pripravak za ispucale ruke.",
+"oprez": "Može izazvati alergiju kod osjetljivih na glavočike."
+},
+{
+"k": "kantarion",
+"n": "Kantarion",
+"lat": "Hypericum perforatum",
+"t": "Raste divlje uz rub šume. Cvjetni vrhovi beru se oko Ivanjdana.",
+"u": "u fala: macerat",
+"izgled": "Višegodišnja biljka do 80 cm, uspravne stabljike s dvije uzdužne letvice. Kad se list okrene prema svjetlu, vide se providne tačkice, pa izgleda kao izbušen. Žuti cvjetovi s pet latica imaju crne tačkice po rubu, a protrljani boje prste crvenoljubičasto.",
+"sadnja": "Raste divlje uz rub šume i na suhim livadama. Može se posijati u proljeće; sjeme klija na svjetlu, pa se ne zatrpava.",
+"uzgoj": "Ne traži njegu. Dio biljaka se ostavi da se same zasiju.",
+"berba": "Cvjetni vrhovi se beru oko Ivanjdana, krajem juna, po sunčanom danu, kad su cvjetovi otvoreni uz još poneki pupoljak.",
+"prerada": "Svježi cvjetovi potapaju se u maslinovo ulje koje za nekoliko sedmica pocrveni: to je kantarionovo ulje. Suši se u malim snopovima u hladu. U fala: macerat kantariona.",
+"tradicija": "Kantarionovo ulje je u narodu poznato kao „crveno ulje” za kožu.",
+"oprez": "Kantarion čini kožu osjetljivom na sunce, pa se poslije nanošenja koža ne izlaže suncu. Uzet na usta mijenja djelovanje mnogih lijekova, među njima kontracepcije, antidepresiva i lijekova za razrjeđivanje krvi, pa se pije samo uz savjet ljekara."
+},
+{
+"k": "zalfija",
+"n": "Žalfija",
+"lat": "Salvia officinalis",
+"t": "Mediteranska biljka koja traži sunce i ocjedito tlo; list se bere prije cvjetanja.",
+"u": "u fala: piling pačuli i žalfija",
+"izgled": "Polugrm do 70 cm, odrvenjele osnove. Listovi su izduženi, sivozeleni, baršunasti i naborani, jakog mirisa. Ljubičastoplavi cvjetovi u pršljenovima cvjetaju u maju i junu.",
+"sadnja": "Sadi se u proljeće, na puno sunce i suho, kamenito tlo, s razmakom oko 40 cm. U krajevima s vlažnim zimama treba joj ocjedito mjesto, jer korijen trune u mokrom.",
+"uzgoj": "U proljeće se grm skrati za trećinu da se ne razvuče i ne ogoli. Svakih nekoliko godina sadi se nova biljka iz reznice.",
+"berba": "List se bere prije cvjetanja i ponovo krajem ljeta, po suhom vremenu.",
+"prerada": "Suši se u hladu, u tankom sloju ili snopovima. Od lista se prave macerat, hidrolat i čaj. U fala: piling pačuli i žalfija.",
+"tradicija": "Žalfija je stara biljka mediteranske kućne apoteke; u narodu se njenim čajem ispira grlo.",
+"oprez": "Sadrži tujon, pa se čaj ne pije dugo ni u velikim količinama, a izbjegava se u trudnoći i dojenju."
+},
+{
+"k": "jorgovan",
+"n": "Jorgovan",
+"lat": "Syringa vulgaris",
+"t": "Aleja na ulazu u imanje. Cvjet je kratkog vijeka, pa se macerat pravi odmah po berbi.",
+"u": "u fala: macerat jorgovana, uskoro",
+"izgled": "Grm ili malo stablo do 6 metara. Listovi su srcoliki i glatki, na dugoj peteljci. U aprilu i maju daje guste, jako mirisne grozdove ljubičastih ili bijelih cvjetića s četiri latice.",
+"sadnja": "Sadi se u jesen, na sunce; voli krečnjačku i ocjeditu zemlju. Za aleju i živu ogradu razmak je 1,5 do 2 metra.",
+"uzgoj": "Cvjeta na prošlogodišnjem drvetu, pa se reže odmah poslije cvjetanja, i to samo precvjetali grozdovi i stare grane. Izdanci iz korijena redovno se vade da grm ne podivlja.",
+"berba": "Grozdovi se beru ujutro, tek otvoreni, i odmah prerađuju, jer cvijet brzo vene i gubi miris.",
+"prerada": "Od svježih cvjetova nastaju macerat, hidrolat i sirup. U fala: posebna linija macerata od jorgovana, uskoro.",
+"tradicija": "Po bosanskim avlijama jorgovan se sadio uz kapiju, kao miris dobrodošlice.",
+"oprez": "Za sirup se koriste samo cvjetovi, i to u malim količinama; ostali dijelovi biljke se ne jedu."
+}
 ];
-document.getElementById("herbs").innerHTML = HERBS_INFO.map(([n, l, t, u]) => `<article><h3>${n}</h3><span class="lat">${l}</span><p>${t}</p><span class="use">${u}</span></article>`).join("");
+const plantBy = k => PLANTS.find(x => x.k === k);
+$("herbs").innerHTML = PLANTS.map(x => `<button class="plant" type="button" data-plant="${x.k}"><img class="bg" src="images/bilje/${x.k}.svg" alt="" loading="lazy" width="400" height="520"><h3>${esc(x.n)}</h3><span class="lat">${esc(x.lat)}</span><p>${esc(x.t)}</p><span class="use">${esc(x.u)}</span><span class="more">Sve o biljci →</span></button>`).join("");
+$("herbs").addEventListener("click", e => { const b = e.target.closest("[data-plant]"); if (b) location.hash = "biljka-" + b.dataset.plant; });
+const PLANT_ROWS = [["izgled","Izgled i prepoznavanje"],["sadnja","Sadnja"],["uzgoj","Uzgoj i njega"],["berba","Berba"],["prerada","Prerada i u fala"],["tradicija","Tradicija"],["oprez","Oprez"]];
+function adoptMsg(x){
+  const nacin = (document.querySelector('input[name="ad-nacin"]:checked') || {}).value || "beri";
+  return ["Zdravo! Želim usvojiti stablo na imanju.", "Voćka: " + x.n + " (" + $("ad-sorta").value + ")",
+    "Način: " + (nacin === "beri" ? "posadi i beri" : "samo posadi"), "Ime na pločici: " + $("ad-ime").value.trim()].join("\n");
+}
+function showPlant(k){
+  const x = plantBy(k); if (!x) return false;
+  const el = $("pdetail");
+  const rows = PLANT_ROWS.filter(([f]) => x[f]).map(([f, t]) => `<div class="${f === "oprez" ? "warn" : ""}"><dt>${t}</dt><dd>${esc(x[f])}</dd></div>`).join("");
+  const extra = x.sorte ? `<div class="adopt" id="adopt"><p class="eyebrow">Usvoji stablo</p><h3>Tvoje stablo u voćnjaku</h3>
+      <p>Posadiću za tebe stablo ove voćke u voćnjaku na imanju. Na njemu će stajati pločica s tvojim imenom. Plaćaš samo cijenu sadnice iz rasadnika u Lamovitoj, od kojeg kupujem sve sadnice za voćnjak.</p>
+      <fieldset class="seg" aria-label="Način">
+        <label><input type="radio" name="ad-nacin" value="beri" checked> Posadi i beri</label>
+        <label><input type="radio" name="ad-nacin" value="posadi"> Samo posadi</label></fieldset>
+      <p class="note" id="ad-opis">Kad stablo rodi, dolaziš i slobodno bereš svoj dio roda. Koliki je taj dio, dogovaramo u poruci.</p>
+      <div class="two"><label class="f">Ime na pločici<input type="text" id="ad-ime" maxlength="40" autocomplete="name"></label>
+        <label class="f">Sorta<select id="ad-sorta">${x.sorte.map(v => `<option>${esc(v)}</option>`).join("")}</select></label></div>
+      <p class="err" id="ad-err" hidden></p>
+      <a class="btn" id="ad-send" href="#" target="_blank" rel="noopener">Usvoji preko WhatsAppa</a>
+      <p class="note">${esc(x.rod)}</p></div>`
+    : `<div class="pgal"><p class="eyebrow">Galerija sadnje</p><h3>${esc(x.n)} na imanju</h3><p>Kad posadimo ${esc(x.n.toLowerCase())} oko voćnjaka, ovdje će biti fotografije sadnje, rasta i berbe, sezonu po sezonu.</p><span class="state soon">uskoro</span></div>`;
+  el.innerHTML = `<figure><img src="images/bilje/${x.k}.svg" alt="Ilustracija: ${esc(x.n)}, ${esc(x.lat)}" width="400" height="520"></figure>
+    <div class="txt"><a class="back" href="#bilje">← Nazad na sve biljke</a><p class="eyebrow">${x.sorte ? "Voćnjak" : "Bilje oko voćnjaka"}</p><h2>${esc(x.n)}</h2><p class="plat">${esc(x.lat)}</p><p class="lede">${esc(x.t)}</p><dl>${rows}</dl>
+    <p class="note">Tradicija i narodna upotreba opisuju običaj, a ne liječenje. Za zdravlje pitaj ljekara ili farmaceuta.</p>${extra}</div>`;
+  el.hidden = false;
+  if (x.sorte) {
+    const upd = () => { $("ad-send").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(adoptMsg(x));
+      $("ad-opis").textContent = ((document.querySelector('input[name="ad-nacin"]:checked') || {}).value === "posadi")
+        ? "Stablo je tvoj poklon imanju i pčelama, a pločica s tvojim imenom ostaje na njemu."
+        : "Kad stablo rodi, dolaziš i slobodno bereš svoj dio roda. Koliki je taj dio, dogovaramo u poruci."; };
+    $("adopt").addEventListener("input", upd); $("adopt").addEventListener("change", upd); upd();
+    $("ad-send").addEventListener("click", e => { const miss = !$("ad-ime").value.trim() ? "Upiši ime koje ide na pločicu." : "";
+      $("ad-err").hidden = !miss; $("ad-err").textContent = miss; if (miss) e.preventDefault(); });
+  }
+  return true;
+}
+function hidePlant(){ const el = $("pdetail"); if (el) { el.hidden = true; el.innerHTML = ""; } }
 $("konkursAsk").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent("Zdravo! Zanima me konkurs za bilježnicu fala. Tema: ");
 
 /* stanje imanja: ažurira se ovdje, najnovije gore */
@@ -963,12 +1288,33 @@ $("stanjeLog").innerHTML = STANJE.map(x => `<li class="${x.s}"><h3>${esc(x.t)} <
 $("stanjeBar").style.width = Math.round((stDone + stNow / 2) / STANJE.length * 100) + "%";
 $("stanjeSum").textContent = `${stDone} urađeno · ${stNow} u toku · ${STANJE.length - stDone - stNow} slijedi`;
 
+/* višak s imanja: jednokratna ponuda, sedmicu dana ili dok traje. Upiši ovdje kad nečega ima viška, npr.
+   {t:"Crveni luk", kol:"oko 30 kg", cijena:2, jed:"kg", do:"do nedjelje", akcija:false, nap:"preuzimanje na imanju"} */
+const VISAK = [];
+function renderVisak(list){
+  const intro = `<div class="vh"><p class="eyebrow">Višak s imanja</p><h3>${list.length ? "Ove sedmice" : "Trenutno nema viška"}</h3></div>
+    <p>Kad na imanju nečega rodi više nego što mi treba, ovdje to prodajem jednokratno, sedmicu dana ili dok traje: luk, višnje, jabuke, orahe. Prodaje se na kilogram, uz preuzimanje na imanju ili u Banjoj Luci.</p>`;
+  if (!list.length) {
+    $("visak").innerHTML = intro + `<a class="add ghosty" href="${"https://wa.me/" + WA + "?text=" + encodeURIComponent("Zdravo! Javi mi kad bude viška s imanja.")}" target="_blank" rel="noopener">Javi mi kad bude viška</a>`;
+    return;
+  }
+  $("visak").innerHTML = intro + `<ul>${list.map((x, i) => `<li data-v="${i}"><div><b>${esc(x.t)}</b>${x.akcija ? ' <span class="state">akcija</span>' : ""}<small>${esc([x.kol, x.do, x.nap].filter(Boolean).join(" · "))}</small></div>
+      <span class="cij">${esc(x.cijena)} KM/${esc(x.jed || "kg")}</span>
+      <span class="qty"><input type="number" min="1" step="1" value="1" aria-label="Količina (${esc(x.jed || "kg")}): ${esc(x.t)}"><a class="add" href="#" target="_blank" rel="noopener">Rezerviši</a></span></li>`).join("")}</ul>`;
+  const upd = li => { const x = list[+li.dataset.v], q = Math.max(1, parseInt(li.querySelector("input").value, 10) || 1);
+    li.querySelector("a").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent("Zdravo! Rezervišem iz viška s imanja: " + x.t + ", " + q + " " + (x.jed || "kg") + "."); };
+  $("visak").querySelectorAll("li").forEach(upd);
+  $("visak").oninput = e => { const li = e.target.closest("li"); if (li) upd(li); };
+}
+renderVisak(VISAK);
+
 /* radionice */
-$("workshopAsk").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent("Zdravo! Zanima me radionica slikanja u prirodi (ljeto 2027). Broj osoba: , za djecu / odrasle: ");
+$("workshopAsk").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent("Zdravo! Zanima me art radionica na imanju (od ljeta 2027). Broj djece i odraslih: , tema (reciklaža, boje, berba i zimnica): ");
+$("memoariAsk").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent("Zdravo! Javi mi kad izađe prvo poglavlje maminih memoara.");
 
 /* saradnja */
 const POVOD = {
-  fizicko: ["Vjenčanje", "Krštenje ili rođendan", "Praznici i pokloni", "Radionica za društvo", "Narudžba po mjeri", "Drugo"],
+  fizicko: ["Vjenčanje", "Slavlje ili rođendan", "Praznici i pokloni", "Radionica za društvo", "Narudžba po mjeri", "Drugo"],
   pravno: ["Pokloni za zaposlene ili klijente", "Hotel, apartmani, spa", "Suvenirnica ili prodavnica", "Škola, vrtić, udruženje", "Proizvodi pod našim imenom", "Drugo"]
 };
 const tip = () => (document.querySelector('input[name="b-tip"]:checked') || {}).value || "fizicko";
@@ -1025,7 +1371,7 @@ const TYPES = {
   bathbomb: /bath|bomb|kupk|kupanj|\bkad[aeu]\b|krofn/, stopala: /stopal|\bnog[aeu]\b|nozic|bossonog|\bpet[ae]\b|umorn/,
   djeca: /djec|dijet|\bdete|beb[aeiu]|klinc|patk|duck|\bsin\b|kcer|cerk|unuk/, macerat: /macerat|\bulj[aeu]\b/,
   parfem: /parfem|miris|brad[aeu]/, ceker: /ceker|torb/, pletivo: /plet|\bsal\b|salov|\bkap[aeu]\b|priglav|rukavic|vun[aeu]/,
-  slika: /slik|umjetn|galerij|platn|original|mujmej/, cestitka: /cestit|razgled|karti[ck]/,
+  slika: /slik|umjetn|galerij|original|mujmej/, posudje: /tanjir|\bsolj|\bcas[aeiu]\b|posud|\bdask|serviran/, cestitka: /cestit|razgled|karti[ck]/,
   caj: /\bcaj|sauna|saun[eu]/, med: /\bmed\b|\bmeda\b|\bmedu\b/, voce: /\bvoc|visnj|tresnj|susen/
 };
 const WHO = {
@@ -1039,7 +1385,7 @@ const NEEDS = {
   koza: [/suh\w* koz|ispucal|perut|njeg\w* koz|koza/, [], ["balzam","macerat","piling"]]
 };
 const GROUP_TYPE = {"Pilinzi":"piling","Balzami":"balzam","Bathbombs":"bathbomb","Za djecu":"djeca","Kuglice za stopala":"stopala","Soli za stopala":"stopala",
-  "Macerati":"macerat","Čvrsti parfemi":"parfem","Cekeri i washcloth":"ceker","Mamino pletivo":"pletivo","Slike i čestitke":"slika",
+  "Macerati":"macerat","Čvrsti parfemi":"parfem","Cekeri i šivene kese":"ceker","Pletivo":"pletivo","Nura × Bossonoga":"pletivo","Oslikano posuđe":"posudje","Drvene daske":"posudje","Slike i čestitke":"slika",
   "Čajevi i saune":"caj","Med i pčelinji proizvodi":"med","Voće":"voce","Melemi i losioni":"balzam","Ulja i šimeri":"macerat"};
 const WHO_TYPES = {zena:["piling","bathbomb","balzam","ceker","macerat"], muskarac:["parfem","stopala","piling","balzam"]};
 const typeOf = p => { const t = new Set([GROUP_TYPE[p.group]]); if (p.group === "Za djecu") t.add("bathbomb"); if (/čestitk/i.test(p.name)) t.add("cestitka"); return t; };
@@ -1131,12 +1477,28 @@ function answer(q){
     return;
   }
   let say = [];
+  if (/usvoj|posadi|sadnic|moje stablo|svoje stablo|\bstabl/.test(u.f)) {
+    helperOut.innerHTML = `<p class="say">Možeš usvojiti stablo u voćnjaku: posadim ga za tebe, na njemu stoji pločica s tvojim imenom, a plaćaš samo cijenu sadnice iz rasadnika u Lamovitoj. Izaberi voćku: ${PLANTS.filter(x => x.sorte).map(x => `<a href="#biljka-${x.k}" data-close>${esc(x.n.toLowerCase())}</a>`).join(", ")}.</p>`;
+    return;
+  }
+  if (/visak|viska|akcij|na kilo|\bkg\b|\bluk\b/.test(u.f)) {
+    helperOut.innerHTML = `<p class="say">${VISAK.length ? "Ove sedmice od viška s imanja ima: " + esc(VISAK.map(x => x.t + " (" + x.cijena + " KM/" + (x.jed || "kg") + ")").join(", ")) + "." : "Ove sedmice nema viška s imanja."} Višak se prodaje jednokratno, na kilogram, a objavljujem ga <a href="#visak" data-close>na vrhu Granapa</a>.</p>`;
+    return;
+  }
+  if (/radionic|igrack|reciklir|ekolog|berb|dzem|marmelad|ajvar|tursij|zimnic|za djecu u prirodi/.test(u.f) && !u.types.filter(t => t !== "djeca").length) {
+    helperOut.innerHTML = `<p class="say">Art radionice na imanju su za djecu i roditelje, od ljeta 2027: pravimo igračke od recikliranog, boje od bilja, beremo voće i kuhamo džem, ajvar i turšiju. Sve piše na <a href="#radionice" data-close>stranici Kreativno</a>.</p>`;
+    return;
+  }
+  const plantHit = PLANTS.find(x => new RegExp("\\b" + fold(x.n).slice(0, Math.max(4, fold(x.n).length - 1))).test(u.f));
+  if (plantHit) say.push(`O biljci ${esc(plantHit.n.toLowerCase())} sve piše u Bilju: <a href="#biljka-${plantHit.k}" data-close>sadnja, uzgoj, berba i prerada</a>.`);
+  if (u.types.includes("pletivo")) say.push(`Pletivo plete moja mama; sve je na stranici <a href="#nura" data-close>Nura</a>.`);
   if (u.types.includes("slika")) say.push(`Originalne slike su u galeriji na <a href="https://mujmej.art" target="_blank" rel="noopener">mujmej.art</a>. Ovdje možeš naručiti sliku po želji ili ručno slikanu čestitku.`);
   const ranked = scoreAll(u);
   lastSets = ideas(u, ranked);
   if (lastSets.length) say.push(u.gift ? "Evo nekoliko ideja za poklon. Svaki set mogu spakovati u poklon pakovanje s ručno rađenom karticom." : "Evo šta bih predložila:");
   else if (ranked.length) say.push(u.named.length ? `Evo šta imam s mirisom: ${u.named.join(", ")}.` : u.needs.includes("opustanje") ? "Za opuštanje biram lavandu, kamilicu i vanilu:" : "Evo šta sam našla:");
   const top = ranked.slice(0, 6);
+  if (!top.length && !lastSets.length && say.length) { helperOut.innerHTML = `<p class="say">${say.join(" ")}</p>`; return; }
   if (!top.length && !lastSets.length) {
     helperOut.innerHTML = `<p class="say">Nisam našla ništa za „${esc(q)}”. Probaj drugim riječima (npr. piling, kupka, za stopala, poklon za mamu) ili me pitaj direktno: <a href="${ask("tražim " + q)}" target="_blank" rel="noopener">piši na WhatsApp</a>.</p>`;
     return;
@@ -1156,7 +1518,7 @@ helperOut.addEventListener("click", e => {
   addSet(lastSets[+b.dataset.set].items);
   b.textContent = "Dodano u korpu"; setTimeout(() => { b.textContent = "Dodaj set u korpu"; }, 1600);
 });
-const CHIPS = ["kako napreduje imanje", "poklon za rođendan, žena, ruža", "nešto za umorne noge", "piling", "za dijete", "poklon za muškarca", "opuštanje, lavanda", "slike"];
+const CHIPS = ["kako napreduje imanje", "poklon za rođendan, žena, ruža", "nešto za umorne noge", "piling", "poklon za muškarca", "usvoji stablo", "radionice za djecu", "pletivo"];
 $("helperChips").innerHTML = CHIPS.map(c => `<button type="button">${esc(c)}</button>`).join("");
 $("helperChips").addEventListener("click", e => { const b = e.target.closest("button"); if (b) answer(b.textContent); });
 function openHelper(o, q){

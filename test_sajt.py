@@ -36,7 +36,7 @@ with sync_playwright() as p:
     for t in ["all", "njega", "bossonoga", "iznutra"]:
         pg.click(f'[data-tab="{t}"]'); pg.wait_for_timeout(150)
     pg.click('[data-tab="all"]')
-    for pgname in ["kreativno", "imanje", "saradnja", "kontakt"]:
+    for pgname in ["kreativno", "nura", "bilje", "imanje", "saradnja", "kontakt"]:
         pg.goto(URL + "#" + pgname); pg.wait_for_timeout(150)
     pg.goto(URL + "#granap"); pg.wait_for_timeout(150)
     pg.evaluate("document.querySelectorAll('img[loading=lazy]').forEach(i => i.loading='eager')")
@@ -55,8 +55,14 @@ with sync_playwright() as p:
           and pg.locator('#kreativno a[href="https://www.instagram.com/myjmej"]').count() == 1
           and "Fala ti" in pg.inner_text("#kreativno") and "Šumski" not in pg.content())
     check("Kreativno ima mujmej.art i radionice", pg.locator('#kreativno a[href="https://mujmej.art"]').count() == 1
-          and "radionica" in urllib.parse.unquote(pg.get_attribute("#workshopAsk", "href")))
+          and "art radionica" in urllib.parse.unquote(pg.get_attribute("#workshopAsk", "href")))
+    kt = pg.inner_text("#kreativno") + pg.inner_text("#radionice")
+    check("Kreativno: art radionice (bez škole slikanja), daske i šivene kese, bez pletiva",
+          "Art radionice na imanju" in kt and "Škola slikanja" not in pg.content() and "turšij" in kt
+          and pg.locator('#grid-kreativno .card[data-id="x-daska"]').count() == 1 and pg.locator('#grid-kreativno .card[data-id="x-kesa"]').count() == 1
+          and pg.locator('#grid-kreativno .card[data-id="x-priglavke"]').count() == 0)
     pg.click('nav a[href="#saradnja"]'); pg.wait_for_timeout(200)
+    check("Saradnja: slavlja umjesto krštenja", "krštenj" not in pg.content().lower() and "slavlja" in pg.inner_text("#saradnja"))
     check("Saradnja nema apoteke i ima fizička i pravna lica", "potek" not in pg.inner_text("#saradnja").lower() and "fizička lica" in pg.inner_text("#saradnja").lower() and "pravna lica" in pg.inner_text("#saradnja").lower())
     pg.locator("#b-send").click(no_wait_after=True); pg.wait_for_timeout(150)
     check("Fizičko lice mora upisati ime", pg.is_visible("#b-err") and "ime" in pg.inner_text("#b-err").lower())
@@ -154,6 +160,13 @@ with sync_playwright() as p:
     check("Pomoćnica bira miris ruže na bathbombu", v == ["Ruža + Hibiskus + Šipak"], str(v))
     pg.fill("#helperQ", "slike"); pg.press("#helperQ", "Enter"); pg.wait_for_timeout(150)
     check("Pomoćnica za slike vodi na mujmej.art", pg.locator('#helperOut .say a[href="https://mujmej.art"]').count() == 1)
+    def say(q):
+        pg.fill("#helperQ", q); pg.press("#helperQ", "Enter"); pg.wait_for_timeout(150)
+        return pg.inner_html("#helperOut .say")
+    check("Pomoćnica: usvoji stablo, radionice, pletivo, višak, biljka",
+          'href="#biljka-visnja"' in say("usvoji stablo") and 'href="#radionice"' in say("radionice za djecu")
+          and 'href="#nura"' in say("pletene priglavke") and "nema viška" in say("ima li viška luka")
+          and 'href="#biljka-kantarion"' in say("kantarion"))
     pg.keyboard.press("Escape")
     before = pg.evaluate("getComputedStyle(document.body).backgroundColor")
     pg.click("#mood"); pg.wait_for_timeout(100)
@@ -165,14 +178,39 @@ with sync_playwright() as p:
     pg.goto(URL + "#prodavnica"); pg.wait_for_timeout(150)
     check("Stari link #prodavnica otvara Granap", pg.is_visible("#granap") and "Granap" in pg.inner_text("#granap h2"))
     pg.goto(URL + "#bilje"); pg.wait_for_timeout(150)
-    check("Stranica Bilje ima bilje, pravila i konkurs", pg.locator("#herbs article").count() >= 8 and pg.is_visible(".rules") and pg.is_visible("#konkursAsk"))
+    check("Stranica Bilje ima 12 biljaka s ilustracijom, pravila i konkurs", pg.locator("#herbs .plant img.bg").count() == 12 and pg.is_visible(".rules") and pg.is_visible("#konkursAsk"))
+    rub = pg.inner_text(".authors")
+    check("Rubrike: Pčelarstvo umjesto Dnevnika imanja", "Pčelarstvo" in rub and "Dnevnik imanja" not in rub)
+    pg.click('#herbs [data-plant="visnja"]'); pg.wait_for_timeout(250)
+    d = pg.inner_text("#pdetail") if pg.is_visible("#pdetail") else ""
+    check("Klik na višnju otvara sve o biljci", all(w in d.lower() for w in ["izgled i prepoznavanje", "sadnja", "uzgoj i njega", "berba", "prerada", "oprez", "lamovit"])
+          and "biljka-visnja" in pg.url and pg.locator("#pdetail figure img").count() == 1)
+    pg.click("#ad-send"); pg.wait_for_timeout(100)
+    err = pg.is_visible("#ad-err")
+    pg.fill("#ad-ime", "Ana i Kenan"); pg.check('input[name="ad-nacin"][value="posadi"]'); pg.select_option("#ad-sorta", "Keleris")
+    href = urllib.parse.unquote(pg.get_attribute("#ad-send", "href"))
+    check("Usvoji stablo: traži ime i šalje voćku, sortu i način", err and "Ime na pločici: Ana i Kenan" in href and "Višnja (Keleris)" in href and "samo posadi" in href)
+    pg.goto(URL + "#biljka-lavanda"); pg.wait_for_timeout(200)
+    check("Bilje (lavanda) ima galeriju sadnje, bez usvajanja", pg.is_visible(".pgal") and pg.locator("#adopt").count() == 0 and "Lavandula" in pg.inner_text("#pdetail"))
+    pg.click("#pdetail .back"); pg.wait_for_timeout(150)
+    check("Nazad zatvara detalj biljke", not pg.is_visible("#pdetail") and pg.is_visible("#herbs"))
+    pg.goto(URL + "#granap"); pg.wait_for_timeout(150)
+    check("Granap: višak s imanja, prazno stanje", "Trenutno nema viška" in pg.inner_text("#visak"))
+    pg.evaluate('renderVisak([{t:"Crveni luk", kol:"oko 30 kg", cijena:2, jed:"kg", do:"do nedjelje", akcija:true}])')
+    pg.fill("#visak li input", "5"); pg.wait_for_timeout(50)
+    vh = urllib.parse.unquote(pg.get_attribute("#visak li a", "href"))
+    check("Višak: rezervacija po kilogramu", "Crveni luk, 5 kg" in vh and "akcija" in pg.inner_text("#visak").lower())
+    pg.evaluate("renderVisak(VISAK)")
 
     # 9d. stanje imanja i pletivo
     pg.goto(URL + "#imanje"); pg.wait_for_timeout(150)
     check("Imanje ima dnevnik gradnje sa statusima", pg.locator("#stanjeLog li").count() >= 6 and pg.locator("#stanjeLog .tag.gotovo").count() >= 1)
     pg.goto(URL + "#kreativno"); pg.wait_for_timeout(300)
-    photos = pg.locator('#grid-kreativno .card[data-id="x-priglavke"] img, #grid-kreativno .card[data-id="x-carape"] img').count()
-    check("Mamino pletivo je s ilustracijama, bez fotografija", photos == 0 and pg.locator('#grid-kreativno .card[data-id="x-priglavke"]').count() == 1)
+    pg.click('nav a[href="#nura"]'); pg.wait_for_timeout(250)
+    photos = pg.locator('#grid-nura .card[data-id="x-priglavke"] img, #grid-nura .card[data-id="x-carape"] img').count()
+    check("Nura: posebna stranica, pletivo s ilustracijama", pg.is_visible("#nura") and photos == 0 and pg.locator('#grid-nura .card[data-id="x-priglavke"]').count() == 1)
+    check("Nura: washcloth je Nura × Bossonoga, sekcija o mami", "Nura × Bossonoga" in pg.inner_text("#grid-nura") and pg.locator('#grid-nura .card[data-id="acc-washcloth"]').count() == 1
+          and all(w in pg.inner_text("#mama") for w in ["Biografija", "Memoari"]) and "memoar" in urllib.parse.unquote(pg.get_attribute("#memoariAsk", "href")))
 
     # 10. vanjski linkovi
     unsafe = pg.eval_on_selector_all('a[target=_blank]', "e => e.filter(a => !(a.rel||'').includes('noopener')).map(a => a.href)")
