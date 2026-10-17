@@ -212,6 +212,8 @@ with sync_playwright() as p:
     check("Nura: washcloth je Nura × Bossonoga, sekcija o mami", "Nura × Bossonoga" in pg.inner_text("#grid-nura") and pg.locator('#grid-nura .card[data-id="acc-washcloth"]').count() == 1
           and all(w in pg.inner_text("#mama") for w in ["Biografija", "Memoari"]) and "memoar" in urllib.parse.unquote(pg.get_attribute("#memoariAsk", "href")))
 
+    sig = pg.locator("footer .sig")
+    check("Potpis: with love, mujmej, malim slovima, Allison", sig.inner_text() == "with love, mujmej" and "Allison" in sig.evaluate("e => getComputedStyle(e).fontFamily"))
     # 10. vanjski linkovi
     unsafe = pg.eval_on_selector_all('a[target=_blank]', "e => e.filter(a => !(a.rel||'').includes('noopener')).map(a => a.href)")
     check("Svi vanjski linkovi imaju zaštitu (noopener)", not unsafe, ", ".join(unsafe))
