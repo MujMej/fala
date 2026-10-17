@@ -7,19 +7,20 @@
 @font-face{font-family:"Satisfy";src:url("fonts/satisfy.woff2") format("woff2");font-display:swap}
 /* Layout: herbarium sheet — one narrow reading column, product grid like pressed specimens with handwritten-style labels */
 :root{
-  --paper:#ebeedf; --sheet:#f8f6ec; --ink:#26301f; --muted:#5b6551; --sage:#4f6443; --line:#d3d8c4;
-  --lav:#6f5fa3; --lav-soft:#e4e0f1; --chip:#e2e6d4; --moss:#2d3b27; --moss2:#3a4b32; --cream:#f5efe0; --lavlight:#c4b9e8; --honey:#d8a24a;
+  --paper:#ece6f4; --sheet:#f8f5fb; --ink:#2a2b33; --muted:#5d5a6c; --sage:#556b48; --line:#d9d1e7;
+  --lav:#6a58a8; --lav-soft:#e0d8f1; --chip:#e5def0; --moss:#4a3d73; --moss2:#5a4c86; --cream:#f5efe0; --lavlight:#c4b9e8; --honey:#d8a24a;
   --hand:"Satisfy","Segoe Script","Bradley Hand",cursive;
   --display:"Cormorant Garamond","Iowan Old Style",Georgia,serif;
   --body:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:light;
 }
+/* Noć: tamno zelena */
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#171b15; --sheet:#20251d; --ink:#e7eadf; --muted:#a5ad9b; --sage:#a6bb93; --line:#343b2f;
-  --lav:#b3a8dc; --lav-soft:#2b2838; --chip:#2a3125; --moss:#1f2a1b; --moss2:#2c3926; color-scheme:dark}}
+  --paper:#122016; --sheet:#1a2a1e; --ink:#e9eee2; --muted:#a8b59f; --sage:#a9c095; --line:#2c3d2f;
+  --lav:#c2b5ee; --lav-soft:#2e2a40; --chip:#223325; --moss:#0c1710; --moss2:#1b2a1f; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --paper:#171b15; --sheet:#20251d; --ink:#e7eadf; --muted:#a5ad9b; --sage:#a6bb93; --line:#343b2f;
-  --lav:#b3a8dc; --lav-soft:#2b2838; --chip:#2a3125; --moss:#1f2a1b; --moss2:#2c3926; color-scheme:dark}
+  --paper:#122016; --sheet:#1a2a1e; --ink:#e9eee2; --muted:#a8b59f; --sage:#a9c095; --line:#2c3d2f;
+  --lav:#c2b5ee; --lav-soft:#2e2a40; --chip:#223325; --moss:#0c1710; --moss2:#1b2a1f; color-scheme:dark}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth}
@@ -209,7 +210,35 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .empty{color:var(--muted);font-size:.9rem}
 .note{font-size:.76rem;color:var(--muted);margin:0}
 .err{color:#b4442d;font-size:.8rem;margin:0}
+
+/* mood + pomoćnica */
+.hbtn{border:1px solid color-mix(in srgb,var(--cream) 35%,transparent);background:transparent;color:var(--cream);border-radius:999px;padding:.55em 1em;font:500 .85rem var(--body);cursor:pointer;display:inline-flex;gap:.45em;align-items:center}
+.hbtn svg{width:1em;height:1em}
+.hbtns{display:flex;gap:8px;margin-left:auto}
+@media (max-width:760px){.hbtns{margin-left:0}.hbtn .lbl{display:none}}
+.ask{display:flex;gap:8px;max-width:520px;margin:4px 0 18px;flex-wrap:wrap}
+.ask input{flex:1;min-width:0;font:400 .95rem var(--body);padding:.85em 1.1em;border-radius:999px;border:1px solid color-mix(in srgb,var(--cream) 40%,transparent);background:color-mix(in srgb,var(--cream) 10%,transparent);color:var(--cream)}
+.ask input::placeholder{color:color-mix(in srgb,var(--cream) 65%,transparent)}
+.helper{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:var(--paper);z-index:41;display:grid;grid-template-rows:auto auto 1fr;grid-template-columns:minmax(0,1fr);
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);border-left:1px solid var(--line)}
+.helper form{display:flex;gap:8px;padding:14px 20px 6px;min-width:0}
+.helper form .btn{flex:none}
+.hout>*{min-width:0}
+.helper input{flex:1;min-width:0;font:400 .95rem var(--body);padding:.8em 1em;border-radius:999px;border:1px solid var(--line);background:var(--sheet);color:var(--ink)}
+.hchips{display:flex;flex-wrap:wrap;gap:6px;padding:6px 20px 12px;border-bottom:1px solid var(--line)}
+.hchips button{border:1px solid var(--line);background:var(--sheet);color:var(--ink);border-radius:999px;padding:.4em .85em;font:400 .78rem var(--body);cursor:pointer}
+.hout{overflow:auto;padding:16px 20px 28px;display:grid;gap:18px;align-content:start}
+.say{background:var(--lav-soft);border-radius:4px 16px 16px 16px;padding:12px 14px;font-size:.9rem;max-width:46ch}
+.say a{color:var(--lav);font-weight:500}
+.ideas{display:grid;gap:12px}
+.idea{background:var(--sheet);border:1px solid var(--line);padding:14px 16px;display:grid;gap:8px}
+.idea h4{margin:0;font:600 1.15rem var(--display)}
+.idea ul{margin:0;padding-left:1.1em;font-size:.86rem}
+.idea .row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.idea .tot{font:600 1.1rem var(--display);font-variant-numeric:tabular-nums}
+.hgrid{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
 </style>
+<script>try{var m=localStorage.getItem("fala-mood");if(m=="light"||m=="dark")document.documentElement.dataset.theme=m}catch(e){}</script>
 
 <header>
   <div class="wrap bar">
@@ -221,6 +250,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a href="#saradnja">Saradnja</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
+    <div class="hbtns">
+      <button class="hbtn" id="openHelper" type="button" aria-label="Pitaj pomoćnicu"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="lbl">Pitaj</span></button>
+      <button class="hbtn" id="mood" type="button" aria-label="Promijeni izgled"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><span class="lbl" id="moodLbl">Noć</span></button>
+    </div>
     <button class="cartbtn" id="openCart" type="button" aria-label="Otvori korpu">Korpa <span class="count" id="count">0</span></button>
   </div>
 </header>
@@ -232,6 +265,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <h1>fala</h1>
       <p class="tag">Prirodna njega i plodovi sa imanja, ručno i u malim serijama.</p>
       <p>Kozmetika od macerata ljekovitog bilja, Bossonoga kupke za stopala, a od iduće sezone čajevi, voće i med sa imanja u Laktašima.</p>
+      <form class="ask" id="heroAsk" role="search"><input id="heroQ" type="search" aria-label="Šta tražiš?" placeholder="Šta tražiš? npr. poklon za rođendan, žena, ruža" autocomplete="off"><button class="btn" type="submit">Pitaj</button></form>
       <ul class="facts-inline"><li>Narudžba preko WhatsAppa</li><li>Pošta u BiH 8–10 KM</li><li>Preuzimanje u Banjoj Luci</li></ul>
       <div class="actions">
         <a class="btn" href="#prodavnica">Pogledaj prodavnicu</a>
@@ -444,6 +478,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   </div>
 </aside>
 
+<aside class="helper" id="helper" hidden aria-label="Pomoćnica">
+  <div class="dh"><h3>Šta tražiš?</h3><button class="x" id="closeHelper" type="button" aria-label="Zatvori pomoćnicu">×</button></div>
+  <div>
+    <form id="helperForm" role="search"><input id="helperQ" type="search" aria-label="Upiši šta tražiš" placeholder="npr. poklon za mamu, lavanda" autocomplete="off"><button class="btn" type="submit">Traži</button></form>
+    <div class="hchips" id="helperChips"></div>
+  </div>
+  <div class="hout" id="helperOut" aria-live="polite"></div>
+</aside>
+
 <script>
 const DATA = __DATA__;
 const WA = "38762456915";
@@ -570,7 +613,8 @@ tabsEl.addEventListener("click", e => { const b = e.target.closest("[data-tab]")
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const ask = name => "https://wa.me/" + WA + "?text=" + encodeURIComponent("Zdravo! Zanima me: " + name + ". ");
 const gridK = document.getElementById("grid-kreativno");
-const GRIDS = [grid, gridK];
+const helperOut = document.getElementById("helperOut");
+const GRIDS = [grid, gridK, helperOut];
 GRIDS.forEach(g => g.addEventListener("change", e => { const c = e.target.closest(".card"); if (!c) return; const a = c.querySelector("a.add[data-ask]"); const v = c.querySelector("[data-variant]"); if (a && v) a.href = ask(a.dataset.ask + " (" + v.value + ")"); }));
 function card(p){
   const sizes = p.sizeOptions || null;
@@ -705,8 +749,8 @@ $("send").addEventListener("click", e => {
 function openCart(o){ $("drawer").hidden = !o; $("scrim").hidden = !o; }
 $("openCart").onclick = () => openCart(true);
 $("closeCart").onclick = () => openCart(false);
-$("scrim").onclick = () => openCart(false);
-document.addEventListener("keydown", e => { if (e.key === "Escape") openCart(false); });
+$("scrim").onclick = () => { openCart(false); openHelper(false); };
+document.addEventListener("keydown", e => { if (e.key === "Escape") { openCart(false); openHelper(false); } });
 
 /* stranice */
 const PAGES = ["pocetna","prodavnica","kreativno","imanje","saradnja","kontakt"];
@@ -740,6 +784,173 @@ $("b-send").addEventListener("click", e => {
   $("b-err").hidden = !miss; $("b-err").textContent = miss;
   if (miss) e.preventDefault();
 });
+
+/* mood: Lila (svijetlo) i Noć (tamno zeleno) */
+const rootEl = document.documentElement;
+const isDark = () => rootEl.dataset.theme ? rootEl.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+function moodLabel(){
+  const d = isDark();
+  $("moodLbl").textContent = d ? "Lila" : "Noć";
+  $("mood").setAttribute("aria-label", d ? "Prebaci na Lila izgled" : "Prebaci na Noć izgled");
+  $("mood").setAttribute("aria-pressed", String(d));
+}
+$("mood").addEventListener("click", () => {
+  const next = isDark() ? "light" : "dark";
+  rootEl.dataset.theme = next;
+  try { localStorage.setItem("fala-mood", next); } catch(e) {}
+  moodLabel();
+});
+moodLabel();
+
+/* pomoćnica: pretraga koja razumije poklone, mirise, za koga i šta treba */
+const fold = s => String(s || "").toLowerCase().replace(/đ/g, "dj").normalize("NFD").replace(/[̀-ͯ]/g, "");
+const SCENTS = {
+  "ruža": /\bruz[aeiu]\b|ruzin|ruzic/, "lavanda": /lavand/, "citrus": /citrus|narand|limun|pomoranc/, "pepermint": /peperm|\bment|\bnan[aeiu]\b/,
+  "vanila": /vanil|kokos/, "jasmin": /jasmin/, "pačuli": /pacul/, "hibiskus": /hibisk/, "kamilica": /kamilic/,
+  "kantarion": /kantarion/, "žalfija": /zalfij/, "ružmarin": /ruzmarin/, "lipa": /\blip[aeiu]\b/, "đumbir": /djumbir|dumbir/,
+  "zeleni čaj": /zelen\w* caj/, "sandalovina": /sandal/, "neven": /neven/
+};
+const TYPES = {
+  piling: /piling|scrub|pilin/, balzam: /balzam|melem|usn[aeiu]|ispucal|suh\w* koz|\bruk[eu]\b/,
+  bathbomb: /bath|bomb|kupk|kupanj|\bkad[aeu]\b|krofn/, stopala: /stopal|\bnog[aeu]\b|nozic|bossonog|\bpet[ae]\b|umorn/,
+  djeca: /djec|dijet|\bdete|beb[aeiu]|klinc|patk|duck|\bsin\b|kcer|cerk|unuk/, macerat: /macerat|\bulj[aeu]\b/,
+  parfem: /parfem|miris|brad[aeu]/, ceker: /ceker|torb/, pletivo: /plet|\bsal\b|salov|\bkap[aeu]\b|priglav|rukavic|vun[aeu]/,
+  slika: /slik|umjetn|galerij|platn|original|mujmej/, cestitka: /cestit|razgled|karti[ck]/,
+  caj: /\bcaj|sauna|saun[eu]/, med: /\bmed\b|\bmeda\b|\bmedu\b/, voce: /\bvoc|visnj|tresnj|susen/
+};
+const WHO = {
+  zena: /\bzen[aeiu]\b|zenu|\bmam[aeiu]\b|majk|sestr|djevojk|prijateljic|\bbak[aeiu]\b|supruz|svekrv|tetk|kolegic|\bnju\b|\bnjoj\b|\bona\b|uciteljic/,
+  muskarac: /musk|\bmuz|\btat[aeiu]\b|\bbrat|deck|\bmomk|\bmomak|djed|kolega|\bnjega\b|\bnjemu\b|\bon\b|ucitelj\b|brad/,
+};
+const OCC = /poklon|rodjend|rodend|8\.? ?mart|dan zena|bozic|nova godin|novogod|godisnjic|slav[aeiu]|hvala|zahval|iznenadj|godisnjic|svadb|vjencan/;
+const NEEDS = {
+  opustanje: [/opust|stres|\bsan\b|spavan|\bmir\b|relaks/, ["lavanda","kamilica","vanila"], ["bathbomb","stopala"]],
+  energija: [/energ|razbud|osvjez|jutr|svjez/, ["citrus","pepermint","đumbir"], ["piling","stopala"]],
+  koza: [/suh\w* koz|ispucal|perut|njeg\w* koz|koza/, [], ["balzam","macerat","piling"]]
+};
+const GROUP_TYPE = {"Pilinzi":"piling","Balzami":"balzam","Bathbombs":"bathbomb","Za djecu":"djeca","Kuglice za stopala":"stopala","Soli za stopala":"stopala",
+  "Macerati":"macerat","Čvrsti parfemi":"parfem","Cekeri i washcloth":"ceker","Mamino pletivo":"pletivo","Slike i čestitke":"slika",
+  "Čajevi i saune":"caj","Med i pčelinji proizvodi":"med","Voće":"voce","Melemi i losioni":"balzam","Ulja i šimeri":"macerat"};
+const WHO_TYPES = {zena:["piling","bathbomb","balzam","ceker","macerat"], muskarac:["parfem","stopala","piling","balzam"]};
+const typeOf = p => { const t = new Set([GROUP_TYPE[p.group]]); if (p.group === "Za djecu") t.add("bathbomb"); if (/čestitk/i.test(p.name)) t.add("cestitka"); return t; };
+const scentHit = (p, scents) => {
+  for (const sc of scents) {
+    const v = (p.variants || []).find(x => SCENTS[sc].test(fold(x)));
+    if (v) return {scent: sc, variant: v};
+    if (SCENTS[sc].test(fold(p.name + " " + p.desc))) return {scent: sc, variant: ""};
+  }
+  return null;
+};
+function understand(q){
+  const f = fold(q);
+  const pick = obj => Object.keys(obj).filter(k => obj[k].test(f));
+  const needs = Object.keys(NEEDS).filter(k => NEEDS[k][0].test(f));
+  const types = pick(TYPES);
+  if (types.includes("stopala") && types.includes("balzam") && /\bpet[ae]\b/.test(f)) types.splice(types.indexOf("balzam"), 1);
+  const scents = pick(SCENTS), named = scents.slice();
+  if (!scents.length && pick(WHO).includes("muskarac")) scents.push("pepermint", "pačuli", "ružmarin");
+  needs.forEach(n => NEEDS[n][1].forEach(s => scents.includes(s) || scents.push(s)));
+  return {f, types, scents, named, who: pick(WHO), gift: OCC.test(f), needs,
+          words: f.split(/[^a-z0-9]+/).filter(w => w.length > 3)};
+}
+function scoreAll(u){
+  const wantTypes = new Set(u.types);
+  u.needs.forEach(n => NEEDS[n][2].forEach(t => u.types.length || wantTypes.add(t)));
+  if (!wantTypes.size && u.gift && !u.who.includes("muskarac") && !u.who.length) ["piling","bathbomb","balzam"].forEach(t => wantTypes.add(t));
+  u.who.forEach(w => { if (!u.types.length) WHO_TYPES[w].forEach(t => wantTypes.add(t)); });
+  const out = [];
+  for (const p of products) {
+    const pt = typeOf(p);
+    let sc = 0, pickV = "";
+    if (wantTypes.size) { if ([...pt].some(t => wantTypes.has(t))) sc += 10; else continue; }
+    const hit = scentHit(p, u.scents);
+    if (hit) { sc += 6; pickV = hit.variant; } else if (u.scents.length && p.variants) sc -= 2;
+    if (u.who.includes("muskarac") && /pacul|peperm|ruzmarin|sandal/.test(fold((p.variants || []).join(" ") + p.name))) sc += 2;
+    if (!wantTypes.size && !u.scents.length) {
+      const text = fold([p.name, p.group, p.desc, (p.variants || []).join(" ")].join(" "));
+      const w = u.words.filter(x => text.includes(x.slice(0, Math.max(4, x.length - 2)))).length;
+      if (!w) continue; sc += 4 * w;
+    }
+    sc += p.kind === "buy" ? 2 : p.kind === "ask" ? 1 : -3;
+    out.push({p, sc, v: pickV});
+  }
+  return out.sort((a, b) => b.sc - a.sc);
+}
+const priceOf = p => p.sizeOptions ? p.sizeOptions[0].price : p.price;
+function bestOf(list, type){ return list.find(r => r.p.kind === "buy" && typeOf(r.p).has(type)); }
+function ideas(u, ranked){
+  if (!u.gift && !u.who.length) return [];
+  const sets = [];
+  const scentName = u.scents[0];
+  const firstVariant = (p, v) => v || (p.variants ? p.variants[0] : "");
+  const make = (title, picks, note) => {
+    const items = picks.filter(Boolean).map(r => ({p: r.p, v: firstVariant(r.p, r.v)}));
+    if (items.length < 2) return;
+    sets.push({title, note, items, total: items.reduce((s, i) => s + (i.p.kind === "buy" ? priceOf(i.p) : 0), 0)});
+  };
+  const pool = scoreAll({...u, types: [], who: u.who, gift: true});
+  const byType = t => ranked.find(r => r.p.kind === "buy" && typeOf(r.p).has(t)) || bestOf(pool, t) ||
+                      (() => { const p = products.find(x => x.kind === "buy" && typeOf(x).has(t)); return p ? {p, v: (scentHit(p, u.scents) || {}).variant || ""} : null; })();
+  if (u.types.includes("djeca")) {
+    make("Za malu kadu", [byType("djeca"), {p: products.find(x => x.id === "x-cestitka"), v: ""}], "Patkice s iznenađenjem i ručno slikana čestitka.");
+    return sets;
+  }
+  if (u.who.includes("muskarac")) {
+    make("Za njega", [byType("parfem"), byType("stopala"), byType("piling")], "Čvrsti parfem i za bradu, kupka za umorne noge i piling.");
+    make("Mali znak pažnje", [byType("stopala"), {p: products.find(x => x.id === "x-cestitka"), v: ""}], "Kuglice za stopala i čestitka.");
+    return sets;
+  }
+  const label = scentName ? scentName[0].toUpperCase() + scentName.slice(1) : "Fala";
+  make(label + " ritual", [byType("piling"), byType("bathbomb"), byType("balzam")], "Piling, kupka i balzam istog mirisa: cijeli ritual za jednu večer.");
+  make("Mali poklon", [byType("bathbomb"), byType("balzam")], "Bathbomb i mini balzam, za pažnju bez povoda.");
+  make("Za umorne noge", [byType("stopala"), byType("piling")], "Bossonoga kupka i piling za meke pete.");
+  return sets;
+}
+function addSet(items){
+  items.filter(i => i.p.kind === "buy").forEach(i => addItem({id: i.p.id, variant: i.v || "", size: i.p.sizeOptions ? i.p.sizeOptions[0].label : ""}));
+}
+let lastSets = [];
+function answer(q){
+  q = q.trim().slice(0, 120);
+  $("helperQ").value = q;
+  if (!q) { helperOut.innerHTML = `<p class="say">Napiši šta tražiš: za koga je, koji miris voli, za koju priliku. Npr. <i>poklon za rođendan, žena, ruža</i>.</p>`; return; }
+  const u = understand(q);
+  let say = [];
+  if (u.types.includes("slika")) say.push(`Originalne slike su u galeriji na <a href="https://mujmej.art" target="_blank" rel="noopener">mujmej.art</a>. Ovdje možeš naručiti sliku po želji ili ručno slikanu čestitku.`);
+  const ranked = scoreAll(u);
+  lastSets = ideas(u, ranked);
+  if (lastSets.length) say.push(u.gift ? "Evo nekoliko ideja za poklon. Svaki set mogu spakovati u poklon pakovanje s ručno rađenom karticom." : "Evo šta bih predložila:");
+  else if (ranked.length) say.push(u.named.length ? `Evo šta imam s mirisom: ${u.named.join(", ")}.` : u.needs.includes("opustanje") ? "Za opuštanje biram lavandu, kamilicu i vanilu:" : "Evo šta sam našla:");
+  const top = ranked.slice(0, 6);
+  if (!top.length && !lastSets.length) {
+    helperOut.innerHTML = `<p class="say">Nisam našla ništa za „${esc(q)}”. Probaj drugim riječima (npr. piling, kupka, za stopala, poklon za mamu) ili me pitaj direktno: <a href="${ask("tražim " + q)}" target="_blank" rel="noopener">piši na WhatsApp</a>.</p>`;
+    return;
+  }
+  const setsHtml = lastSets.map((s, i) => `<div class="idea"><h4>${esc(s.title)}</h4><p class="note">${esc(s.note)}</p><ul>${s.items.map(it => `<li>${esc(it.p.name)}${it.v ? " · " + esc(it.v) : ""}${it.p.kind === "buy" ? " · " + priceOf(it.p) + " KM" : " · po dogovoru"}</li>`).join("")}</ul>
+    <div class="row"><span class="tot">${s.total} KM</span><button class="btn" type="button" data-set="${i}">Dodaj set u korpu</button></div></div>`).join("");
+  helperOut.innerHTML = `<p class="say">${say.join(" ")}</p>${setsHtml ? `<div class="ideas">${setsHtml}</div>` : ""}<div class="grid hgrid">${top.map(r => card(r.p)).join("")}</div>`;
+  top.forEach(r => {
+    if (!r.v) return;
+    const c = helperOut.querySelector(`.card[data-id="${CSS.escape(r.p.id)}"] [data-variant]`);
+    if (c) { c.value = r.v; c.dispatchEvent(new Event("change", {bubbles: true})); }
+  });
+}
+helperOut.addEventListener("click", e => {
+  const b = e.target.closest("[data-set]"); if (!b) return;
+  addSet(lastSets[+b.dataset.set].items);
+  b.textContent = "Dodano u korpu"; setTimeout(() => { b.textContent = "Dodaj set u korpu"; }, 1600);
+});
+const CHIPS = ["poklon za rođendan, žena, ruža", "nešto za umorne noge", "piling", "za dijete", "poklon za muškarca", "opuštanje, lavanda", "slike"];
+$("helperChips").innerHTML = CHIPS.map(c => `<button type="button">${esc(c)}</button>`).join("");
+$("helperChips").addEventListener("click", e => { const b = e.target.closest("button"); if (b) answer(b.textContent); });
+function openHelper(o, q){
+  $("helper").hidden = !o; $("scrim").hidden = !o && $("drawer").hidden;
+  if (o) { if (q !== undefined) answer(q); else if (!helperOut.innerHTML) answer(""); $("helperQ").focus(); }
+}
+$("openHelper").onclick = () => openHelper(true);
+$("closeHelper").onclick = () => openHelper(false);
+$("helperForm").addEventListener("submit", e => { e.preventDefault(); answer($("helperQ").value); });
+$("heroAsk").addEventListener("submit", e => { e.preventDefault(); openHelper(true, $("heroQ").value); });
 
 renderTabs(); renderGrid(); renderCart(); b2bUpdate(); route();
 </script>

@@ -141,6 +141,22 @@ with sync_playwright() as p:
     href = urllib.parse.unquote(mc.locator("a.add").get_attribute("href"))
     check("„Pitaj” za macerat šalje izabranu biljku", "Macerat po izboru (Jorgovan)" in href, href[-60:])
 
+    # 9b. pomoćnica i izgled
+    pg.goto(URL + "#pocetna"); pg.wait_for_timeout(150)
+    pg.fill("#heroQ", "poklon za rođendan, žena, ruža"); pg.press("#heroQ", "Enter"); pg.wait_for_timeout(200)
+    sets = pg.eval_on_selector_all("#helperOut .idea h4", "e => e.map(x => x.textContent)")
+    check("Pomoćnica za 'poklon, žena, ruža' predlaže Ruža set", pg.is_visible("#helper") and "Ruža ritual" in sets, str(sets))
+    v = pg.eval_on_selector_all('#helperOut .card[data-id="bb-bathbomb-50g"] [data-variant]', "e => e.map(x => x.value)")
+    check("Pomoćnica bira miris ruže na bathbombu", v == ["Ruža + Hibiskus + Šipak"], str(v))
+    pg.fill("#helperQ", "slike"); pg.press("#helperQ", "Enter"); pg.wait_for_timeout(150)
+    check("Pomoćnica za slike vodi na mujmej.art", pg.locator('#helperOut .say a[href="https://mujmej.art"]').count() == 1)
+    pg.keyboard.press("Escape")
+    before = pg.evaluate("getComputedStyle(document.body).backgroundColor")
+    pg.click("#mood"); pg.wait_for_timeout(100)
+    after = pg.evaluate("getComputedStyle(document.body).backgroundColor")
+    check("Dugme mijenja izgled Lila ↔ Noć", before != after and pg.inner_text("#moodLbl") in ("Lila", "Noć"), before + " → " + after)
+    pg.click("#mood"); pg.wait_for_timeout(100)
+
     # 10. vanjski linkovi
     unsafe = pg.eval_on_selector_all('a[target=_blank]', "e => e.filter(a => !(a.rel||'').includes('noopener')).map(a => a.href)")
     check("Svi vanjski linkovi imaju zaštitu (noopener)", not unsafe, ", ".join(unsafe))
