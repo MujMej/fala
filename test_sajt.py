@@ -167,10 +167,8 @@ with sync_playwright() as p:
     pg.goto(URL + "#imanje"); pg.wait_for_timeout(150)
     check("Imanje ima dnevnik gradnje sa statusima", pg.locator("#stanjeLog li").count() >= 6 and pg.locator("#stanjeLog .tag.gotovo").count() >= 1)
     pg.goto(URL + "#kreativno"); pg.wait_for_timeout(300)
-    pg.eval_on_selector_all("#pletivo img, #grid-kreativno img", "e => e.forEach(i => i.loading = 'eager')"); pg.wait_for_timeout(600)
-    broken = pg.eval_on_selector_all("#pletivo img, #grid-kreativno img", "e => e.filter(i => !i.complete || !i.naturalWidth).length")
-    arts = pg.locator('#grid-kreativno .card[data-id^="x-priglavke-"] img').count()
-    check("Pletivo: galerija i pojedinačni artikli s fotografijom", pg.locator("#pletivo img").count() >= 3 and arts >= 10 and broken == 0, f"{arts} artikala, {broken} ne učitava")
+    photos = pg.locator('#grid-kreativno .card[data-id="x-priglavke"] img, #grid-kreativno .card[data-id="x-carape"] img').count()
+    check("Mamino pletivo je s ilustracijama, bez fotografija", photos == 0 and pg.locator('#grid-kreativno .card[data-id="x-priglavke"]').count() == 1)
 
     # 10. vanjski linkovi
     unsafe = pg.eval_on_selector_all('a[target=_blank]', "e => e.filter(a => !(a.rel||'').includes('noopener')).map(a => a.href)")
