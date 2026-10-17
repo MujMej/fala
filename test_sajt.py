@@ -32,13 +32,13 @@ with sync_playwright() as p:
     check("Korpa je zatvorena pri učitavanju", not pg.is_visible("#drawer"))
 
     # 2. sve slike postoje
-    pg.goto(URL + "#prodavnica"); pg.wait_for_timeout(200)
+    pg.goto(URL + "#granap"); pg.wait_for_timeout(200)
     for t in ["all", "njega", "bossonoga", "iznutra"]:
         pg.click(f'[data-tab="{t}"]'); pg.wait_for_timeout(150)
     pg.click('[data-tab="all"]')
     for pgname in ["kreativno", "imanje", "saradnja", "kontakt"]:
         pg.goto(URL + "#" + pgname); pg.wait_for_timeout(150)
-    pg.goto(URL + "#prodavnica"); pg.wait_for_timeout(150)
+    pg.goto(URL + "#granap"); pg.wait_for_timeout(150)
     pg.evaluate("document.querySelectorAll('img[loading=lazy]').forEach(i => i.loading='eager')")
     pg.wait_for_load_state("networkidle"); pg.wait_for_timeout(500)
     broken = pg.evaluate("[...document.images].filter(i => i.complete && i.naturalWidth === 0).map(i => i.getAttribute('src'))")
@@ -46,7 +46,7 @@ with sync_playwright() as p:
 
     # 3. stranice, linije i kartice
     pg.goto(URL); pg.wait_for_timeout(200)
-    check("Početna sakriva prodavnicu", not pg.is_visible("#prodavnica") and pg.is_visible("#linije"))
+    check("Početna sakriva granap", not pg.is_visible("#granap") and pg.is_visible("#linije"))
     pg.click('nav a[href="#kreativno"]'); pg.wait_for_timeout(200)
     check("Meni otvara stranicu Kreativno", pg.is_visible("#kreativno") and not pg.is_visible("#linije")
           and pg.locator("#grid-kreativno .card").count() >= 6)
@@ -135,7 +135,7 @@ with sync_playwright() as p:
     pg.evaluate("localStorage.clear()")
 
     # 9. dugmad "Pitaj" nose izabranu varijantu
-    pg.goto(URL + "#prodavnica"); pg.reload(); pg.click('[data-tab="njega"]')
+    pg.goto(URL + "#granap"); pg.reload(); pg.click('[data-tab="njega"]')
     mc = pg.locator('.card[data-id="x-macerat"]')
     mc.locator("[data-variant]").select_option("Jorgovan")
     href = urllib.parse.unquote(mc.locator("a.add").get_attribute("href"))
@@ -157,6 +157,12 @@ with sync_playwright() as p:
     check("Dugme mijenja izgled Lila ↔ Noć", before != after and pg.inner_text("#moodLbl") in ("Lila", "Noć"), before + " → " + after)
     pg.click("#mood"); pg.wait_for_timeout(100)
 
+    # 9c. granap i bilje
+    pg.goto(URL + "#prodavnica"); pg.wait_for_timeout(150)
+    check("Stari link #prodavnica otvara Granap", pg.is_visible("#granap") and "Granap" in pg.inner_text("#granap h2"))
+    pg.goto(URL + "#bilje"); pg.wait_for_timeout(150)
+    check("Stranica Bilje ima bilje, pravila i konkurs", pg.locator("#herbs article").count() >= 8 and pg.is_visible(".rules") and pg.is_visible("#konkursAsk"))
+
     # 10. vanjski linkovi
     unsafe = pg.eval_on_selector_all('a[target=_blank]', "e => e.filter(a => !(a.rel||'').includes('noopener')).map(a => a.href)")
     check("Svi vanjski linkovi imaju zaštitu (noopener)", not unsafe, ", ".join(unsafe))
@@ -166,7 +172,7 @@ with sync_playwright() as p:
     m.goto(URL); m.wait_for_load_state("networkidle")
     check("Meni je vidljiv i na telefonu", m.is_visible('nav a[href="#kreativno"]'))
     w = 0
-    for pgname in ["pocetna", "prodavnica", "kreativno", "imanje", "saradnja", "kontakt"]:
+    for pgname in ["pocetna", "granap", "bilje", "kreativno", "imanje", "saradnja", "kontakt"]:
         m.goto(URL + "#" + pgname); m.wait_for_timeout(150)
         w = m.evaluate("document.documentElement.scrollWidth")
         if w > 360: break
