@@ -163,6 +163,13 @@ with sync_playwright() as p:
     pg.goto(URL + "#bilje"); pg.wait_for_timeout(150)
     check("Stranica Bilje ima bilje, pravila i konkurs", pg.locator("#herbs article").count() >= 8 and pg.is_visible(".rules") and pg.is_visible("#konkursAsk"))
 
+    # 9d. stanje imanja i pletivo
+    pg.goto(URL + "#imanje"); pg.wait_for_timeout(150)
+    check("Imanje ima dnevnik gradnje sa statusima", pg.locator("#stanjeLog li").count() >= 6 and pg.locator("#stanjeLog .tag.gotovo").count() >= 1)
+    pg.goto(URL + "#kreativno"); pg.wait_for_timeout(300)
+    broken = pg.eval_on_selector_all("#pletivo img", "e => e.filter(i => !i.complete || !i.naturalWidth).length")
+    check("Galerija maminog pletiva ima fotografije", pg.locator("#pletivo img").count() >= 6 and broken == 0, f"{broken} ne učitava")
+
     # 10. vanjski linkovi
     unsafe = pg.eval_on_selector_all('a[target=_blank]', "e => e.filter(a => !(a.rel||'').includes('noopener')).map(a => a.href)")
     check("Svi vanjski linkovi imaju zaštitu (noopener)", not unsafe, ", ".join(unsafe))
